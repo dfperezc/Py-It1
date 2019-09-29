@@ -1,17 +1,4 @@
-/**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * Universidad	de	los	Andes	(Bogotá	- Colombia)
- * Departamento	de	Ingeniería	de	Sistemas	y	Computación
- * Licenciado	bajo	el	esquema	Academic Free License versión 2.1
- * 		
- * Curso: isis2304 - Sistemas Transaccionales
- * Proyecto: Parranderos Uniandes
- * @version 1.0
- * @author Germán Bravo
- * Julio de 2018
- * 
- * Revisado por: Claudia Jiménez, Christian Ariza
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
+
 
 package uniandes.isis2304.EPSAndes.persistencia;
 
@@ -44,19 +31,21 @@ import uniandes.isis2304.EPSAndes.negocio.Visitan;
  * información entre objetos Java y tuplas de la base de datos, en ambos
  * sentidos Sigue un patrón SINGLETON (Sólo puede haber UN objeto de esta clase)
  * para comunicarse de manera correcta con la base de datos Se apoya en las
- * clases SQLBar, SQLBebedor, SQLBebida, SQLGustan, SQLSirven, SQLTipoBebida y
- * SQLVisitan, que son las que realizan el acceso a la base de datos
+ * clases SQLAdministrador, SQLGerente, SQLAfiliado, SQLEPS, SQLUsuario, SQLMedico, SQLIPS,
+ * SQLRecepcionista, SQLOrden, SQLServicio, SQLConsulta, SQLTrabajan, SQLUrgencia, 
+ * SQLRol, SQLHospitalizacion, SQLRemision, SQLControl, SQLTerapia, 
+ * SQLProcedimientoEspecializado y SQLExamenDiagnostico
+ * ; que son las que realizan el acceso a la base de datos
  * 
- * @author Germán Bravo
  */
-public class EPSAndes {
+public class PersistenciaEPSAndes {
 	/*
 	 * **************************************************************** Constantes
 	 *****************************************************************/
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(EPSAndes.class.getName());
+	private static Logger log = Logger.getLogger(PersistenciaEPSAndes.class.getName());
 
 	/**
 	 * Cadena para indicar el tipo de sentencias que se va a utilizar en una
@@ -70,7 +59,7 @@ public class EPSAndes {
 	/**
 	 * Atributo privado que es el único objeto de la clase - Patrón SINGLETON
 	 */
-	private static EPSAndes instance;
+	private static PersistenciaEPSAndes instance;
 
 	/**
 	 * Fábrica de Manejadores de persistencia, para el manejo correcto de las
@@ -80,8 +69,10 @@ public class EPSAndes {
 
 	/**
 	 * Arreglo de cadenas con los nombres de las tablas de la base de datos, en su
-	 * orden: Secuenciador, tipoBebida, bebida, bar, bebedor, gustan, sirven y
-	 * visitan
+	 * orden: Secuenciador,  Administrador, Gerente, Afiliado, EPS, Usuario, Medico, IPS,
+	 * Recepcionista, Orden, Servicio, Consulta, Trabajan, Urgencia, 
+	 * Rol, Hospitalizacion, Remision, Control, Terapia, 
+	 * ProcedimientoEspecializado y ExamenDiagnostico
 	 */
 	private List<String> tablas;
 
@@ -91,6 +82,7 @@ public class EPSAndes {
 	 */
 	private SQLUtil sqlUtil;
 
+	//----------------------tablasParranderos----------------------inicio
 	/**
 	 * Atributo para el acceso a la tabla TIPOBEBIDA de la base de datos
 	 */
@@ -125,6 +117,12 @@ public class EPSAndes {
 	 * Atributo para el acceso a la tabla VISITAN de la base de datos
 	 */
 	private SQLVisitan sqlVisitan;
+	//----------------------tablasParranderos----------------------fin
+	
+	
+	//----------------------tablasEPSAndes---------------------inicio
+	//private SQL;
+	//----------------------tablasEPSAndes---------------------fin
 
 	/*
 	 * **************************************************************** Métodos del
@@ -134,7 +132,7 @@ public class EPSAndes {
 	/**
 	 * Constructor privado con valores por defecto - Patrón SINGLETON
 	 */
-	private EPSAndes() {
+	private PersistenciaEPSAndes() {
 		pmf = JDOHelper.getPersistenceManagerFactory("Parranderos");
 		crearClasesSQL();
 
@@ -157,7 +155,7 @@ public class EPSAndes {
 	 * @param tableConfig - Objeto Json que contiene los nombres de las tablas y de
 	 *                    la unidad de persistencia a manejar
 	 */
-	private EPSAndes(JsonObject tableConfig) {
+	private PersistenciaEPSAndes(JsonObject tableConfig) {
 		crearClasesSQL();
 		tablas = leerNombresTablas(tableConfig);
 
@@ -170,9 +168,9 @@ public class EPSAndes {
 	 * @return Retorna el único objeto PersistenciaParranderos existente - Patrón
 	 *         SINGLETON
 	 */
-	public static EPSAndes getInstance() {
+	public static PersistenciaEPSAndes getInstance() {
 		if (instance == null) {
-			instance = new EPSAndes();
+			instance = new PersistenciaEPSAndes();
 		}
 		return instance;
 	}
@@ -185,9 +183,9 @@ public class EPSAndes {
 	 * @return Retorna el único objeto PersistenciaParranderos existente - Patrón
 	 *         SINGLETON
 	 */
-	public static EPSAndes getInstance(JsonObject tableConfig) {
+	public static PersistenciaEPSAndes getInstance(JsonObject tableConfig) {
 		if (instance == null) {
-			instance = new EPSAndes(tableConfig);
+			instance = new PersistenciaEPSAndes(tableConfig);
 		}
 		return instance;
 	}
@@ -347,7 +345,7 @@ public class EPSAndes {
 
 			return new TipoBebida(idTipoBebida, nombre);
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return null;
 		} finally {
@@ -375,7 +373,7 @@ public class EPSAndes {
 			tx.commit();
 			return resp;
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return -1;
 		} finally {
@@ -403,7 +401,7 @@ public class EPSAndes {
 			tx.commit();
 			return resp;
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return -1;
 		} finally {
@@ -475,7 +473,7 @@ public class EPSAndes {
 			log.trace("Inserción bebida: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
 			return new Bebida(idBebida, nombre, idTipoBebida, gradoAlcohol);
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return null;
 		} finally {
@@ -503,7 +501,7 @@ public class EPSAndes {
 
 			return resp;
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return -1;
 		} finally {
@@ -531,7 +529,7 @@ public class EPSAndes {
 
 			return resp;
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return -1;
 		} finally {
@@ -579,7 +577,7 @@ public class EPSAndes {
 			tx.commit();
 			return resp;
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return -1;
 		} finally {
@@ -618,7 +616,7 @@ public class EPSAndes {
 
 			return new Bebedor(idBebedor, nombre, ciudad, presupuesto);
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return null;
 		} finally {
@@ -645,7 +643,7 @@ public class EPSAndes {
 			tx.commit();
 			return resp;
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return -1;
 		} finally {
@@ -672,7 +670,7 @@ public class EPSAndes {
 			tx.commit();
 			return resp;
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return -1;
 		} finally {
@@ -791,7 +789,7 @@ public class EPSAndes {
 			tx.commit();
 			return resp;
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return -1;
 		} finally {
@@ -821,7 +819,7 @@ public class EPSAndes {
 			tx.commit();
 			return resp;
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return new long[] { -1, -1 };
 		} finally {
@@ -852,7 +850,7 @@ public class EPSAndes {
 			tx.commit();
 			return new long[] { bebedorEliminado, visitasEliminadas };
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return new long[] { -1, -1 };
 		} finally {
@@ -956,7 +954,7 @@ public class EPSAndes {
 
 			return new Bar(idBar, nombre, ciudad, presupuesto, sedes);
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return null;
 		} finally {
@@ -984,7 +982,7 @@ public class EPSAndes {
 
 			return resp;
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return -1;
 		} finally {
@@ -1012,7 +1010,7 @@ public class EPSAndes {
 
 			return resp;
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return -1;
 		} finally {
@@ -1074,7 +1072,7 @@ public class EPSAndes {
 
 			return resp;
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return -1;
 		} finally {
@@ -1114,7 +1112,7 @@ public class EPSAndes {
 
 			return new Gustan(idBebedor, idBebida);
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return null;
 		} finally {
@@ -1143,7 +1141,7 @@ public class EPSAndes {
 
 			return resp;
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return -1;
 		} finally {
@@ -1194,7 +1192,7 @@ public class EPSAndes {
 
 			return new Sirven(idBar, idBebida, horario);
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return null;
 		} finally {
@@ -1223,7 +1221,7 @@ public class EPSAndes {
 
 			return resp;
 		} catch (Exception e) {
-//	        	e.printStackTrace();
+			//	        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return -1;
 		} finally {
@@ -1297,7 +1295,7 @@ public class EPSAndes {
 
 			return new Visitan(idBebedor, idBar, fecha, horario);
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return null;
 		} finally {
@@ -1326,7 +1324,7 @@ public class EPSAndes {
 
 			return resp;
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return -1;
 		} finally {
@@ -1354,7 +1352,7 @@ public class EPSAndes {
 
 			return visitasEliminadas;
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return -1;
 		} finally {
@@ -1382,7 +1380,7 @@ public class EPSAndes {
 
 			return visitasEliminadas;
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return -1;
 		} finally {
@@ -1422,7 +1420,7 @@ public class EPSAndes {
 			log.info("Borrada la base de datos");
 			return resp;
 		} catch (Exception e) {
-//        	e.printStackTrace();
+			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return new long[] { -1, -1, -1, -1, -1, -1, -1 };
 		} finally {

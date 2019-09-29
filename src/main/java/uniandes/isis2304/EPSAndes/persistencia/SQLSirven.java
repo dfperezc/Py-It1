@@ -38,7 +38,7 @@ class SQLSirven {
 	 * sentencias de acceso a la base de datos Se renombra acá para facilitar la
 	 * escritura de las sentencias
 	 */
-	private final static String SQL = EPSAndes.SQL;
+	private final static String SQL = PersistenciaEPSAndes.SQL;
 
 	/*
 	 * **************************************************************** Atributos
@@ -46,7 +46,7 @@ class SQLSirven {
 	/**
 	 * El manejador de persistencia general de la aplicación
 	 */
-	private EPSAndes pp;
+	private PersistenciaEPSAndes pp;
 
 	/*
 	 * **************************************************************** Métodos
@@ -56,7 +56,7 @@ class SQLSirven {
 	 * 
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLSirven(EPSAndes pp) {
+	public SQLSirven(PersistenciaEPSAndes pp) {
 		this.pp = pp;
 	}
 

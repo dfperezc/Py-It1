@@ -39,7 +39,7 @@ class SQLBebedor {
 	 * sentencias de acceso a la base de datos Se renombra acá para facilitar la
 	 * escritura de las sentencias
 	 */
-	private final static String SQL = EPSAndes.SQL;
+	private final static String SQL = PersistenciaEPSAndes.SQL;
 
 	/*
 	 * **************************************************************** Atributos
@@ -47,7 +47,7 @@ class SQLBebedor {
 	/**
 	 * El manejador de persistencia general de la aplicación
 	 */
-	private EPSAndes pp;
+	private PersistenciaEPSAndes pp;
 
 	/*
 	 * **************************************************************** Métodos
@@ -57,7 +57,7 @@ class SQLBebedor {
 	 * 
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLBebedor(EPSAndes pp) {
+	public SQLBebedor(PersistenciaEPSAndes pp) {
 		this.pp = pp;
 	}
 

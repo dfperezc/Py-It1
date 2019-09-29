@@ -22,7 +22,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import com.google.gson.JsonObject;
 
-import uniandes.isis2304.EPSAndes.persistencia.EPSAndes;
+import uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes;
 
 /**
  * Clase principal del negocio Sarisface todos los requerimientos funcionales
@@ -45,7 +45,7 @@ public class Parranderos {
 	/**
 	 * El manejador de persistencia
 	 */
-	private EPSAndes pp;
+	private PersistenciaEPSAndes pp;
 
 	/*
 	 * **************************************************************** Métodos
@@ -54,7 +54,7 @@ public class Parranderos {
 	 * El constructor por defecto
 	 */
 	public Parranderos() {
-		pp = EPSAndes.getInstance();
+		pp = PersistenciaEPSAndes.getInstance();
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class Parranderos {
 	 *                    de persistencia
 	 */
 	public Parranderos(JsonObject tableConfig) {
-		pp = EPSAndes.getInstance(tableConfig);
+		pp = PersistenciaEPSAndes.getInstance(tableConfig);
 	}
 
 	/**
