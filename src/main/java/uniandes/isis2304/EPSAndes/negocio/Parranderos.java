@@ -804,10 +804,10 @@ public class Parranderos {
 	 *         las tablas GUSTAN, SIRVEN, VISITAN, BEBIDA, TIPOBEBIDA, BEBEDOR y
 	 *         BAR, respectivamente
 	 */
-	public long[] limpiarParranderos() {
-		log.info("Limpiando la BD de Parranderos");
-		long[] borrrados = pp.limpiarParranderos();
-		log.info("Limpiando la BD de Parranderos: Listo!");
+	public long[] limpiarEPSAndes() {
+		log.info("Limpiando la BD de EPSAndes");
+		long[] borrrados = pp.limpiarEPSAndes();
+		log.info("Limpiando la BD de EPSAndes: Listo!");
 		return borrrados;
 	}
 }

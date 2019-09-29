@@ -195,7 +195,7 @@ public class ConexionTest {
 			msg += "Revise el log de parranderos y el de datanucleus para conocer el detalle de la excepción";
 			System.out.println(msg);
 		} finally {
-			parranderos.limpiarParranderos();
+			parranderos.limpiarEPSAndes();
 			parranderos.cerrarUnidadPersistencia();
 		}
 	}

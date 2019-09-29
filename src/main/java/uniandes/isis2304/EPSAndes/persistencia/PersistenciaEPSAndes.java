@@ -140,7 +140,7 @@ public class PersistenciaEPSAndes {
 	private SQLServicio sqlServicio;
 	private SQLTerapia sqlTerapia;
 	private SQLTrabajan sqlTrabajan;
-	private SQLUrgencia sqlUgencia;
+	private SQLUrgencia sqlUrgencia;
 	private SQLUsuario sqlUsuario;
 	
 	//----------------------tablasEPSAndes---------------------fin
@@ -154,7 +154,13 @@ public class PersistenciaEPSAndes {
 	 * Constructor privado con valores por defecto - Patrón SINGLETON
 	 */
 	private PersistenciaEPSAndes() {
-//		pmf = JDOHelper.getPersistenceManagerFactory("Parranderos");
+//		pmf = JDOHelper.getPersistenceManagerFactory("EPSAndes");
+//	TODO
+//		
+//		
+//		
+//		
+//		
 		pmf = JDOHelper.getPersistenceManagerFactory("Parranderos");
 		
 		crearClasesSQL();
@@ -171,29 +177,29 @@ public class PersistenciaEPSAndes {
 		tablas.add("VISITAN");
 		
 		//Denfinir nombres defaul de las tablas de la base de datos de EPSAndes
-//		tablas.add("EPSAndes_sequence");
-//		tablas.add("ADMINISTRADOR");
-//		tablas.add("AFILIADO");
-//		tablas.add("CITA");
-//		tablas.add("CONSULTA");
-//		tablas.add("CONTROL");
-//		tablas.add("EPS");
-//		tablas.add("EXAMEN_DIAGNOSTICO");
-//		tablas.add("GERENTE");
-//		tablas.add("GUSTAN");
-//		tablas.add("HOSPITALIZACION");
-//		tablas.add("IPS");
-//		tablas.add("MEDICO");
-//		tablas.add("ORDEN");
-//		tablas.add("PROCEDIMIENTO_ESPECIALIZADO");
-//		tablas.add("RECEPCIONISTA");
-//		tablas.add("REMISION");
-//		tablas.add("ROL");
-//		tablas.add("SERVICIO");
-//		tablas.add("TERAPIA");
-//		tablas.add("TRABAJAN");
-//		tablas.add("URGENCIA");
-//		tablas.add("USUARIO");
+		tablas.add("EPSAndes_sequence");
+		tablas.add("ADMINISTRADOR");
+		tablas.add("AFILIADO");
+		tablas.add("CITA");
+		tablas.add("CONSULTA");
+		tablas.add("CONTROL");
+		tablas.add("EPS");
+		tablas.add("EXAMEN_DIAGNOSTICO");
+		tablas.add("GERENTE");
+		tablas.add("GUSTAN");
+		tablas.add("HOSPITALIZACION");
+		tablas.add("IPS");
+		tablas.add("MEDICO");
+		tablas.add("ORDEN");
+		tablas.add("PROCEDIMIENTO_ESPECIALIZADO");
+		tablas.add("RECEPCIONISTA");
+		tablas.add("REMISION");
+		tablas.add("ROL");
+		tablas.add("SERVICIO");
+		tablas.add("TERAPIA");
+		tablas.add("TRABAJAN");
+		tablas.add("URGENCIA");
+		tablas.add("USUARIO");
 				
 	}
 
@@ -255,7 +261,7 @@ public class PersistenciaEPSAndes {
 	 */
 	private List<String> leerNombresTablas(JsonObject tableConfig) {
 		JsonArray nombres = tableConfig.getAsJsonArray("tablas");
-
+		//TODO VERTABCONFIG
 		List<String> resp = new LinkedList<String>();
 		for (JsonElement nom : nombres) {
 			resp.add(nom.getAsString());
@@ -276,8 +282,33 @@ public class PersistenciaEPSAndes {
 		sqlSirven = new SQLSirven(this);
 		sqlVisitan = new SQLVisitan(this);
 		sqlUtil = new SQLUtil(this);
-	}
+		
+		sqlAdministrador = new SQLAdministrador(this);
+		sqlAfiliado = new SQLAfiliado(this);
+		sqlCita = new SQLCita(this);
+		sqlConsulta = new SQLConsulta(this);
+		sqlControl = new SQLControl(this);
+		sqlEPS = new SQLEPS(this);
+		sqlExamenDiagnostico = new SQLExamenDiagnostico(this);
+		sqlGerente = new SQLGerente(this);
+		sqlGustan = new SQLGustan(this);
+		sqlHospitalizacion = new SQLHospitalizacion(this);
+		sqlIPS = new SQLIPS(this);
+		sqlMedico = new SQLMedico(this);
+		sqlOrden = new SQLOrden(this);
+		sqlProcedimientoEspecializado = new SQLProcedimientoEspecializado(this);
+		sqlRecepcionista = new SQLRecepcionista(this);
+		sqlRemision = new SQLRemision(this);
+		sqlRol = new SQLRol(this);
+		sqlServicio = new SQLServicio(this);
+		sqlTerapia = new SQLTerapia(this);
+		sqlTrabajan = new SQLTrabajan(this);
+		sqlUrgencia = new SQLUrgencia(this);
+		sqlUsuario = new SQLUsuario(this);
+		}
 
+	
+	
 	/**
 	 * @return La cadena de caracteres con el nombre del secuenciador de parranderos
 	 */
@@ -339,6 +370,74 @@ public class PersistenciaEPSAndes {
 	 */
 	public String darTablaVisitan() {
 		return tablas.get(7);
+	}
+	
+	
+	public String darSeqEPSAndes() {
+		return tablas.get(0);
+	}
+	public String darTablaAdministrador() {
+		return tablas.get(1);
+	}
+	public String darTablaAfiliado() {
+		return tablas.get(2);
+	}
+	public String darTablaCita() {
+		return tablas.get(3);
+	}
+	public String darTablaConsulta() {
+		return tablas.get(4);
+	}
+	public String darTablaControl() {
+		return tablas.get(5);
+	}
+	public String darTablaEPS() {
+		return tablas.get(6);
+	}
+	public String darTablaExamenDiagnostico() {
+		return tablas.get(7);
+	}
+	public String darTablaGerente() {
+		return tablas.get(8);
+	}
+	public String darTablaHospitalizacion() {
+		return tablas.get(9);
+	}
+	public String darTablaIPS() {
+		return tablas.get(10);
+	}
+	public String darTablaMedico() {
+		return tablas.get(11);
+	}
+	public String darTablaOrden() {
+		return tablas.get(12);
+	}
+	public String darTablaProcedimientoEspecializado() {
+		return tablas.get(13);
+	}
+	public String darTablaRecepcionista() {
+		return tablas.get(14);
+	}
+	public String darTablaRemision() {
+		return tablas.get(15);
+	}
+	public String darTablaRol() {
+		return tablas.get(16);
+	}
+	public String darTablaServicio() {
+		return tablas.get(17);
+	}
+	public String darTablaTerapia() {
+		return tablas.get(18);
+	}
+	public String darTablaTrabajan() {
+		return tablas.get(19);
+	}
+	public String darTablaUrgencia() {
+		return tablas.get(20);
+	}
+	public String darTablaUsuario() {
+		return tablas.get(21);
 	}
 
 	/**
@@ -1459,12 +1558,12 @@ public class PersistenciaEPSAndes {
 	 *         las tablas GUSTAN, SIRVEN, VISITAN, BEBIDA, TIPOBEBIDA, BEBEDOR y
 	 *         BAR, respectivamente
 	 */
-	public long[] limpiarParranderos() {
+	public long[] limpiarEPSAndes() {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 		try {
 			tx.begin();
-			long[] resp = sqlUtil.limpiarParranderos(pm);
+			long[] resp = sqlUtil.limpiarEPSAndes(pm);
 			tx.commit();
 			log.info("Borrada la base de datos");
 			return resp;
@@ -1472,6 +1571,7 @@ public class PersistenciaEPSAndes {
 			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return new long[] { -1, -1, -1, -1, -1, -1, -1 };
+			//TODO return  new long[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 		} finally {
 			if (tx.isActive()) {
 				tx.rollback();
