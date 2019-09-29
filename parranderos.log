@@ -43,3 +43,6 @@
 01:54:36,177 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazParranderosApp] - Se encontró un archivo de configuración válido: Interfaz
 01:54:36,178 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazParranderosApp] - Se aplica configuración indicada en el archivo de configuración
 01:54:36,203 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazParranderosApp] - Se encontró un archivo de configuración válido: Tablas BD
+03:17:37,771 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazParranderosApp] - Se encontró un archivo de configuración válido: Interfaz
+03:17:37,771 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazParranderosApp] - Se aplica configuración indicada en el archivo de configuración
+03:17:37,794 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazParranderosApp] - Se encontró un archivo de configuración válido: Tablas BD

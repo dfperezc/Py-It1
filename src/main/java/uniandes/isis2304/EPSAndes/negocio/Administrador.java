@@ -1,23 +1,18 @@
 package uniandes.isis2304.EPSAndes.negocio;
 
-public class Administrador {
+public class Administrador  extends Usuario implements VOAdministrador{ 
 
 	/**
-	 * El identificador ÚNICO del administrador
+	 * @param id
+	 * @param email
+	 * @param nombre
+	 * @param numeroDocumento
+	 * @param rol
+	 * @param tipoDocumento
 	 */
-	private long id;
+	public Administrador(long id, String email, String nombre, int numeroDocumento, Rol rol, String tipoDocumento) {
+		super(id, email, nombre, numeroDocumento, rol, tipoDocumento);
+	}
 	
-	/**
-	 * @return El id del administrador
-	 */
-	public long getId() {
-		return id;
-	}
 
-	/**
-	 * @param id - El nuevo id del administrador
-	 */
-	public void setId(long id) {
-		this.id = id;
-	}
 }
