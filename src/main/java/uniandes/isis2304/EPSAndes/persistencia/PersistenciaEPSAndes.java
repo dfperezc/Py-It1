@@ -27,7 +27,7 @@ import uniandes.isis2304.EPSAndes.negocio.TipoBebida;
 import uniandes.isis2304.EPSAndes.negocio.Visitan;
 
 /**
- * Clase para el manejador de persistencia del proyecto Parranderos Traduce la
+ * Clase para el manejador de persistencia del proyecto EPSAndes Traduce la
  * información entre objetos Java y tuplas de la base de datos, en ambos
  * sentidos Sigue un patrón SINGLETON (Sólo puede haber UN objeto de esta clase)
  * para comunicarse de manera correcta con la base de datos Se apoya en las
@@ -121,7 +121,28 @@ public class PersistenciaEPSAndes {
 	
 	
 	//----------------------tablasEPSAndes---------------------inicio
-	//private SQL;
+	private SQLAdministrador sqlAdministrador;
+	private SQLAfiliado sqlAfiliado;
+	private SQLCita sqlCita;
+	private SQLConsulta sqlConsulta;
+	private SQLControl sqlControl;
+	private SQLEPS sqlEPS;
+	private SQLExamenDiagnostico sqlExamenDiagnostico;
+	private SQLGerente sqlGerente;
+	private SQLHospitalizacion sqlHospitalizacion;
+	private SQLIPS sqlIPS;
+	private SQLMedico sqlMedico;
+	private SQLOrden sqlOrden;
+	private SQLProcedimientoEspecializado sqlProcedimientoEspecializado;
+	private SQLRecepcionista sqlRecepcionista;
+	private SQLRemision sqlRemision;
+	private SQLRol sqlRol;
+	private SQLServicio sqlServicio;
+	private SQLTerapia sqlTerapia;
+	private SQLTrabajan sqlTrabajan;
+	private SQLUrgencia sqlUgencia;
+	private SQLUsuario sqlUsuario;
+	
 	//----------------------tablasEPSAndes---------------------fin
 
 	/*
@@ -133,7 +154,9 @@ public class PersistenciaEPSAndes {
 	 * Constructor privado con valores por defecto - Patrón SINGLETON
 	 */
 	private PersistenciaEPSAndes() {
+//		pmf = JDOHelper.getPersistenceManagerFactory("Parranderos");
 		pmf = JDOHelper.getPersistenceManagerFactory("Parranderos");
+		
 		crearClasesSQL();
 
 		// Define los nombres por defecto de las tablas de la base de datos
@@ -146,6 +169,32 @@ public class PersistenciaEPSAndes {
 		tablas.add("GUSTAN");
 		tablas.add("SIRVEN");
 		tablas.add("VISITAN");
+		
+		//Denfinir nombres defaul de las tablas de la base de datos de EPSAndes
+//		tablas.add("EPSAndes_sequence");
+//		tablas.add("ADMINISTRADOR");
+//		tablas.add("AFILIADO");
+//		tablas.add("CITA");
+//		tablas.add("CONSULTA");
+//		tablas.add("CONTROL");
+//		tablas.add("EPS");
+//		tablas.add("EXAMEN_DIAGNOSTICO");
+//		tablas.add("GERENTE");
+//		tablas.add("GUSTAN");
+//		tablas.add("HOSPITALIZACION");
+//		tablas.add("IPS");
+//		tablas.add("MEDICO");
+//		tablas.add("ORDEN");
+//		tablas.add("PROCEDIMIENTO_ESPECIALIZADO");
+//		tablas.add("RECEPCIONISTA");
+//		tablas.add("REMISION");
+//		tablas.add("ROL");
+//		tablas.add("SERVICIO");
+//		tablas.add("TERAPIA");
+//		tablas.add("TRABAJAN");
+//		tablas.add("URGENCIA");
+//		tablas.add("USUARIO");
+				
 	}
 
 	/**
