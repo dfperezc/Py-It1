@@ -1,24 +1,16 @@
 package uniandes.isis2304.EPSAndes.negocio;
 
-public class Gerente {
+public class Gerente extends Usuario implements VOGerente{
 
 	/**
-	 * El identificador ÚNICO del gerente
+	 * @param id
+	 * @param email
+	 * @param nombre
+	 * @param numeroDocumento
+	 * @param rol
+	 * @param tipoDocumento
 	 */
-	private long id;
-	
-	/**
-	 * @return El id del gerente
-	 */
-	public long getId() {
-		return id;
+	public Gerente(long id, String email, String nombre, int numeroDocumento, Rol rol, String tipoDocumento) {
+		super(id, email, nombre, numeroDocumento, rol, tipoDocumento);
 	}
-
-	/**
-	 * @param id - El nuevo id del gerente
-	 */
-	public void setId(long id) {
-		this.id = id;
-	}
-	
 }
