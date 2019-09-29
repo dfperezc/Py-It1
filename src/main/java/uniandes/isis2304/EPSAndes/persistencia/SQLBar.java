@@ -38,7 +38,7 @@ class SQLBar {
 	 * sentencias de acceso a la base de datos Se renombra acá para facilitar la
 	 * escritura de las sentencias
 	 */
-	private final static String SQL = EPSAndes.SQL;
+	private final static String SQL = PersistenciaEPSAndes.SQL;
 
 	/*
 	 * **************************************************************** Atributos
@@ -46,7 +46,7 @@ class SQLBar {
 	/**
 	 * El manejador de persistencia general de la aplicación
 	 */
-	private EPSAndes pp;
+	private PersistenciaEPSAndes pp;
 
 	/*
 	 * **************************************************************** Métodos
@@ -57,7 +57,7 @@ class SQLBar {
 	 * 
 	 * @param pp - El Manejador de persistencia de la aplicación
 	 */
-	public SQLBar(EPSAndes pp) {
+	public SQLBar(PersistenciaEPSAndes pp) {
 		this.pp = pp;
 	}
 
