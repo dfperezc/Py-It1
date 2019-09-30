@@ -141,7 +141,7 @@ public class TipoBebidaTest {
 
 			fail("Error en las pruebas sobre la tabla TipoBebida");
 		} finally {
-			parranderos.limpiarParranderos();
+			parranderos.limpiarEPSAndes();
 			parranderos.cerrarUnidadPersistencia();
 		}
 	}
@@ -190,7 +190,7 @@ public class TipoBebidaTest {
 
 			fail("Error en las pruebas de UNICIDAD sobre la tabla TipoBebida");
 		} finally {
-			parranderos.limpiarParranderos();
+			parranderos.limpiarEPSAndes();
 			parranderos.cerrarUnidadPersistencia();
 		}
 	}

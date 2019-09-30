@@ -22,12 +22,13 @@ import uniandes.isis2304.EPSAndes.negocio.Bar;
 import uniandes.isis2304.EPSAndes.negocio.Bebedor;
 import uniandes.isis2304.EPSAndes.negocio.Bebida;
 import uniandes.isis2304.EPSAndes.negocio.Gustan;
+import uniandes.isis2304.EPSAndes.negocio.Rol;
 import uniandes.isis2304.EPSAndes.negocio.Sirven;
 import uniandes.isis2304.EPSAndes.negocio.TipoBebida;
 import uniandes.isis2304.EPSAndes.negocio.Visitan;
 
 /**
- * Clase para el manejador de persistencia del proyecto Parranderos Traduce la
+ * Clase para el manejador de persistencia del proyecto EPSAndes Traduce la
  * información entre objetos Java y tuplas de la base de datos, en ambos
  * sentidos Sigue un patrón SINGLETON (Sólo puede haber UN objeto de esta clase)
  * para comunicarse de manera correcta con la base de datos Se apoya en las
@@ -121,7 +122,28 @@ public class PersistenciaEPSAndes {
 	
 	
 	//----------------------tablasEPSAndes---------------------inicio
-	//private SQL;
+	private SQLAdministrador sqlAdministrador;
+	private SQLAfiliado sqlAfiliado;
+	private SQLCita sqlCita;
+	private SQLConsulta sqlConsulta;
+	private SQLControl sqlControl;
+	private SQLEPS sqlEPS;
+	private SQLExamenDiagnostico sqlExamenDiagnostico;
+	private SQLGerente sqlGerente;
+	private SQLHospitalizacion sqlHospitalizacion;
+	private SQLIPS sqlIPS;
+	private SQLMedico sqlMedico;
+	private SQLOrden sqlOrden;
+	private SQLProcedimientoEspecializado sqlProcedimientoEspecializado;
+	private SQLRecepcionista sqlRecepcionista;
+	private SQLRemision sqlRemision;
+	private SQLRol sqlRol;
+	private SQLServicio sqlServicio;
+	private SQLTerapia sqlTerapia;
+	private SQLTrabajan sqlTrabajan;
+	private SQLUrgencia sqlUrgencia;
+	private SQLUsuario sqlUsuario;
+	
 	//----------------------tablasEPSAndes---------------------fin
 
 	/*
@@ -133,7 +155,15 @@ public class PersistenciaEPSAndes {
 	 * Constructor privado con valores por defecto - Patrón SINGLETON
 	 */
 	private PersistenciaEPSAndes() {
+//		pmf = JDOHelper.getPersistenceManagerFactory("EPSAndes");
+//	TODO
+//		
+//		
+//		
+//		
+//		
 		pmf = JDOHelper.getPersistenceManagerFactory("Parranderos");
+		
 		crearClasesSQL();
 
 		// Define los nombres por defecto de las tablas de la base de datos
@@ -146,6 +176,32 @@ public class PersistenciaEPSAndes {
 		tablas.add("GUSTAN");
 		tablas.add("SIRVEN");
 		tablas.add("VISITAN");
+		
+		//Denfinir nombres defaul de las tablas de la base de datos de EPSAndes
+		tablas.add("EPSAndes_sequence");
+		tablas.add("ADMINISTRADOR");
+		tablas.add("AFILIADO");
+		tablas.add("CITA");
+		tablas.add("CONSULTA");
+		tablas.add("CONTROL");
+		tablas.add("EPS");
+		tablas.add("EXAMEN_DIAGNOSTICO");
+		tablas.add("GERENTE");
+		tablas.add("GUSTAN");
+		tablas.add("HOSPITALIZACION");
+		tablas.add("IPS");
+		tablas.add("MEDICO");
+		tablas.add("ORDEN");
+		tablas.add("PROCEDIMIENTO_ESPECIALIZADO");
+		tablas.add("RECEPCIONISTA");
+		tablas.add("REMISION");
+		tablas.add("ROL");
+		tablas.add("SERVICIO");
+		tablas.add("TERAPIA");
+		tablas.add("TRABAJAN");
+		tablas.add("URGENCIA");
+		tablas.add("USUARIO");
+				
 	}
 
 	/**
@@ -206,7 +262,7 @@ public class PersistenciaEPSAndes {
 	 */
 	private List<String> leerNombresTablas(JsonObject tableConfig) {
 		JsonArray nombres = tableConfig.getAsJsonArray("tablas");
-
+		//TODO VERTABCONFIG
 		List<String> resp = new LinkedList<String>();
 		for (JsonElement nom : nombres) {
 			resp.add(nom.getAsString());
@@ -227,8 +283,33 @@ public class PersistenciaEPSAndes {
 		sqlSirven = new SQLSirven(this);
 		sqlVisitan = new SQLVisitan(this);
 		sqlUtil = new SQLUtil(this);
-	}
+		
+		sqlAdministrador = new SQLAdministrador(this);
+		sqlAfiliado = new SQLAfiliado(this);
+		sqlCita = new SQLCita(this);
+		sqlConsulta = new SQLConsulta(this);
+		sqlControl = new SQLControl(this);
+		sqlEPS = new SQLEPS(this);
+		sqlExamenDiagnostico = new SQLExamenDiagnostico(this);
+		sqlGerente = new SQLGerente(this);
+		sqlGustan = new SQLGustan(this);
+		sqlHospitalizacion = new SQLHospitalizacion(this);
+		sqlIPS = new SQLIPS(this);
+		sqlMedico = new SQLMedico(this);
+		sqlOrden = new SQLOrden(this);
+		sqlProcedimientoEspecializado = new SQLProcedimientoEspecializado(this);
+		sqlRecepcionista = new SQLRecepcionista(this);
+		sqlRemision = new SQLRemision(this);
+		sqlRol = new SQLRol(this);
+		sqlServicio = new SQLServicio(this);
+		sqlTerapia = new SQLTerapia(this);
+		sqlTrabajan = new SQLTrabajan(this);
+		sqlUrgencia = new SQLUrgencia(this);
+		sqlUsuario = new SQLUsuario(this);
+		}
 
+	
+	
 	/**
 	 * @return La cadena de caracteres con el nombre del secuenciador de parranderos
 	 */
@@ -291,7 +372,75 @@ public class PersistenciaEPSAndes {
 	public String darTablaVisitan() {
 		return tablas.get(7);
 	}
-
+	
+	
+	public String darSeqEPSAndes() {
+		return tablas.get(0);
+	}
+	public String darTablaAdministrador() {
+		return tablas.get(1);
+	}
+	public String darTablaAfiliado() {
+		return tablas.get(2);
+	}
+	public String darTablaCita() {
+		return tablas.get(3);
+	}
+	public String darTablaConsulta() {
+		return tablas.get(4);
+	}
+	public String darTablaControl() {
+		return tablas.get(5);
+	}
+	public String darTablaEPS() {
+		return tablas.get(6);
+	}
+	public String darTablaExamenDiagnostico() {
+		return tablas.get(7);
+	}
+	public String darTablaGerente() {
+		return tablas.get(8);
+	}
+	public String darTablaHospitalizacion() {
+		return tablas.get(9);
+	}
+	public String darTablaIPS() {
+		return tablas.get(10);
+	}
+	public String darTablaMedico() {
+		return tablas.get(11);
+	}
+	public String darTablaOrden() {
+		return tablas.get(12);
+	}
+	public String darTablaProcedimientoEspecializado() {
+		return tablas.get(13);
+	}
+	public String darTablaRecepcionista() {
+		return tablas.get(14);
+	}
+	public String darTablaRemision() {
+		return tablas.get(15);
+	}
+	public String darTablaRol() {
+		return tablas.get(23);
+	}
+	public String darTablaServicio() {
+		return tablas.get(17);
+	}
+	public String darTablaTerapia() {
+		return tablas.get(18);
+	}
+	public String darTablaTrabajan() {
+		return tablas.get(19);
+	}
+	public String darTablaUrgencia() {
+		return tablas.get(20);
+	}
+	public String darTablaUsuario() {
+		return tablas.get(21);
+	}
+	
 	/**
 	 * Transacción para el generador de secuencia de Parranderos Adiciona entradas
 	 * al log de la aplicación
@@ -303,7 +452,7 @@ public class PersistenciaEPSAndes {
 		log.trace("Generando secuencia: " + resp);
 		return resp;
 	}
-
+	
 	/**
 	 * Extrae el mensaje de la exception JDODataStoreException embebido en la
 	 * Exception e, que da el detalle específico del problema encontrado
@@ -320,6 +469,65 @@ public class PersistenciaEPSAndes {
 		return resp;
 	}
 
+	
+	//--------------------------Comienzo de los métodos necesarios para RF1--
+	
+	public Rol adicionarRol(String rol) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			long idRol = nextval();
+			long tuplasInsertadas = sqlRol.adicionarRol(pm, idRol, rol);
+			tx.commit();
+
+			log.trace("Inserción del rol: " + rol  + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Rol(rol);
+		} catch (Exception e) {
+			//        	e.printStackTrace();
+			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	public List<Rol> darRolPorNombre(String nombre) {
+		return sqlRol.darRolPorNombre(pmf.getPersistenceManager(), nombre);
+	}
+	
+	public List<Rol> darRoles() {
+		return sqlRol.darRoles(pmf.getPersistenceManager());
+	}
+	
+	public long eliminarRolPorId(long idRol) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			long resp = sqlRol.eliminarRolPorId(pm, idRol);
+			tx.commit();
+			return resp;
+		} catch (Exception e) {
+			//        	e.printStackTrace();
+			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return -1;
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	//--------------------------final de los métodos necesarios para los RF1--
+	
+
+	
 	/*
 	 * **************************************************************** Métodos para
 	 * manejar los TIPOS DE BEBIDA
@@ -1410,12 +1618,12 @@ public class PersistenciaEPSAndes {
 	 *         las tablas GUSTAN, SIRVEN, VISITAN, BEBIDA, TIPOBEBIDA, BEBEDOR y
 	 *         BAR, respectivamente
 	 */
-	public long[] limpiarParranderos() {
+	public long[] limpiarEPSAndes() {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 		try {
 			tx.begin();
-			long[] resp = sqlUtil.limpiarParranderos(pm);
+			long[] resp = sqlUtil.limpiarEPSAndes(pm);
 			tx.commit();
 			log.info("Borrada la base de datos");
 			return resp;
@@ -1423,6 +1631,7 @@ public class PersistenciaEPSAndes {
 			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return new long[] { -1, -1, -1, -1, -1, -1, -1 };
+			//TODO return  new long[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 		} finally {
 			if (tx.isActive()) {
 				tx.rollback();
