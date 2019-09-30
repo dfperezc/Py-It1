@@ -65,6 +65,8 @@ class SQLUtil {
 	 */
 	public long nextval(PersistenceManager pm) {
 		Query q = pm.newQuery(SQL, "SELECT " + pp.darSeqParranderos() + ".nextval FROM DUAL");
+		//Query q = pm.newQuery(SQL, "SELECT " + pp.darSeqEPSAndes() + ".nextval FROM DUAL");
+		
 		q.setResultClass(Long.class);
 		long resp = (long) q.executeUnique();
 		return resp;
@@ -79,7 +81,7 @@ class SQLUtil {
 	 *         las tablas GUSTAN, SIRVEN, VISITAN, BEBIDA, TIPOBEBIDA, BEBEDOR y
 	 *         BAR, respectivamente
 	 */
-	public long[] limpiarParranderos(PersistenceManager pm) {
+	public long[] limpiarEPSAndes(PersistenceManager pm) {
 		Query qGustan = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaGustan());
 		Query qSirven = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaSirven());
 		Query qVisitan = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaVisitan());
@@ -88,6 +90,29 @@ class SQLUtil {
 		Query qBebedor = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBebedor());
 		Query qBar = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBar());
 
+//		Query qAdministrador = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAdministrador());
+//		Query qAfiliado = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAfiliado());
+//		Query qCita = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaCita());
+//		Query qConsulta = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaConsulta());
+//		Query qControl = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaControl());
+//		Query qEPS = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaEPS());
+//		Query qExamenDiagnostico = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaExamenDiagnostico());
+//		Query qGerente = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaGerente());
+//		Query qHospitalizacion = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaHospitalizacion());
+//		Query qIPS = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaIPS());
+//		Query qMedico = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaMedico());
+//		Query qOrden = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaOrden());
+//		Query qProcedimientoEspecializado = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaProcedimientoEspecializado());
+//		Query qRecepcionista = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaRecepcionista());
+//		Query qRemision = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaRemision());
+//		Query qRol = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaRol());
+//		Query qServicio = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaServicio());
+//		Query qTerapia = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTerapia());
+//		Query qTrabajan = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTrabajan());
+//		Query qUrgecia = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaUrgencia());
+//		Query qUsuario = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaUsuario());
+
+		
 		long gustanEliminados = (long) qGustan.executeUnique();
 		long sirvenEliminados = (long) qSirven.executeUnique();
 		long visitanEliminadas = (long) qVisitan.executeUnique();
@@ -97,6 +122,32 @@ class SQLUtil {
 		long baresEliminados = (long) qBar.executeUnique();
 		return new long[] { gustanEliminados, sirvenEliminados, visitanEliminadas, bebidasEliminadas,
 				tiposBebidaEliminados, bebedoresEliminados, baresEliminados };
+		
+//		
+//		long administradorEliminados= (long) qAdministrador.executeUnique();
+//		long afiliadoEliminados= (long) qAfiliado.executeUnique();
+//		long citaEliminados= (long) qCita.executeUnique();
+//		long consultaEliminados= (long) qConsulta.executeUnique();
+//		long controlEliminados= (long) qControl.executeUnique();
+//		long epsEliminados= (long) qEPS.executeUnique();
+//		long examenDiagnosticoEliminados= (long) qExamenDiagnostico.executeUnique();
+//		long GerenteEliminados= (long) qGerente.executeUnique();
+//		long HospitalizacionEliminados= (long) qHospitalizacion.executeUnique();
+//		long ipsEliminados= (long) qIPS.executeUnique();
+//		long medicoEliminados= (long) qMedico.executeUnique();
+//		long ordenEliminados= (long) qOrden.executeUnique();
+//		long procedimientoEspecializadoEliminados= (long) qProcedimientoEspecializado.executeUnique();
+//		long recepcionistaEliminados= (long) qRecepcionista.executeUnique();
+//		long remisionEliminados= (long) qRemision.executeUnique();
+//		long rolEliminados= (long) qRol.executeUnique();
+//		long servicioEliminados= (long) qServicio.executeUnique();
+//		long terapiaEliminados= (long) qTerapia.executeUnique();
+//		long trabajanEliminados= (long) qTrabajan.executeUnique();
+//		long urgenciaEliminados= (long) qUrgecia.executeUnique();
+//		long usuarioEliminados= (long) qUsuario.executeUnique();
+//		return new long[] { administradorEliminados,afiliadoEliminados,citaEliminados,consultaEliminados,controlEliminados,epsEliminados,examenDiagnosticoEliminados,GerenteEliminados,
+//				HospitalizacionEliminados,ipsEliminados,medicoEliminados,ordenEliminados,procedimientoEspecializadoEliminados,recepcionistaEliminados,remisionEliminados,
+//				rolEliminados,servicioEliminados,terapiaEliminados,trabajanEliminados,urgenciaEliminados,usuarioEliminados};
 	}
 
 }
