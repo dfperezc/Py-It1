@@ -6,6 +6,8 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import uniandes.isis2304.EPSAndes.negocio.Gustan;
+import uniandes.isis2304.EPSAndes.negocio.Rol;
+import uniandes.isis2304.EPSAndes.negocio.TipoBebida;
 
 public class SQLRol {
 
@@ -31,16 +33,35 @@ public class SQLRol {
 	}
 
 	
-	public long adicionarRol(PersistenceManager pm, String rol) {
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaRol() + "rol values ( ? )");
-		q.setParameters(rol);
+	public long adicionarRol(PersistenceManager pm, long idRol, String rol) {
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaRol() + "(id, nombre) values (?, ?)");
+		q.setParameters(idRol, rol);
 		return (long) q.executeUnique();
 	}
 	
-	public List<Gustan> darGustan(PersistenceManager pm) {
+	public List<Rol> darRol(PersistenceManager pm) {
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaRol());
-		q.setResultClass(Gustan.class);
-		List<Gustan> resp = (List<Gustan>) q.execute();
+		q.setResultClass(Rol.class);
+		List<Rol> resp = (List<Rol>) q.execute();
 		return resp;
+	}
+	
+	public List<Rol> darRolPorNombre(PersistenceManager pm, String nombre) {
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaRol() + " WHERE nombre = ?");
+		q.setResultClass(Rol.class);
+		q.setParameters(nombre);
+		return (List<Rol>) q.executeList();
+	}
+	
+	public List<Rol> darRoles(PersistenceManager pm) {
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaRol());
+		q.setResultClass(Rol.class);
+		return (List<Rol>) q.executeList();
+	}
+	
+	public long eliminarRolPorId(PersistenceManager pm, long idRol) {
+		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaRol() + " WHERE id = ?");
+		q.setParameters(idRol);
+		return (long) q.executeUnique();
 	}
 }

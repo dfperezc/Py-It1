@@ -74,6 +74,51 @@ public class Parranderos {
 		pp.cerrarUnidadPersistencia();
 	}
 
+	
+	//--------------------------Comienzo de los métodos necesarios para RF1--
+	
+	public Rol adicionarRol(String nombre) {
+		log.info("Adicionando rol: " + nombre);
+		Rol rol = pp.adicionarRol(nombre);
+		log.info("Adicionando rol: " + rol);
+		return rol;
+	}
+	
+	public List<Rol> darRoles() {
+		log.info("Consultando roles");
+		List<Rol> roles = pp.darRoles();
+		log.info("Consultando roles: " + roles.size() + " existentes");
+		return roles;
+	}
+	
+	public Rol darRolPorNombre(String nombre) {
+		log.info("Buscando rol por nombre: " + nombre);
+		List<Rol> tb = pp.darRolPorNombre(nombre);
+		return !tb.isEmpty() ? tb.get(0) : null;
+		
+	}
+	
+	public List<VORol> darVORoles() {
+		log.info("Generando los VO de roles");
+		List<VORol> voRoles = new LinkedList<VORol>();
+		for (Rol tb : pp.darRoles()) {
+			voRoles.add(tb);
+		}
+		log.info("Generando los VO de roles: " + voRoles.size() + " existentes");
+		return voRoles;
+	}
+	
+	public long eliminarRolPorId(long idRol) {
+		log.info("Eliminando rol Por id: " + idRol);
+		long resp = pp.eliminarRolPorId(idRol);
+		log.info("Eliminando rol por id: " + resp + " tuplas eliminadas");
+		return resp;
+	}
+
+	//--------------------------final de los métodos necesarios para los RF1--
+	
+	
+	
 	/*
 	 * **************************************************************** Métodos para
 	 * manejar los TIPOS DE BEBIDA

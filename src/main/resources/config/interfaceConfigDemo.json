@@ -2,7 +2,7 @@
 	"title": "Demostración de Parranderos Uniandes",
 	"frameH": 600,
 	"frameW": 800,
-	"bannerPath": "./src/main/resources/config/logo.png",
+	"bannerPath": "./src/main/resources/config/EPSAndesLogo.png",
 	"menuBar":
 	[
 		{ "menuTitle": "TipoBebida",
@@ -13,7 +13,16 @@
 					"event": "demoTipoBebida"
 				}
 			]
-		},		
+		},
+		{ "menuTitle": "RF1",
+		  "options":
+			[
+				{
+					"label": "registrarRoles",
+					"event": "demoRol"
+				}
+			]
+		},
 		{ "menuTitle": "Bebida",
 		  "options":
 			[
@@ -159,15 +168,6 @@
 				{
 					"label": "Javadoc Parranderos",
 					"event": "mostrarJavadoc"
-				}
-			]
-		},		
-		{ "menuTitle": "Acerca de ...",
-		  "options":
-			[
-				{
-					"label": "Acerca de ...",
-					"event": "acercaDe"
 				}
 			]
 		}		

@@ -22,6 +22,7 @@ import uniandes.isis2304.EPSAndes.negocio.Bar;
 import uniandes.isis2304.EPSAndes.negocio.Bebedor;
 import uniandes.isis2304.EPSAndes.negocio.Bebida;
 import uniandes.isis2304.EPSAndes.negocio.Gustan;
+import uniandes.isis2304.EPSAndes.negocio.Rol;
 import uniandes.isis2304.EPSAndes.negocio.Sirven;
 import uniandes.isis2304.EPSAndes.negocio.TipoBebida;
 import uniandes.isis2304.EPSAndes.negocio.Visitan;
@@ -422,7 +423,7 @@ public class PersistenciaEPSAndes {
 		return tablas.get(15);
 	}
 	public String darTablaRol() {
-		return tablas.get(16);
+		return tablas.get(23);
 	}
 	public String darTablaServicio() {
 		return tablas.get(17);
@@ -439,7 +440,7 @@ public class PersistenciaEPSAndes {
 	public String darTablaUsuario() {
 		return tablas.get(21);
 	}
-
+	
 	/**
 	 * Transacción para el generador de secuencia de Parranderos Adiciona entradas
 	 * al log de la aplicación
@@ -451,7 +452,7 @@ public class PersistenciaEPSAndes {
 		log.trace("Generando secuencia: " + resp);
 		return resp;
 	}
-
+	
 	/**
 	 * Extrae el mensaje de la exception JDODataStoreException embebido en la
 	 * Exception e, que da el detalle específico del problema encontrado
@@ -468,6 +469,65 @@ public class PersistenciaEPSAndes {
 		return resp;
 	}
 
+	
+	//--------------------------Comienzo de los métodos necesarios para RF1--
+	
+	public Rol adicionarRol(String rol) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			long idRol = nextval();
+			long tuplasInsertadas = sqlRol.adicionarRol(pm, idRol, rol);
+			tx.commit();
+
+			log.trace("Inserción del rol: " + rol  + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Rol(rol);
+		} catch (Exception e) {
+			//        	e.printStackTrace();
+			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	public List<Rol> darRolPorNombre(String nombre) {
+		return sqlRol.darRolPorNombre(pmf.getPersistenceManager(), nombre);
+	}
+	
+	public List<Rol> darRoles() {
+		return sqlRol.darRoles(pmf.getPersistenceManager());
+	}
+	
+	public long eliminarRolPorId(long idRol) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			long resp = sqlRol.eliminarRolPorId(pm, idRol);
+			tx.commit();
+			return resp;
+		} catch (Exception e) {
+			//        	e.printStackTrace();
+			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return -1;
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	//--------------------------final de los métodos necesarios para los RF1--
+	
+
+	
 	/*
 	 * **************************************************************** Métodos para
 	 * manejar los TIPOS DE BEBIDA

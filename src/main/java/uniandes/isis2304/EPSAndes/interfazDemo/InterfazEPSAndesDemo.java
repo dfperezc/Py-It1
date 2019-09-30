@@ -30,6 +30,8 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import javax.jdo.JDODataStoreException;
+import javax.jdo.PersistenceManager;
+import javax.jdo.Transaction;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -49,10 +51,12 @@ import com.google.gson.stream.JsonReader;
 
 import uniandes.isis2304.EPSAndes.interfazApp.PanelDatos;
 import uniandes.isis2304.EPSAndes.negocio.Parranderos;
+import uniandes.isis2304.EPSAndes.negocio.Rol;
 import uniandes.isis2304.EPSAndes.negocio.VOBar;
 import uniandes.isis2304.EPSAndes.negocio.VOBebedor;
 import uniandes.isis2304.EPSAndes.negocio.VOBebida;
 import uniandes.isis2304.EPSAndes.negocio.VOGustan;
+import uniandes.isis2304.EPSAndes.negocio.VORol;
 import uniandes.isis2304.EPSAndes.negocio.VOSirven;
 import uniandes.isis2304.EPSAndes.negocio.VOTipoBebida;
 import uniandes.isis2304.EPSAndes.negocio.VOVisitan;
@@ -64,14 +68,14 @@ import uniandes.isis2304.EPSAndes.negocio.VOVisitan;
  */
 @SuppressWarnings("serial")
 
-public class InterfazParranderosDemo extends JFrame implements ActionListener {
+public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 	/*
 	 * **************************************************************** Constantes
 	 *****************************************************************/
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(InterfazParranderosDemo.class.getName());
+	private static Logger log = Logger.getLogger(InterfazEPSAndesDemo.class.getName());
 
 	/**
 	 * Ruta al archivo de configuración de la interfaz
@@ -123,7 +127,7 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener {
 	 * Construye la ventana principal de la aplicación. <br>
 	 * <b>post:</b> Todos los componentes de la interfaz fueron inicializados.
 	 */
-	public InterfazParranderosDemo() {
+	public InterfazEPSAndesDemo() {
 		// Carga la configuración de la interfaz desde un archivo JSON
 		guiConfig = openConfig("Interfaz", CONFIG_INTERFAZ);
 
@@ -238,7 +242,59 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener {
 		}
 		setJMenuBar(menuBar);
 	}
+	
+	//--------------------------Comienzo de los métodos necesarios para RF1--
+	
+	private String listarRoles(List<VORol> lista) {
+		String resp = "Los roles existentes son:\n";
+		int i = 1;
+		for (VORol tb : lista) {
+			resp += i++ + ". " + tb.toString() + "\n";
+		}
+		return resp;
+	}
 
+	public void demoRol() {
+		
+		try {
+			String nombreRol = "Administrador";
+			boolean errorRol = false;
+			VORol rol = parranderos.adicionarRol(nombreRol);
+			if (rol == null) {
+				rol = parranderos.darRolPorNombre(nombreRol);
+				errorRol = true;
+			}
+			List<VORol> lista = parranderos.darVORoles();
+			long tbEliminados = parranderos.eliminarTipoBebidaPorId(rol.getId());
+
+			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
+			String resultado = "Demo de creación y listado de rol\n\n";
+			resultado += "\n\n************ Generando datos de prueba ************ \n";
+			if (errorRol) {
+				resultado += "*** Exception creando rol !!\n";
+				resultado += "*** Es probable que ese rol ya existiera y hay restricción de UNICIDAD sobre el nombre del rol\n";
+				resultado += "*** Revise el log de EPSAndes para más detalles\n";
+			}
+			resultado += "Adicionado el rol con nombre: " + nombreRol + "\n";
+			resultado += "\n\n************ Ejecutando la demo ************ \n";
+			resultado += "\n" + listarRoles(lista);
+			resultado += "\n\n************ Limpiando la base de datos ************ \n";
+			resultado += tbEliminados + " Tipos de bebida eliminados\n";
+			resultado += "\n Demo terminada";
+
+			panelDatos.actualizarInterfaz(resultado);
+		} catch (Exception e) {
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+		
+		
+		
+		//--------------------------final de los métodos necesarios para los RF1--
+		
+		
 	/*
 	 * **************************************************************** Demos de
 	 * TipoBebida
@@ -1702,7 +1758,7 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent pEvento) {
 		String evento = pEvento.getActionCommand();
 		try {
-			Method req = InterfazParranderosDemo.class.getMethod(evento);
+			Method req = InterfazEPSAndesDemo.class.getMethod(evento);
 			req.invoke(this);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1723,7 +1779,7 @@ public class InterfazParranderosDemo extends JFrame implements ActionListener {
 
 			// Unifica la interfaz para Mac y para Windows.
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-			InterfazParranderosDemo interfaz = new InterfazParranderosDemo();
+			InterfazEPSAndesDemo interfaz = new InterfazEPSAndesDemo();
 			interfaz.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();

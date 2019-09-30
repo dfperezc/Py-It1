@@ -56,14 +56,14 @@ import uniandes.isis2304.EPSAndes.negocio.VOTipoBebida;
  */
 @SuppressWarnings("serial")
 
-public class InterfazParranderosApp extends JFrame implements ActionListener {
+public class InterfazEPSAndesApp extends JFrame implements ActionListener {
 	/*
 	 * **************************************************************** Constantes
 	 *****************************************************************/
 	/**
 	 * Logger para escribir la traza de la ejecución
 	 */
-	private static Logger log = Logger.getLogger(InterfazParranderosApp.class.getName());
+	private static Logger log = Logger.getLogger(InterfazEPSAndesApp.class.getName());
 
 	/**
 	 * Ruta al archivo de configuración de la interfaz
@@ -115,7 +115,7 @@ public class InterfazParranderosApp extends JFrame implements ActionListener {
 	 * Construye la ventana principal de la aplicación. <br>
 	 * <b>post:</b> Todos los componentes de la interfaz fueron inicializados.
 	 */
-	public InterfazParranderosApp() {
+	public InterfazEPSAndesApp() {
 		// Carga la configuración de la interfaz desde un archivo JSON
 		guiConfig = openConfig("Interfaz", CONFIG_INTERFAZ);
 
@@ -567,7 +567,7 @@ public class InterfazParranderosApp extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent pEvento) {
 		String evento = pEvento.getActionCommand();
 		try {
-			Method req = InterfazParranderosApp.class.getMethod(evento);
+			Method req = InterfazEPSAndesApp.class.getMethod(evento);
 			req.invoke(this);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -588,7 +588,7 @@ public class InterfazParranderosApp extends JFrame implements ActionListener {
 
 			// Unifica la interfaz para Mac y para Windows.
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-			InterfazParranderosApp interfaz = new InterfazParranderosApp();
+			InterfazEPSAndesApp interfaz = new InterfazEPSAndesApp();
 			interfaz.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
