@@ -5,9 +5,7 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-import uniandes.isis2304.EPSAndes.negocio.Gustan;
 import uniandes.isis2304.EPSAndes.negocio.Rol;
-import uniandes.isis2304.EPSAndes.negocio.TipoBebida;
 
 public class SQLRol {
 
@@ -39,14 +37,9 @@ public class SQLRol {
 		return (long) q.executeUnique();
 	}
 	
-	public List<Rol> darRol(PersistenceManager pm) {
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaRol());
-		q.setResultClass(Rol.class);
-		List<Rol> resp = (List<Rol>) q.execute();
-		return resp;
-	}
-	
+		
 	public List<Rol> darRolPorNombre(PersistenceManager pm, String nombre) {
+		
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaRol() + " WHERE nombre = ?");
 		q.setResultClass(Rol.class);
 		q.setParameters(nombre);
@@ -54,12 +47,13 @@ public class SQLRol {
 	}
 	
 	public List<Rol> darRoles(PersistenceManager pm) {
-		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaRol());
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + "rol");
 		q.setResultClass(Rol.class);
 		return (List<Rol>) q.executeList();
 	}
 	
 	public long eliminarRolPorId(PersistenceManager pm, long idRol) {
+		System.out.println("5555555555");
 		Query q = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaRol() + " WHERE id = ?");
 		q.setParameters(idRol);
 		return (long) q.executeUnique();
