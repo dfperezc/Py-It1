@@ -264,9 +264,12 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 				rol = parranderos.darRolPorNombre(nombreRol);
 				errorRol = true;
 			}
+			System.out.println("111111111111111111111");
 			List<VORol> lista = parranderos.darVORoles();
+			System.out.println("222222222222222222222");
 			long tbEliminados = parranderos.eliminarTipoBebidaPorId(rol.getId());
-
+			
+			
 			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
 			String resultado = "Demo de creación y listado de rol\n\n";
 			resultado += "\n\n************ Generando datos de prueba ************ \n";
@@ -279,7 +282,7 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 			resultado += "\n\n************ Ejecutando la demo ************ \n";
 			resultado += "\n" + listarRoles(lista);
 			resultado += "\n\n************ Limpiando la base de datos ************ \n";
-			resultado += tbEliminados + " Tipos de bebida eliminados\n";
+			resultado += tbEliminados + " roles eliminados\n";
 			resultado += "\n Demo terminada";
 
 			panelDatos.actualizarInterfaz(resultado);
