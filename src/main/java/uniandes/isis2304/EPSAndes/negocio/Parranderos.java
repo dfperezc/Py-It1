@@ -101,7 +101,9 @@ public class Parranderos {
 	public List<VORol> darVORoles() {
 		log.info("Generando los VO de roles");
 		List<VORol> voRoles = new LinkedList<VORol>();
-		for (Rol tb : pp.darRoles()) {
+		List<Rol> lalista =  pp.darRoles();
+		System.out.println(lalista.size() + "es el tamaño del los roles");
+		for (Rol tb : lalista) {
 			voRoles.add(tb);
 		}
 		log.info("Generando los VO de roles: " + voRoles.size() + " existentes");
@@ -189,7 +191,9 @@ public class Parranderos {
 	public List<VOTipoBebida> darVOTiposBebida() {
 		log.info("Generando los VO de Tipos de bebida");
 		List<VOTipoBebida> voTipos = new LinkedList<VOTipoBebida>();
+		List<TipoBebida> lalista = pp.darTiposBebida();
 		for (TipoBebida tb : pp.darTiposBebida()) {
+			System.out.println(lalista.size()+"aaaaaaaaaaaaaaaaaaa");
 			voTipos.add(tb);
 		}
 		log.info("Generando los VO de Tipos de bebida: " + voTipos.size() + " existentes");

@@ -1,6 +1,105 @@
-19:06:20,881 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: Administrador
-19:06:21,256 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
-ORA-00001: restricción única (ISIS2304D201920.UN_ROLN_NOMBRE) violada
+20:12:42,549 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: Administrador
+20:12:43,760 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO SERVICIO(id, nombre) values (?, ?)".
+ORA-00904: "NOMBRE": identificador no válido
 
-19:06:21,444 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: null
-19:06:21,444 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Buscando rol por nombre: Administrador
+20:12:44,005 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: null
+20:12:44,005 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Buscando rol por nombre: Administrador
+20:16:43,528 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+20:16:43,529 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+20:16:43,554 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+20:16:49,069 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: Administrador
+20:16:50,236 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO SERVICIO(id, nombre) values (?, ?)".
+ORA-00904: "NOMBRE": identificador no válido
+
+20:16:50,326 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: null
+20:16:50,326 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Buscando rol por nombre: Administrador
+20:25:35,315 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+20:25:35,316 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+20:25:35,346 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+20:25:40,558 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: Administrador
+20:25:41,447 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: uniandes.isis2304.EPSAndes.negocio.Rol@a0ad1ab
+20:25:41,447 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de roles
+20:27:19,025 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+20:27:19,026 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+20:27:19,051 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+20:27:38,789 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: Administrador
+20:27:40,706 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: uniandes.isis2304.EPSAndes.negocio.Rol@15836692
+20:27:40,707 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de roles
+20:28:19,646 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+20:28:19,646 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+20:28:19,670 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+20:28:45,109 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: Administrador
+20:28:46,486 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: uniandes.isis2304.EPSAndes.negocio.Rol@47cc5c51
+20:28:46,487 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de roles
+20:30:07,501 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+20:30:07,501 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+20:30:07,527 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+20:30:13,278 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: Administrador
+20:30:15,555 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: uniandes.isis2304.EPSAndes.negocio.Rol@16ebf0eb
+20:30:15,555 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de roles
+20:36:29,839 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+20:36:29,840 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+20:36:29,875 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+20:36:47,909 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: Administrador
+20:36:48,776 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: uniandes.isis2304.EPSAndes.negocio.Rol@6c276a60
+20:36:48,776 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de roles
+20:38:59,435 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+20:38:59,436 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+20:38:59,463 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+20:39:07,020 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: Administrador
+20:39:08,266 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: uniandes.isis2304.EPSAndes.negocio.Rol@23a0564f
+20:39:08,267 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de roles
+20:41:19,837 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+20:41:19,837 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+20:41:19,863 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+20:41:25,509 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando Tipo de bebida: Vino tinto
+20:41:26,407 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando Tipo de bebida: TipoBebida [id=57, nombre=Vino tinto]
+20:41:26,407 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Tipos de bebida
+20:41:26,539 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Tipos de bebida: 0 existentes
+20:41:26,539 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Eliminando Tipo de bebida por id: 57
+20:41:26,680 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Eliminando Tipo de bebida por id: 1 tuplas eliminadas
+20:43:39,577 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+20:43:39,578 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+20:43:39,617 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+20:43:53,541 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: Administrador
+20:43:54,393 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: uniandes.isis2304.EPSAndes.negocio.Rol@70caff47
+20:43:54,394 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de roles
+20:43:54,530 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de roles: 0 existentes
+20:43:54,530 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Eliminando Tipo de bebida por id: 0
+20:43:54,665 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Eliminando Tipo de bebida por id: 0 tuplas eliminadas
+20:57:22,459 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+20:57:22,459 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+20:57:22,487 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+20:57:27,205 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando Tipo de bebida: Vino tinto
+20:57:28,050 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando Tipo de bebida: TipoBebida [id=59, nombre=Vino tinto]
+20:57:28,050 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Tipos de bebida
+20:57:28,317 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Tipos de bebida: 1 existentes
+20:57:28,317 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Eliminando Tipo de bebida por id: 59
+20:57:28,457 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Eliminando Tipo de bebida por id: 1 tuplas eliminadas
+21:03:32,417 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+21:03:32,418 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+21:03:32,454 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+21:03:49,405 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+21:03:49,406 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+21:03:49,432 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+21:04:07,982 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+21:04:07,982 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+21:04:08,007 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+21:04:18,188 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando Tipo de bebida: Vino tinto
+21:04:19,771 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando Tipo de bebida: TipoBebida [id=60, nombre=Vino tinto]
+21:04:19,771 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Tipos de bebida
+21:04:20,407 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Tipos de bebida: 1 existentes
+21:04:20,407 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Eliminando Tipo de bebida por id: 60
+21:04:20,540 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Eliminando Tipo de bebida por id: 1 tuplas eliminadas
+21:06:27,955 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: Administrador
+21:06:28,257 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: uniandes.isis2304.EPSAndes.negocio.Rol@4065b21d
+21:06:28,257 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de roles
+21:06:28,427 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de roles: 0 existentes
+21:06:28,427 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Eliminando Tipo de bebida por id: 0
+21:06:28,567 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Eliminando Tipo de bebida por id: 0 tuplas eliminadas
+21:09:45,360 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+21:09:45,361 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+21:09:45,394 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+21:09:55,204 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: Administrador
+21:09:56,331 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: uniandes.isis2304.EPSAndes.negocio.Rol@4c834189
+21:09:56,331 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de roles
