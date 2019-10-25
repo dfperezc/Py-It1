@@ -103,3 +103,24 @@ ORA-00904: "NOMBRE": identificador no válido
 21:09:55,204 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: Administrador
 21:09:56,331 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: uniandes.isis2304.EPSAndes.negocio.Rol@4c834189
 21:09:56,331 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de roles
+22:48:55,718 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Interfaz
+22:48:55,746 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se aplica configuración indicada en el archivo de configuración
+22:48:55,931 (main) INFO  [uniandes.isis2304.EPSAndes.interfazApp.InterfazEPSAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
+22:49:51,315 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+22:49:51,319 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+22:49:51,414 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+22:50:12,988 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando Tipo de bebida: Vino tinto
+22:50:13,579 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO A_TIPOBEBIDA(id, nombre) values (?, ?)".
+ORA-00942: la tabla o vista no existe
+
+22:50:13,604 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando Tipo de bebida: null
+22:50:13,604 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Buscando Tipo de bebida por nombre: Vino tinto
+22:50:17,432 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: Administrador
+22:50:17,482 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00942: la tabla o vista no existe
+
+22:50:17,498 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando rol: null
+22:50:17,498 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Buscando rol por nombre: Administrador
+22:50:57,805 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+22:50:57,807 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+22:50:57,860 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
