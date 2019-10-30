@@ -19,7 +19,7 @@
 			[
 				{
 					"label": "registrarRoles",
-					"event": "demoRol"
+					"event": "registrarRolesUsuario"
 				},
 				{
 					"label": "CRD Bebida",

@@ -322,3 +322,75 @@ ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
 20:31:34,672 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Roles
 20:31:34,980 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Tipos de bebida: 5 existentes
 >>>>>>> dfperez
+22:33:46,800 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+22:33:46,803 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+22:33:46,899 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+22:33:56,559 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+22:33:56,561 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+22:33:56,601 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+00:09:44,643 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+00:09:44,644 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+00:09:44,683 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+00:09:52,242 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando Tipo de bebida: Vino tinto
+00:09:53,056 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando Tipo de bebida: TipoBebida [id=332, nombre=Vino tinto]
+00:09:53,057 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Tipos de bebida
+00:09:53,122 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Tipos de bebida: 1 existentes
+00:09:53,123 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Eliminando Tipo de bebida por id: 332
+00:09:53,172 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Eliminando Tipo de bebida por id: 1 tuplas eliminadas
+00:10:05,821 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando bar: Los Amigos
+00:10:06,091 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando bar: Bar [id=333, nombre=Los Amigos, ciudad=Bogotá, presupuesto=Bajo, cantSedes=2]
+00:10:06,091 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Bares
+00:10:06,123 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Bares: 1 bares existentes
+00:10:06,124 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Eliminando bar por nombre: Los Amigos
+00:10:06,165 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Eliminando bar: 1 tuplas eliminadas
+00:13:45,948 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+00:13:45,950 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+00:13:45,988 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+00:48:54,580 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+00:48:54,582 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+00:48:54,623 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+00:49:31,750 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Roles
+00:49:31,823 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Tipos de bebida: 5 existentes
+00:50:13,184 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+00:50:13,251 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+00:50:13,315 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+00:50:13,386 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+00:50:13,446 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+00:50:13,462 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Roles
+00:50:13,525 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Tipos de bebida: 5 existentes
+00:54:21,514 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+00:54:21,516 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+00:54:21,552 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+00:54:28,794 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando Rol: Gerente
+00:54:29,552 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando Rol: Rol [id=344, nombre=Gerente]
+00:54:29,552 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Roles
+00:54:29,624 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Tipos de bebida: 6 existentes
+00:54:29,626 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Eliminando Rol por id: 344
+00:54:29,659 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Eliminando Rol por id: 1 tuplas eliminadas
+00:54:34,454 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+00:54:34,519 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+00:54:34,585 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+00:54:34,650 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+00:54:34,717 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+00:54:34,732 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Roles
+00:54:34,803 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Tipos de bebida: 5 existentes

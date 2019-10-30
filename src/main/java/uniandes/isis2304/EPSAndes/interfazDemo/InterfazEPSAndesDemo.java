@@ -283,7 +283,7 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 	 * 
 	 * Pre: La base de datos está vacía Post: La base de datos está vacía
 	 */
-	public void demoRoldep() {
+	public void registrarUsuario() {
 		try {
 			// Ejecución de la demo y recolección de los resultados
 			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
