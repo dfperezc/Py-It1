@@ -210,11 +210,11 @@ public class Parranderos {
 	 * @param nombre - El nombre del tipo de bebida
 	 * @return El objeto TipoBebida adicionado. null si ocurre alguna Excepción
 	 */
-	public TipoBebida adicionarTipoBebida(String nombre) {
-		log.info("Adicionando Tipo de bebida: " + nombre);
-		TipoBebida tipoBebida = pp.adicionarTipoBebida(nombre);
-		log.info("Adicionando Tipo de bebida: " + tipoBebida);
-		return tipoBebida;
+	public Usuario adicionarUsuario(String nombre) {
+		log.info("Adicionando Usuario: " + nombre);
+		Usuario user = pp.adicionarUsuario(nombre);
+		log.info("Adicionando Usuario: " + user);
+		return user;
 	}
 
 	/**

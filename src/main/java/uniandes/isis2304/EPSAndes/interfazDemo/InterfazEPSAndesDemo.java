@@ -1,5 +1,5 @@
 /**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * Universidad	de	los	Andes	(Bogotá	- Colombia)
+                          * Universidad	de	los	Andes	(Bogotá	- Colombia)
  * Departamento	de	Ingeniería	de	Sistemas	y	Computación
  * Licenciado	bajo	el	esquema	Academic Free License versión 2.1
  * 		
@@ -59,6 +59,7 @@ import uniandes.isis2304.EPSAndes.negocio.VOGustan;
 import uniandes.isis2304.EPSAndes.negocio.VORol;
 import uniandes.isis2304.EPSAndes.negocio.VOSirven;
 import uniandes.isis2304.EPSAndes.negocio.VOTipoBebida;
+import uniandes.isis2304.EPSAndes.negocio.VOUsuario;
 import uniandes.isis2304.EPSAndes.negocio.VOVisitan;
 
 /**
@@ -277,21 +278,84 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
+	
+// inicio --------------------------------------------------------------------------------------	
 	/**
 	 * Demostración de creación, consulta y borrado de Tipos de Bebida Muestra la
 	 * traza de la ejecución en el panelDatos
 	 * 
 	 * Pre: La base de datos está vacía Post: La base de datos está vacía
 	 */
-	public void registrarUsuario() {
+	public void registrarUsuarioDemo() 
+	{
+		try
+		{
+			String nombreTipo = JOptionPane.showInputDialog(this, "Nombre del Usuario",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+			VOUsuario u =parranderos.adicionarUsuario(nombreTipo);
+			if(nombreTipo != null )
+			{
+				if(u == null)
+				{
+					throw new Exception("no sepuedo insertar el usuario con nombre: " + nombreTipo);
+				}
+				String resultado = "en adicionarUsuario\n\n";
+				resultado += "usuario adicionado exitosamente";
+				resultado += "\n operacion terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			}	
+		
+			else 
+			{
+				panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+			}
+
+		
+	}catch (Exception e)
+	{
+		String resultado = generarMensajeError(e);
+		panelDatos.actualizarInterfaz(resultado);
+	}
+
+	}
+	
+	public void adicionarTipoBebida() {
+		try {
+			String nombreTipo = JOptionPane.showInputDialog(this, "Nombre del tipo de bedida?",	"Adicionar tipo de bebida", JOptionPane.QUESTION_MESSAGE);
+			if (nombreTipo != null) {
+				VOTipoBebida tb = parranderos.adicionarTipoBebida(nombreTipo);
+				if (tb == null) {
+					throw new Exception("No se pudo crear un tipo de bebida con nombre: " + nombreTipo);
+				}
+				String resultado = "En adicionarTipoBebida\n\n";
+				resultado += "Tipo de bebida adicionado exitosamente: " + tb;
+				resultado += "\n Operación terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			} else {
+				panelDatos.actualizarInterfaz("Operación cancelada por el usuario");
+			}
+		} catch (Exception e) {
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+	//final ----------------------------------------------------------------------------------
+		//--------------------------final de los métodos necesarios para los RF1--
+	/**
+	 * Demostración de creación, consulta y borrado de Tipos de Bebida Muestra la
+	 * traza de la ejecución en el panelDatos
+	 * 
+	 * Pre: La base de datos está vacía Post: La base de datos está vacía
+	 */
+	public void registrarIPS() {
 		try {
 			// Ejecución de la demo y recolección de los resultados
 			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
-			String nombreRol = "Gerente";
+			String nombreIPS = "nombregenericoIPS";
 			boolean errorRol = false;
-			VORol rol= parranderos.adicionarRol(nombreRol);
+			VORol rol= parranderos.adicionarRol(nombreUsuario);
 			if (rol == null) {
-				rol = parranderos.darRolPorNombre(nombreRol);
+				rol = parranderos.darRolPorNombre(nombreUsuario);
 				errorRol = true;
 			}
 			List<VORol> lista = parranderos.darVORoles();
@@ -305,7 +369,7 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 				resultado += "*** Es probable que ese rol ya existiera y hay restricción de UNICIDAD sobre el nombre del rol\n";
 				resultado += "*** Revise el log de parranderos para más detalles\n";
 			}
-			resultado += "Adicionado el rol con nombre: " + nombreRol + "\n";
+			resultado += "Adicionado el rol con nombre: " + nombreUsuario + "\n";
 			resultado += "\n\n************ Ejecutando la demo ************ \n";
 			resultado += "\n" + listarRoles(lista);
 			resultado += "\n\n************ Limpiando la base de datos ************ \n";
@@ -320,9 +384,7 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 		}
 	}
 		
-		//--------------------------final de los métodos necesarios para los RF1--
-		
-		
+		//--------------------------final de los métodos necesarios para los RF1--	
 	/*
 	 * **************************************************************** Demos de
 	 * TipoBebida

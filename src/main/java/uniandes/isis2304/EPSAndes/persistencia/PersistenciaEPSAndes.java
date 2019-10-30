@@ -12,6 +12,7 @@ import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Transaction;
+import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
 import com.google.gson.JsonArray;
@@ -25,6 +26,8 @@ import uniandes.isis2304.EPSAndes.negocio.Gustan;
 import uniandes.isis2304.EPSAndes.negocio.Rol;
 import uniandes.isis2304.EPSAndes.negocio.Sirven;
 import uniandes.isis2304.EPSAndes.negocio.TipoBebida;
+import uniandes.isis2304.EPSAndes.negocio.Usuario;
+import uniandes.isis2304.EPSAndes.negocio.VOTipoBebida;
 import uniandes.isis2304.EPSAndes.negocio.Visitan;
 
 /**
@@ -519,6 +522,7 @@ public class PersistenciaEPSAndes {
 		}
 	}
 
+	
 	/**
 	 * Método que elimina, de manera transaccional, una tupla en la tabla
 	 * TipoBebida, dado el nombre del tipo de bebida Adiciona entradas al log de la
@@ -625,18 +629,53 @@ public class PersistenciaEPSAndes {
 	 * @param nombre - El nombre del tipo de bebida
 	 * @return El objeto TipoBebida adicionado. null si ocurre alguna Excepción
 	 */
-	public TipoBebida adicionarTipoBebida(String nombre) {
+	public Usuario adicionarUsuario(String nombre) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 		try {
 			tx.begin();
-			long idTipoBebida = nextval();
-			long tuplasInsertadas = sqlTipoBebida.adicionarTipoBebida(pm, idTipoBebida, nombre);
+			long idUsuario = nextval();
+			
+			long tuplasInsertadas = sqlUsuario.adicionarUsuario(pm, idUsuario, "awa@uwu.com" , nombre , 123456, "Gerente", "CEDULA DE CIUDADANIA " ); 
 			tx.commit();
 
-			log.trace("Inserción de tipo de bebida: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+			log.trace("Inserción de usuario: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
 
-			return new TipoBebida(idTipoBebida, nombre);
+			return new Usuario( idUsuario , "awa@uwu.com", nombre, 123456, "Gerente","CEDULA DE CIUDADANIA ");
+		} catch (Exception e) {
+			//        	e.printStackTrace();
+			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	
+	
+	
+	/**
+	 * Método que inserta, de manera transaccional, una tupla en la tabla TipoBebida
+	 * Adiciona entradas al log de la aplicación
+	 * 
+	 * @param nombre - El nombre del tipo de bebida
+	 * @return El objeto TipoBebida adicionado. null si ocurre alguna Excepción
+	 */
+	public Usuario adicionarIPS(String nombre) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			long idUsuario = nextval();
+			
+			long tuplasInsertadas = sqlUsuario.adicionarUsuario(pm, idUsuario, "awa@uwu.com" , nombre , 123456, "Gerente", "CEDULA DE CIUDADANIA " ); 
+			tx.commit();
+
+			log.trace("Inserción de usuario: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Usuario( idUsuario , "awa@uwu.com", nombre, 123456, "Gerente","CEDULA DE CIUDADANIA ");
 		} catch (Exception e) {
 			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));

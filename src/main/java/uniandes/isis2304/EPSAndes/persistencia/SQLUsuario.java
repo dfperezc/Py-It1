@@ -5,6 +5,7 @@ import java.util.List;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import uniandes.isis2304.EPSAndes.negocio.Rol;
 import uniandes.isis2304.EPSAndes.negocio.Usuario;
 
 public class SQLUsuario {
@@ -39,7 +40,7 @@ public class SQLUsuario {
 	 * @param nombre       - El nombre del tipo de bebida
 	 * @return EL número de tuplas insertadas
 	 */
-	public long adicionarUsuario(PersistenceManager pm, long idRol, String email, String nombre, String numeroDocumento, String rol, String tipoDocumento ) {
+	public long adicionarUsuario(PersistenceManager pm, long idRol, String email, String nombre, int numeroDocumento, String rol, String tipoDocumento ) {
 		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaUsuario() + "(id, email, nombre, numeroDocumento, rol, tipoDocumento) values (?, ?, ?, ?, ?, ?)");
 		q.setParameters(idRol, email, nombre, numeroDocumento, rol, tipoDocumento);
 		return (long) q.executeUnique();

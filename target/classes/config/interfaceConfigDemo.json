@@ -18,33 +18,46 @@
 		  "options":
 			[
 				{
-					"label": "registrarRoles",
+					"label": "registrar Roles Usuario ",
 					"event": "registrarRolesUsuario"
 				},
 				{
-					"label": "CRD Bebida",
-					"event": "demoBebida"
+					"label": "Registrar Usuario",
+					"event": "registrarUsuarioDemo"
 				},
 				{
-					"label": "Eliminar Bebidas no servidas 1",
-					"event": "demoElimNoServidas1"
+					"label": "Registrar EPS",
+					"event": "registrarEPS"
 				},
 				{
-					"label": "Eliminar Bebidas no servidas 2",
-					"event": "demoElimNoServidas2"
+					"label": "Registrar Medico",
+					"event": "registrarMedico"
+				},
+				{
+					"label": "Registrar Afiliado",
+					"event": "registrarAfiliado"
 				}
+
 			]
 		},
-		{ "menuTitle": "RF6-7",
+		{ "menuTitle": "RF6-9",
 		  "options":
 			[
 				{
-					"label": "CRD Bebida",
-					"event": "demoBebida"
+					"label": "Registrar servicios IPS",
+					"event": "registrarServicioIPS"
 				},
 				{
-					"label": "Eliminar Bebidas no servidas 1",
-					"event": "demoElimNoServidas1"
+					"label": "Registrar Orden de Servicio ",
+					"event": "registrarOrdenServicioIPS"
+				},
+				{
+					"label": "Reservar Servicio Afiliado",
+					"event": "reservaServicioAfiliado"
+				},
+				{
+					"label": "Regstrar Servicio prestado IPS",
+					"event": "registrarServicioprestado"
 				}
 			]
 		},

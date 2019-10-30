@@ -11,15 +11,16 @@ public class Usuario implements VOUsuario{
 	private String nombre;
 	private int numeroDocumento;
 	private Rol rol;
+	private String rol2;
 	private String tipoDocumento;
 	
 	
-	public Usuario(long id, String email, String nombre, int numeroDocumento, Rol rol, String tipoDocumento) {
+	public Usuario( long id, String email, String nombre, int numeroDocumento, String rol, String tipoDocumento) {
 		this.id = id;
 		this.email = email;
 		this.nombre = nombre;
 		this.numeroDocumento = numeroDocumento;
-		this.rol = rol;
+		this.rol2 = rol;
 		this.tipoDocumento = tipoDocumento;
 	}
 	

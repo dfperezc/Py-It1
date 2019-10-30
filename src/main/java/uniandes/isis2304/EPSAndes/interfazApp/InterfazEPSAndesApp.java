@@ -245,7 +245,7 @@ public class InterfazEPSAndesApp extends JFrame implements ActionListener {
 			String nombreTipo = JOptionPane.showInputDialog(this, "Nombre del tipo de bedida?",
 					"Adicionar tipo de bebida", JOptionPane.QUESTION_MESSAGE);
 			if (nombreTipo != null) {
-				VOTipoBebida tb = parranderos.adicionarTipoBebida(nombreTipo);
+				VOTipoBebida tb = parranderos.darTipoBebidaPorNombre(nombreTipo);
 				if (tb == null) {
 					throw new Exception("No se pudo crear un tipo de bebida con nombre: " + nombreTipo);
 				}

@@ -22,8 +22,8 @@
 					"event": "registrarRolesUsuario"
 				},
 				{
-					"label": "Registrar Usuarioo",
-					"event": "registrarUsuario"
+					"label": "Registrar Usuario",
+					"event": "registrarUsuarioDemo"
 				},
 				{
 					"label": "Registrar EPS",
