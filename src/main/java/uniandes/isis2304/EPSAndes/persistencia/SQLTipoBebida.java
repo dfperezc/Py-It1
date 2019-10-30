@@ -71,6 +71,7 @@ class SQLTipoBebida {
 	 */
 	public long adicionarTipoBebida(PersistenceManager pm, long idTipoBebida, String nombre) {
 		Query q = pm.newQuery(SQL, "INSERT INTO " + pp.darTablaTipoBebida() + "(id, nombre) values (?, ?)");
+		System.out.println(""+ pp.darTablaTipoBebida());
 		q.setParameters(idTipoBebida, nombre);
 		return (long) q.executeUnique();
 	}
@@ -130,6 +131,9 @@ class SQLTipoBebida {
 		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaTipoBebida() + " WHERE nombre = ?");
 		q.setResultClass(TipoBebida.class);
 		q.setParameters(nombreTipoBebida);
+		System.out.println("3333");
+		List<TipoBebida> lisa =  (List<TipoBebida>) q.executeList();
+		System.out.println("tamaño consulta: "+ lisa.size());
 		return (List<TipoBebida>) q.executeList();
 	}
 

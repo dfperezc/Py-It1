@@ -213,8 +213,7 @@ public class PersistenciaEPSAndes {
 	 */
 	private PersistenciaEPSAndes(JsonObject tableConfig) {
 		crearClasesSQL();
-		tablas = leerNombresTablas(tableConfig);
-
+		tablas = leerNombresTablas(tableConfig); 
 		String unidadPersistencia = tableConfig.get("unidadPersistencia").getAsString();
 		log.trace("Accediendo unidad de persistencia: " + unidadPersistencia);
 		pmf = JDOHelper.getPersistenceManagerFactory(unidadPersistencia);
@@ -331,6 +330,7 @@ public class PersistenciaEPSAndes {
 	 */
 	public String darTablaBebida() {
 		return tablas.get(2);
+		
 	}
 
 	/**
@@ -472,18 +472,41 @@ public class PersistenciaEPSAndes {
 	
 	//--------------------------Comienzo de los métodos necesarios para RF1--
 	
-	public Rol adicionarRol(String rol) {
+	public List<Rol> registrarRolesUsuario(List<String> roles)
+	{
+		List <Rol> resp = new LinkedList<Rol>();
+		for(String rolTemporal : roles)
+		{
+			Rol rolTemp = adicionarRol(rolTemporal);
+			resp.add(rolTemp);
+		}
+		return resp;
+		
+	}
+	/*
+	 * **************************************************************** Métodos para
+	 * manejar los TIPOS DE BEBIDA
+	 *****************************************************************/
+
+	/**
+	 * Método que inserta, de manera transaccional, una tupla en la tabla TipoBebida
+	 * Adiciona entradas al log de la aplicación
+	 * 
+	 * @param nombre - El nombre del tipo de bebida
+	 * @return El objeto TipoBebida adicionado. null si ocurre alguna Excepción
+	 */
+	public Rol adicionarRol(String nombre) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 		try {
 			tx.begin();
 			long idRol = nextval();
-			long tuplasInsertadas = sqlRol.adicionarRol(pm, idRol, rol);
+			long tuplasInsertadas = sqlRol.adicionarRol(pm, idRol, nombre);
 			tx.commit();
 
-			log.trace("Inserción del rol: " + rol  + ": " + tuplasInsertadas + " tuplas insertadas");
+			log.trace("Inserción de rol: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
 
-			return new Rol(rol);
+			return new Rol(idRol, nombre);
 		} catch (Exception e) {
 			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
@@ -495,15 +518,43 @@ public class PersistenciaEPSAndes {
 			pm.close();
 		}
 	}
-	
-	public List<Rol> darRolPorNombre(String nombre) {
-		return sqlRol.darRolPorNombre(pmf.getPersistenceManager(), nombre);
+
+	/**
+	 * Método que elimina, de manera transaccional, una tupla en la tabla
+	 * TipoBebida, dado el nombre del tipo de bebida Adiciona entradas al log de la
+	 * aplicación
+	 * 
+	 * @param nombre - El nombre del tipo de bebida
+	 * @return El número de tuplas eliminadas. -1 si ocurre alguna Excepción
+	 */
+	public long eliminarRolPorNombre(String nombre) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			long resp = sqlRol.eliminarRolPorNombre(pm, nombre);
+			tx.commit();
+			return resp;
+		} catch (Exception e) {
+			//        	e.printStackTrace();
+			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return -1;
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
-	
-	public List<Rol> darRoles() {
-		return sqlRol.darRoles(pmf.getPersistenceManager());
-	}
-	
+
+	/**
+	 * Método que elimina, de manera transaccional, una tupla en la tabla
+	 * TipoBebida, dado el identificador del tipo de bebida Adiciona entradas al log
+	 * de la aplicación
+	 * 
+	 * @param idTipoBebida - El identificador del tipo de bebida
+	 * @return El número de tuplas eliminadas. -1 si ocurre alguna Excepción
+	 */
 	public long eliminarRolPorId(long idRol) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -523,10 +574,44 @@ public class PersistenciaEPSAndes {
 			pm.close();
 		}
 	}
+
+	/**
+	 * Método que consulta todas las tuplas en la tabla TipoBebida
+	 * 
+	 * @return La lista de objetos TipoBebida, construidos con base en las tuplas de
+	 *         la tabla TIPOBEBIDA
+	 */
+	public List<Rol> darRoles() {
+		return sqlRol.darRoles(pmf.getPersistenceManager());
+	}
+
+	/**
+	 * Método que consulta todas las tuplas en la tabla TipoBebida que tienen el
+	 * nombre dado
+	 * 
+	 * @param nombre - El nombre del tipo de bebida
+	 * @return La lista de objetos TipoBebida, construidos con base en las tuplas de
+	 *         la tabla TIPOBEBIDA
+	 */
+	public List<Rol> darRolPorNombre(String nombre) {
+		return sqlRol.darRolesPorNombre(pmf.getPersistenceManager(), nombre);
+	}
+
+	/**
+	 * Método que consulta todas las tuplas en la tabla TipoBebida con un
+	 * identificador dado
+	 * 
+	 * @param idTipoBebida - El identificador del tipo de bebida
+	 * @return El objeto TipoBebida, construido con base en las tuplas de la tabla
+	 *         TIPOBEBIDA con el identificador dado
+	 */
+	public Rol darRolPorId(long idRol) {
+		return sqlRol.darRolPorId(pmf.getPersistenceManager(), idRol);
+	}
 	
 	//--------------------------final de los métodos necesarios para los RF1--
 	
-
+	
 	
 	/*
 	 * **************************************************************** Métodos para

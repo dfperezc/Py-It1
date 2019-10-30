@@ -47,6 +47,11 @@ public class Parranderos {
 	 */
 	private PersistenciaEPSAndes pp;
 
+	/**
+	 * los roles de usuario
+	 */
+	private List<String> rolesDeUsuario ;
+	
 	/*
 	 * **************************************************************** Métodos
 	 *****************************************************************/
@@ -55,7 +60,13 @@ public class Parranderos {
 	 */
 	public Parranderos() {
 		pp = PersistenciaEPSAndes.getInstance();
-	}
+		rolesDeUsuario = new LinkedList<String>();
+		rolesDeUsuario.add("administrador");
+		rolesDeUsuario.add("afiliado");
+		rolesDeUsuario.add("gerente");
+		rolesDeUsuario.add("medico");
+		rolesDeUsuario.add("recepcionista");
+		}
 
 	/**
 	 * El constructor qye recibe los nombres de las tablas en tableConfig
@@ -65,6 +76,13 @@ public class Parranderos {
 	 */
 	public Parranderos(JsonObject tableConfig) {
 		pp = PersistenciaEPSAndes.getInstance(tableConfig);
+		rolesDeUsuario = new LinkedList<String>();
+		rolesDeUsuario.add("administrador");
+		rolesDeUsuario.add("afiliado");
+		rolesDeUsuario.add("gerente");
+		rolesDeUsuario.add("medico");
+		rolesDeUsuario.add("recepcionista");
+		
 	}
 
 	/**
@@ -76,47 +94,107 @@ public class Parranderos {
 
 	
 	//--------------------------Comienzo de los métodos necesarios para RF1--
-	
-	public Rol adicionarRol(String nombre) {
-		log.info("Adicionando rol: " + nombre);
-		Rol rol = pp.adicionarRol(nombre);
-		log.info("Adicionando rol: " + rol);
-		return rol;
-	}
-	
-	public List<Rol> darRoles() {
-		log.info("Consultando roles");
-		List<Rol> roles = pp.darRoles();
-		log.info("Consultando roles: " + roles.size() + " existentes");
-		return roles;
-	}
-	
-	public Rol darRolPorNombre(String nombre) {
-		log.info("Buscando rol por nombre: " + nombre);
-		List<Rol> tb = pp.darRolPorNombre(nombre);
-		return !tb.isEmpty() ? tb.get(0) : null;
+
+	public List<Rol> registrarRolesUsuario()
+	{
+		return pp.registrarRolesUsuario(rolesDeUsuario);
+		
 		
 	}
 	
-	public List<VORol> darVORoles() {
-		log.info("Generando los VO de roles");
-		List<VORol> voRoles = new LinkedList<VORol>();
-		List<Rol> lalista =  pp.darRoles();
-		System.out.println(lalista.size() + "es el tamaño del los roles");
-		for (Rol tb : lalista) {
-			voRoles.add(tb);
-		}
-		log.info("Generando los VO de roles: " + voRoles.size() + " existentes");
-		return voRoles;
+	/*
+	 * **************************************************************** Métodos para
+	 * manejar los TIPOS DE BEBIDA
+	 *****************************************************************/
+	/**
+	 * Adiciona de manera persistente un tipo de bebida Adiciona entradas al log de
+	 * la aplicación
+	 * 
+	 * @param nombre - El nombre del tipo de bebida
+	 * @return El objeto TipoBebida adicionado. null si ocurre alguna Excepción
+	 */
+	public Rol adicionarRol(String nombre) {
+		log.info("Adicionando Rol: " + nombre);
+		Rol rol= pp.adicionarRol(nombre);
+		log.info("Adicionando Rol: " + rol);
+		return rol;
 	}
-	
-	public long eliminarRolPorId(long idRol) {
-		log.info("Eliminando rol Por id: " + idRol);
-		long resp = pp.eliminarRolPorId(idRol);
-		log.info("Eliminando rol por id: " + resp + " tuplas eliminadas");
+
+	/**
+	 * Elimina un tipo de bebida por su nombre Adiciona entradas al log de la
+	 * aplicación
+	 * 
+	 * @param nombre - El nombre del tipo de bebida a eliminar
+	 * @return El número de tuplas eliminadas
+	 */
+	public long eliminarRolPorNombre(String nombre) {
+		log.info("Eliminando Rol por nombre: " + nombre);
+		long resp = pp.eliminarRolPorNombre(nombre);
+		log.info("Eliminando Rol por nombre: " + resp + " tuplas eliminadas");
 		return resp;
 	}
 
+	/**
+	 * Elimina un tipo de bebida por su identificador Adiciona entradas al log de la
+	 * aplicación
+	 * 
+	 * @param idTipoBebida - El id del tipo de bebida a eliminar
+	 * @return El número de tuplas eliminadas
+	 */
+	public long eliminarRolPorId(long idRol) {
+		log.info("Eliminando Rol por id: " + idRol);
+		long resp = pp.eliminarRolPorId(idRol);
+		log.info("Eliminando Rol por id: " + resp + " tuplas eliminadas");
+		return resp;
+	}
+
+	/**
+	 * Encuentra todos los tipos de bebida en Parranderos Adiciona entradas al log
+	 * de la aplicación
+	 * 
+	 * @return Una lista de objetos TipoBebida con todos los tipos de bebida que
+	 *         conoce la aplicación, llenos con su información básica
+	 */
+	public List<Rol> darRoles() {
+		log.info("Consultando Roles");
+		List<Rol> roles= pp.darRoles();
+		log.info("Consultando Roles: " + roles.size() + " existentes");
+		return roles;
+	}
+
+	/**
+	 * Encuentra todos los tipos de bebida en Parranderos y los devuelve como una
+	 * lista de VOTipoBebida Adiciona entradas al log de la aplicación
+	 * 
+	 * @return Una lista de objetos VOTipoBebida con todos los tipos de bebida que
+	 *         conoce la aplicación, llenos con su información básica
+	 */
+	public List<VORol> darVORoles() {
+		log.info("Generando los VO de Roles");
+		List<VORol> voRoles= new LinkedList<VORol>();
+		List<Rol> lalista = pp.darRoles();
+		for (Rol tb : pp.darRoles()) {
+			voRoles.add(tb);
+		}
+		log.info("Generando los VO de Tipos de bebida: " + voRoles.size() + " existentes");
+		return voRoles;
+	}
+
+	/**
+	 * Encuentra el tipos de bebida en Parranderos con el nombre solicitado Adiciona
+	 * entradas al log de la aplicación
+	 * 
+	 * @param nombre - El nombre de la bebida
+	 * @return Un objeto TipoBebida con el tipos de bebida de ese nombre que conoce
+	 *         la aplicación, lleno con su información básica
+	 */
+	public Rol darRolPorNombre(String nombre) {
+		log.info("Buscando Rol por nombre: " + nombre);
+		List<Rol> tb = pp.darRolPorNombre(nombre);
+		return !tb.isEmpty() ? tb.get(0) : null;
+	}
+
+	
 	//--------------------------final de los métodos necesarios para los RF1--
 	
 	
@@ -193,7 +271,6 @@ public class Parranderos {
 		List<VOTipoBebida> voTipos = new LinkedList<VOTipoBebida>();
 		List<TipoBebida> lalista = pp.darTiposBebida();
 		for (TipoBebida tb : pp.darTiposBebida()) {
-			System.out.println(lalista.size()+"aaaaaaaaaaaaaaaaaaa");
 			voTipos.add(tb);
 		}
 		log.info("Generando los VO de Tipos de bebida: " + voTipos.size() + " existentes");
