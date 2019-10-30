@@ -245,44 +245,71 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 	
 	//--------------------------Comienzo de los métodos necesarios para RF1--
 	
-	private String listarRoles(List<VORol> lista) {
-		String resp = "Los roles existentes son:\n";
-		int i = 1;
-		for (VORol tb : lista) {
-			resp += i++ + ". " + tb.toString() + "\n";
-		}
-		return resp;
-	}
-
-	public void demoRol() {
-		
+	public void registrarRolesUsuario()
+	{
 		try {
-			String nombreRol = "Administrador";
+			// Ejecución de la demo y recolección de los resultados
+			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
+			boolean errorRoles = false;
+			List<Rol> roles= parranderos.registrarRolesUsuario();
+			if (roles == null) {
+				roles = parranderos.registrarRolesUsuario();
+				errorRoles = true;
+			}
+			List<VORol> lista = parranderos.darVORoles();
+			
+			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
+			String resultado = "Registro de roles";
+			resultado += "\n\n************ registrando roles ************ \n";
+			if (errorRoles) {
+				resultado += "*** Exception registrando los roles !!\n";
+				resultado += "*** Es probable que un rol ya existiera y hay restricción de UNICIDAD sobre el nombre del rol\n";
+				resultado += "*** Revise el log de parranderos para más detalles\n";
+			}
+			resultado += "Adicionado los roles \n";
+			resultado += "\n\n************ Inserciones Ejecutadas ************ \n";
+			resultado += "\n" + listarRoles(lista);
+			
+			panelDatos.actualizarInterfaz(resultado);
+		} catch (Exception e) {
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+	/**
+	 * Demostración de creación, consulta y borrado de Tipos de Bebida Muestra la
+	 * traza de la ejecución en el panelDatos
+	 * 
+	 * Pre: La base de datos está vacía Post: La base de datos está vacía
+	 */
+	public void demoRoldep() {
+		try {
+			// Ejecución de la demo y recolección de los resultados
+			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
+			String nombreRol = "Gerente";
 			boolean errorRol = false;
-			VORol rol = parranderos.adicionarRol(nombreRol);
+			VORol rol= parranderos.adicionarRol(nombreRol);
 			if (rol == null) {
 				rol = parranderos.darRolPorNombre(nombreRol);
 				errorRol = true;
 			}
-			System.out.println("111111111111111111111");
 			List<VORol> lista = parranderos.darVORoles();
-			System.out.println("222222222222222222222");
-			long tbEliminados = parranderos.eliminarTipoBebidaPorId(rol.getId());
-			
-			
+			long tbEliminados = parranderos.eliminarRolPorId(rol.getId());
+
 			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
-			String resultado = "Demo de creación y listado de rol\n\n";
+			String resultado = "Demo de creación y listado de Rol\n\n";
 			resultado += "\n\n************ Generando datos de prueba ************ \n";
 			if (errorRol) {
 				resultado += "*** Exception creando rol !!\n";
 				resultado += "*** Es probable que ese rol ya existiera y hay restricción de UNICIDAD sobre el nombre del rol\n";
-				resultado += "*** Revise el log de EPSAndes para más detalles\n";
+				resultado += "*** Revise el log de parranderos para más detalles\n";
 			}
 			resultado += "Adicionado el rol con nombre: " + nombreRol + "\n";
 			resultado += "\n\n************ Ejecutando la demo ************ \n";
 			resultado += "\n" + listarRoles(lista);
 			resultado += "\n\n************ Limpiando la base de datos ************ \n";
-			resultado += tbEliminados + " roles eliminados\n";
+			resultado += tbEliminados + " Roles eliminados\n";
 			resultado += "\n Demo terminada";
 
 			panelDatos.actualizarInterfaz(resultado);
@@ -292,8 +319,6 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-		
-		
 		
 		//--------------------------final de los métodos necesarios para los RF1--
 		
@@ -1529,6 +1554,26 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 	 * **************************************************************** Métodos
 	 * privados para la presentación de resultados y otras operaciones
 	 *****************************************************************/
+	
+	/**
+	 * Genera una cadena de caracteres con la lista de los tipos de bebida recibida:
+	 * una línea por cada tipo de bebida
+	 * 
+	 * @param lista - La lista con los tipos de bebida
+	 * @return La cadena con una líea para cada tipo de bebida recibido
+	 */
+	private String listarRoles(List<VORol> lista) {
+		String resp = "Los roles existentes son:\n";
+		int i = 1;
+		for (VORol tb : lista) {
+			resp += i++ + ". " + tb.toString() + "\n";
+		}
+		return resp;
+	}
+
+	
+	
+	
 	/**
 	 * Genera una cadena de caracteres con la lista de los tipos de bebida recibida:
 	 * una línea por cada tipo de bebida

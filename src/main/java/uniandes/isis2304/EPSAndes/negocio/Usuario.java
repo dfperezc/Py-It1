@@ -22,6 +22,16 @@ public class Usuario implements VOUsuario{
 		this.rol = rol;
 		this.tipoDocumento = tipoDocumento;
 	}
+	
+	public Usuario() {
+		this.id = 0;
+		this.email = "";
+		this.nombre = "";
+		this.numeroDocumento = 0;
+		this.rol = new Rol();
+		this.tipoDocumento = "";
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -58,5 +68,15 @@ public class Usuario implements VOUsuario{
 	public void setTipoDocumento(String tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
 	}
+	
+	/**
+	 * @return Una cadena de caracteres con la información del tipo de bebida
+	 */
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nombre=" + nombre + "]";
+	}
+
+
 
 }
