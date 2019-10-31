@@ -24,11 +24,25 @@ public class Afiliado extends Usuario implements VOAfiliado{
 	 * @param recetaActual
 	 */
 	public Afiliado(long id, String email, String nombre, int numeroDocumento, Rol rol, String tipoDocumento, String estadoSalud, Date fechaNacimiento, String recetaActual) {
-		super(id, email, nombre, numeroDocumento, rol, tipoDocumento);
+		this.id = id;
 		this.estadoSalud = estadoSalud;
 		this.fechaNacimiento = fechaNacimiento;
 		this.recetaActual = recetaActual;
 	}
+	public Afiliado() {
+		this.id = 0;
+		this.estadoSalud = "";
+		Date demo = new Date(2019, 01, 01);
+		this.fechaNacimiento = demo;
+		this.recetaActual = "";
+	}
+	
+	public long getID()
+	{
+		return id;
+	}
+	
+	
 	public String getEstadoSalud() {
 		return estadoSalud;
 	}

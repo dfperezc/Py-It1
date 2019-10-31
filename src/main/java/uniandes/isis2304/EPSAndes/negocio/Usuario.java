@@ -6,7 +6,6 @@ public class Usuario implements VOUsuario{
 	 * El identificador ÚNICO del administrador
 	 */
 	private long id;
-	
 	private String email;
 	private String nombre;
 	private int numeroDocumento;
@@ -24,7 +23,8 @@ public class Usuario implements VOUsuario{
 		this.tipoDocumento = tipoDocumento;
 	}
 	
-	public Usuario() {
+	public Usuario()
+	{
 		this.id = 0;
 		this.email = "";
 		this.nombre = "";
@@ -33,40 +33,52 @@ public class Usuario implements VOUsuario{
 		this.tipoDocumento = "";
 	}
 	
-	public long getId() {
+	public long getId()
+	{
 		return id;
 	}
-	public String getEmail() {
+	public String getEmail() 
+	{
 		return email;
 	}
-	public String getNombre() {
+	public String getNombre() 
+	{
 		return nombre;
 	}
-	public int getNumeroDocumento() {
+	public int getNumeroDocumento() 
+	{
 		return numeroDocumento;
 	}
-	public Rol getRol() {
+	public Rol getRol()
+	{
 		return rol;
 	}
-	public String getTipoDocumento() {
+	public String getTipoDocumento()
+	{
 		return tipoDocumento;
 	}
-	public void setId(long id) {
+	public void setId(long id)
+	{
 		this.id = id;
 	}
-	public void setEmail(String email) {
+	public void setEmail(String email) 
+	{
 		this.email = email;
 	}
-	public void setNombre(String nombre) {
+	public void setNombre(String nombre)
+	{
 		this.nombre = nombre;
 	}
-	public void setNumeroDocumento(int numeroDocumento) {
+	public void setNumeroDocumento(int numeroDocumento)
+	{
 		this.numeroDocumento = numeroDocumento;
 	}
-	public void setRol(Rol rol) {
+	public void setRol(Rol rol)
+	{
 		this.rol = rol;
 	}
-	public void setTipoDocumento(String tipoDocumento) {
+	public void setTipoDocumento(String tipoDocumento)
+	{
 		this.tipoDocumento = tipoDocumento;
 	}
 	
