@@ -1,5 +1,8 @@
 package uniandes.isis2304.EPSAndes.persistencia;
 
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
 public class SQLHospitalizacion {
 
 	/**
@@ -22,5 +25,16 @@ public class SQLHospitalizacion {
 	public SQLHospitalizacion(PersistenciaEPSAndes pp) {
 		this.pp = pp;
 	}
-
+	public long adicionarHospitalizacion(PersistenceManager pm,long id )
+	{
+		Query q = pm.newQuery(SQL , "INSERT INTO" + pp.darTablaHospitalizacion() + "(id)" );
+		q.setParameters(id);
+		 return (long) q.executeUnique();
+	}
+	public long eliminarHospitalizacion(PersistenceManager pm,long id )
+	{
+		Query q = pm.newQuery(SQL , "DELETE FROM" + pp.darTablaHospitalizacion() + "where id = ?" );
+		q.setParameters(id);
+		 return (long) q.executeUnique();
+	}
 }

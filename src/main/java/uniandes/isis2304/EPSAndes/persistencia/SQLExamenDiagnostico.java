@@ -1,5 +1,8 @@
 package uniandes.isis2304.EPSAndes.persistencia;
 
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
 public class SQLExamenDiagnostico {
 
 	/**
@@ -22,5 +25,16 @@ public class SQLExamenDiagnostico {
 	public SQLExamenDiagnostico(PersistenciaEPSAndes pp) {
 		this.pp = pp;
 	}
-
+	public long adicionarExamenDiagnostico(PersistenceManager pm,long id )
+	{
+		Query q = pm.newQuery(SQL , "INSERT INTO" + pp.darTablaExamenDiagnostico() + "(id)" );
+		q.setParameters(id);
+		 return (long) q.executeUnique();
+	}
+	public long eliminarConsulta(PersistenceManager pm,long id )
+	{
+		Query q = pm.newQuery(SQL , "DELETE FROM" + pp.darTablaExamenDiagnostico() + "where id = ?" );
+		q.setParameters(id);
+		 return (long) q.executeUnique();
+	}
 }

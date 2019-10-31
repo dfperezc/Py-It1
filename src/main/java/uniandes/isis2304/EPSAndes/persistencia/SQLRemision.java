@@ -1,5 +1,8 @@
 package uniandes.isis2304.EPSAndes.persistencia;
 
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
 public class SQLRemision {
 
 	/**
@@ -22,5 +25,16 @@ public class SQLRemision {
 	public SQLRemision(PersistenciaEPSAndes pp) {
 		this.pp = pp;
 	}
-
+	public long adicionarRemision(PersistenceManager pm,long id )
+	{
+		Query q = pm.newQuery(SQL , "INSERT INTO" + pp.darTablaRemision() + "(id)" );
+		q.setParameters(id);
+		 return (long) q.executeUnique();
+	}
+	public long eliminarRemision(PersistenceManager pm,long id )
+	{
+		Query q = pm.newQuery(SQL , "DELETE FROM" + pp.darTablaRemision() + "where id = ?" );
+		q.setParameters(id);
+		 return (long) q.executeUnique();
+	}
 }

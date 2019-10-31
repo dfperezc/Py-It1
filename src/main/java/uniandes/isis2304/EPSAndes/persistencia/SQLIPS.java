@@ -1,5 +1,8 @@
 package uniandes.isis2304.EPSAndes.persistencia;
 
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
 public class SQLIPS {
 
 	/**
@@ -22,5 +25,16 @@ public class SQLIPS {
 	public SQLIPS(PersistenciaEPSAndes pp) {
 		this.pp = pp;
 	}
-
+	public long adicionarIPS(PersistenceManager pm,long id ,long idEps ,String localizacion ,String nombre )
+	{
+		Query q = pm.newQuery(SQL , "INSERT INTO" + pp.darTablaIPS() + "(id,ideps,localizacion,nombre)" );
+		q.setParameters(id,idEps ,localizacion ,nombre);
+		 return (long) q.executeUnique();
+	}
+	public long eliminarIPS(PersistenceManager pm,long id )
+	{
+		Query q = pm.newQuery(SQL , "DELETE FROM" + pp.darTablaIPS() + "where id = ?" );
+		q.setParameters(id);
+		 return (long) q.executeUnique();
+	}
 }

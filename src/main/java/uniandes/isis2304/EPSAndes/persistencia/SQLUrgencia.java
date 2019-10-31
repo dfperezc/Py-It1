@@ -1,5 +1,8 @@
 package uniandes.isis2304.EPSAndes.persistencia;
 
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
 public class SQLUrgencia {
 
 	/**
@@ -22,5 +25,16 @@ public class SQLUrgencia {
 	public SQLUrgencia(PersistenciaEPSAndes pp) {
 		this.pp = pp;
 	}
-
+	public long adicionarUrgencia(PersistenceManager pm,long id )
+	{
+		Query q = pm.newQuery(SQL , "INSERT INTO" + pp.darTablaUrgencia() + "(id)" );
+		q.setParameters(id);
+		 return (long) q.executeUnique();
+	}
+	public long eliminarUrgencia(PersistenceManager pm,long id )
+	{
+		Query q = pm.newQuery(SQL , "DELETE FROM" + pp.darTablaUrgencia() + "where id = ?" );
+		q.setParameters(id);
+		 return (long) q.executeUnique();
+	}
 }

@@ -1,5 +1,8 @@
 package uniandes.isis2304.EPSAndes.persistencia;
 
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
 public class SQLRecepcionista {
 
 	/**
@@ -22,5 +25,16 @@ public class SQLRecepcionista {
 	public SQLRecepcionista(PersistenciaEPSAndes pp) {
 		this.pp = pp;
 	}
-
+	public long adicionarRecepcionista(PersistenceManager pm,long id , long idIps , long idUsuario )
+	{
+		Query q = pm.newQuery(SQL , "INSERT INTO" + pp.darTablaRecepcionista() + "(id,idips ,idusuario)" );
+		q.setParameters(id ,idIps , idUsuario);
+		 return (long) q.executeUnique();
+	}
+	public long eliminarRecepcionista(PersistenceManager pm,long id )
+	{
+		Query q = pm.newQuery(SQL , "DELETE FROM" + pp.darTablaRecepcionista() + "where id = ?" );
+		q.setParameters(id);
+		 return (long) q.executeUnique();
+	}
 }

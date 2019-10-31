@@ -1,5 +1,8 @@
 package uniandes.isis2304.EPSAndes.persistencia;
 
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
 public class SQLTrabajan {
 
 	/**
@@ -22,5 +25,16 @@ public class SQLTrabajan {
 	public SQLTrabajan(PersistenciaEPSAndes pp) {
 		this.pp = pp;
 	}
-
+	public long adicionarConsulta(PersistenceManager pm,long id , long idMedico , long idIps )
+	{
+		Query q = pm.newQuery(SQL , "INSERT INTO" + pp.darTablaTrabajan() + "(id, idmedico , idips)" );
+		q.setParameters(id , idMedico , idIps);
+		 return (long) q.executeUnique();
+	}
+	public long eliminarConsulta(PersistenceManager pm,long id )
+	{
+		Query q = pm.newQuery(SQL , "DELETE FROM" + pp.darTablaTrabajan() + "where id = ?" );
+		q.setParameters(id);
+		 return (long) q.executeUnique();
+	}
 }

@@ -1,5 +1,8 @@
 package uniandes.isis2304.EPSAndes.persistencia;
 
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
 public class SQLProcedimientoEspecializado {
 
 	/**
@@ -22,5 +25,16 @@ public class SQLProcedimientoEspecializado {
 	public SQLProcedimientoEspecializado(PersistenciaEPSAndes pp) {
 		this.pp = pp;
 	}
-
+	public long adicionarServicioEspecializado(PersistenceManager pm,long id ,long tipo)
+	{
+		Query q = pm.newQuery(SQL , "INSERT INTO" + pp.darTablaProcedimientoEspecializado() + "(id,tipo)" );
+		q.setParameters(id, tipo);
+		 return (long) q.executeUnique();
+	}
+	public long eliminarServicioEspecializado(PersistenceManager pm,long id )
+	{
+		Query q = pm.newQuery(SQL , "DELETE FROM" + pp.darTablaProcedimientoEspecializado() + "where id = ?" );
+		q.setParameters(id);
+		 return (long) q.executeUnique();
+	}
 }

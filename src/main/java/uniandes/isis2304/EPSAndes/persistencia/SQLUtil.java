@@ -64,8 +64,8 @@ class SQLUtil {
 	 * @return El número de secuencia generado
 	 */
 	public long nextval(PersistenceManager pm) {
-		Query q = pm.newQuery(SQL, "SELECT " + pp.darSeqParranderos() + ".nextval FROM DUAL");
-		//Query q = pm.newQuery(SQL, "SELECT " + pp.darSeqEPSAndes() + ".nextval FROM DUAL");
+		//Query q = pm.newQuery(SQL, "SELECT " + pp.darSeqParranderos() + ".nextval FROM DUAL");
+		Query q = pm.newQuery(SQL, "SELECT " + pp.darSeqEPSAndes() + ".nextval FROM DUAL");
 		
 		q.setResultClass(Long.class);
 		long resp = (long) q.executeUnique();
@@ -82,13 +82,7 @@ class SQLUtil {
 	 *         BAR, respectivamente
 	 */
 	public long[] limpiarEPSAndes(PersistenceManager pm) {
-		Query qGustan = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaGustan());
-		Query qSirven = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaSirven());
-		Query qVisitan = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaVisitan());
-		Query qBebida = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBebida());
-		Query qTipoBebida = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaTipoBebida());
-		Query qBebedor = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBebedor());
-		Query qBar = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaBar());
+	
 
 //		Query qAdministrador = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAdministrador());
 //		Query qAfiliado = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaAfiliado());
@@ -113,15 +107,7 @@ class SQLUtil {
 //		Query qUsuario = pm.newQuery(SQL, "DELETE FROM " + pp.darTablaUsuario());
 
 		
-		long gustanEliminados = (long) qGustan.executeUnique();
-		long sirvenEliminados = (long) qSirven.executeUnique();
-		long visitanEliminadas = (long) qVisitan.executeUnique();
-		long bebidasEliminadas = (long) qBebida.executeUnique();
-		long tiposBebidaEliminados = (long) qTipoBebida.executeUnique();
-		long bebedoresEliminados = (long) qBebedor.executeUnique();
-		long baresEliminados = (long) qBar.executeUnique();
-		return new long[] { gustanEliminados, sirvenEliminados, visitanEliminadas, bebidasEliminadas,
-				tiposBebidaEliminados, bebedoresEliminados, baresEliminados };
+		
 		
 //		
 //		long administradorEliminados= (long) qAdministrador.executeUnique();
@@ -148,6 +134,7 @@ class SQLUtil {
 //		return new long[] { administradorEliminados,afiliadoEliminados,citaEliminados,consultaEliminados,controlEliminados,epsEliminados,examenDiagnosticoEliminados,GerenteEliminados,
 //				HospitalizacionEliminados,ipsEliminados,medicoEliminados,ordenEliminados,procedimientoEspecializadoEliminados,recepcionistaEliminados,remisionEliminados,
 //				rolEliminados,servicioEliminados,terapiaEliminados,trabajanEliminados,urgenciaEliminados,usuarioEliminados};
+	return null;
 	}
 
 }

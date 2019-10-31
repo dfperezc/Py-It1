@@ -1,5 +1,10 @@
 package uniandes.isis2304.EPSAndes.persistencia;
 
+import java.util.Date;
+
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
 public class SQLConsulta {
 
 	
@@ -23,5 +28,17 @@ public class SQLConsulta {
 	public SQLConsulta (PersistenciaEPSAndes pp) {
 		this.pp = pp;
 	}
-
+     
+	public long adicionarConsulta(PersistenceManager pm,long id )
+	{
+		Query q = pm.newQuery(SQL , "INSERT INTO" + pp.darTablaConsulta() + "(id)" );
+		q.setParameters(id);
+		 return (long) q.executeUnique();
+	}
+	public long eliminarConsulta(PersistenceManager pm,long id )
+	{
+		Query q = pm.newQuery(SQL , "DELETE FROM" + pp.darTablaConsulta() + "where id = ?" );
+		q.setParameters(id);
+		 return (long) q.executeUnique();
+	}
 }

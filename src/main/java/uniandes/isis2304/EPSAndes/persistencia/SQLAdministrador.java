@@ -1,5 +1,7 @@
 package uniandes.isis2304.EPSAndes.persistencia;
 
+import javax.jdo.*;
+
 public class SQLAdministrador {
 	/**
 	 * Cadena que representa el tipo de consulta que se va a realizar en las
@@ -21,5 +23,18 @@ public class SQLAdministrador {
 	public SQLAdministrador(PersistenciaEPSAndes pp) {
 		this.pp = pp;
 	}
-
+    
+	public long adicionarAdministrador(PersistenceManager pm,long id ,long idUsuario , long Eps )
+	{
+		Query q = pm.newQuery(SQL , "INSERT INTO" + pp.darTablaAdministrador() + "(id,idUsuario, ideps)" );
+		q.setParameters(id,idUsuario,Eps);
+		 return (long) q.executeUnique();
+	}
+	public long eliminarAdministrador(PersistenceManager pm,long id )
+	{
+		Query q = pm.newQuery(SQL , "DELETE FROM" + pp.darTablaAdministrador() + "where id = ?" );
+		q.setParameters(id);
+		 return (long) q.executeUnique();
+	}
 }
+

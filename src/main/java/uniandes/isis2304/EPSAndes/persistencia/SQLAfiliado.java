@@ -1,5 +1,10 @@
 package uniandes.isis2304.EPSAndes.persistencia;
 
+import java.util.Date;
+
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
 public class SQLAfiliado {
 
 	/**
@@ -22,5 +27,17 @@ public class SQLAfiliado {
 	public SQLAfiliado(PersistenciaEPSAndes pp) {
 		this.pp = pp;
 	}
-
+	public long adicionarAfiliado(PersistenceManager pm,long id ,String estadoSalud , Date fechaNacimiento , String recetaActual , long idOrden , long idUsuario , long idEps ,long idCita )
+	{
+		Query q = pm.newQuery(SQL , "INSERT INTO" + pp.darTablaAfiliado() + "(id,estadosalud, fechanacimiento,recetaactual,idorden,idusuarioafiliado,ideps,idcita)" );
+		q.setParameters(id,estadoSalud,fechaNacimiento,recetaActual,idOrden,idUsuario , idCita,idOrden );
+		 return (long) q.executeUnique();
+	}
+	public long eliminarAfiliado(PersistenceManager pm,long id )
+	{
+		Query q = pm.newQuery(SQL , "DELETE FROM" + pp.darTablaAfiliado() + "where id = ?" );
+		q.setParameters(id);
+		 return (long) q.executeUnique();
+	}
+	
 }

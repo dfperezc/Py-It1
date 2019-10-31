@@ -1,5 +1,8 @@
 package uniandes.isis2304.EPSAndes.persistencia;
 
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
 public class SQLEPS {
 
 	/**
@@ -22,5 +25,18 @@ public class SQLEPS {
 	public SQLEPS(PersistenciaEPSAndes pp) {
 		this.pp = pp;
 	}
-
+	public long adicionarEPS(PersistenceManager pm,long id, String nombre , long idGerente )
+	{
+		Query q = pm.newQuery(SQL , "INSERT INTO" + pp.darTablaEPS() + "(id, nombre , idgerente)" );
+		q.setParameters(id,nombre , idGerente);
+		 return (long) q.executeUnique();
+	}
+	public long eliminarEPS(PersistenceManager pm,long id )
+	{
+		Query q = pm.newQuery(SQL , "DELETE FROM" + pp.darTablaEPS() + "where id = ?" );
+		q.setParameters(id);
+		 return (long) q.executeUnique();
+	}
+	
+	
 }
