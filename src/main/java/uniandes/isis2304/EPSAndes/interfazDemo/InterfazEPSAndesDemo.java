@@ -56,6 +56,7 @@ import uniandes.isis2304.EPSAndes.negocio.VORol;
 import uniandes.isis2304.EPSAndes.negocio.VOUsuario;
 import uniandes.isis2304.EPSAndes.negocio.VOVisitan;
 import uniandes.isis2304.EPSAndes.negocio.EPSAndes;
+import uniandes.isis2304.EPSAndes.negocio.Rol;
 
 /**
  * Clase principal de la interfaz
@@ -344,7 +345,9 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 				resultado += "*** Es probable que ese rol ya existiera y hay restricción de UNICIDAD sobre el nombre del rol\n";
 				resultado += "*** Revise el log de parranderos para más detalles\n";
 			}
-			resultado += "Adicionado la IPS con nombre: " + nombreIPS + "\n";
+			resultado += "Adicionado el rol con nombre: " + nombreIPS + "\n";
+			resultado += "\n\n************ Ejecutando la demo ************ \n";
+			resultado += "\n" + listarRoles(lista);
 			resultado += "\n\n************ Limpiando la base de datos ************ \n";
 			resultado += tbEliminados + " Roles eliminados\n";
 			resultado += "\n Demo terminada";
@@ -357,12 +360,179 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 		}
 	}
 		
-		//--------------------------final de los métodos necesarios para los RF1--	
+	
+	
+	
+	
+	
+	
+
+			
+
+	
+
 	/*
-	 * **************************************************************** Demos de
-	 * TipoBebida
+	 * **************************************************************** Métodos
+	 * administrativos
+	 *****************************************************************/
+	/**
+	 * Muestra el log de Parranderos
+	 */
+	public void mostrarLogParranderos() {
+		mostrarArchivo("parranderos.log");
+	}
+
+	/**
+	 * Muestra el log de datanucleus
+	 */
+	public void mostrarLogDatanuecleus() {
+		mostrarArchivo("datanucleus.log");
+	}
+
+	/**
+	 * Limpia el contenido del log de parranderos Muestra en el panel de datos la
+	 * traza de la ejecución
+	 */
+	public void limpiarLogParranderos() {
+		// Ejecución de la operación y recolección de los resultados
+		boolean resp = limpiarArchivo("parranderos.log");
+
+		// Generación de la cadena de caracteres con la traza de la ejecución de la demo
+		String resultado = "\n\n************ Limpiando el log de parranderos ************ \n";
+		resultado += "Archivo " + (resp ? "limpiado exitosamente" : "NO PUDO ser limpiado !!");
+		resultado += "\nLimpieza terminada";
+
+		panelDatos.actualizarInterfaz(resultado);
+	}
+
+	/**
+	 * Limpia el contenido del log de datanucleus Muestra en el panel de datos la
+	 * traza de la ejecución
+	 */
+	public void limpiarLogDatanucleus() {
+		// Ejecución de la operación y recolección de los resultados
+		boolean resp = limpiarArchivo("datanucleus.log");
+
+		// Generación de la cadena de caracteres con la traza de la ejecución de la demo
+		String resultado = "\n\n************ Limpiando el log de datanucleus ************ \n";
+		resultado += "Archivo " + (resp ? "limpiado exitosamente" : "NO PUDO ser limpiado !!");
+		resultado += "\nLimpieza terminada";
+
+		panelDatos.actualizarInterfaz(resultado);
+	}
+
+	/**
+	 * Limpia todas las tuplas de todas las tablas de la base de datos de
+	 * parranderos Muestra en el panel de datos el número de tuplas eliminadas de
+	 * cada tabla
+	 */
+	public void limpiarBD() {
+		try {
+			// Ejecución de la demo y recolección de los resultados
+			long eliminados[] = EPSAndes.limpiarEPSAndes();
+
+			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
+			String resultado = "\n\n************ Limpiando la base de datos ************ \n";
+			resultado += eliminados[0] + " Gustan eliminados\n";
+			resultado += eliminados[1] + " Sirven eliminados\n";
+			resultado += eliminados[2] + " Visitan eliminados\n";
+			resultado += eliminados[3] + " Bebidas eliminadas\n";
+			resultado += eliminados[4] + " Tipos de bebida eliminados\n";
+			resultado += eliminados[5] + " Bebedores eliminados\n";
+			resultado += eliminados[6] + " Bares eliminados\n";
+			resultado += "\nLimpieza terminada";
+
+			panelDatos.actualizarInterfaz(resultado);
+		} catch (Exception e) {
+//			e.printStackTrace();
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
+	/**
+	 * Muestra la presentación general del proyecto
+	 */
+	public void mostrarPresentacionGeneral() {
+		mostrarArchivo("data/00-ST-ParranderosJDO.pdf");
+	}
+
+	/**
+	 * Muestra el modelo conceptual de Parranderos
+	 */
+	public void mostrarModeloConceptual() {
+		mostrarArchivo("data/Modelo Conceptual Parranderos.pdf");
+	}
+
+	/**
+	 * Muestra el esquema de la base de datos de Parranderos
+	 */
+	public void mostrarEsquemaBD() {
+		mostrarArchivo("data/Esquema BD Parranderos.pdf");
+	}
+
+	/**
+	 * Muestra el script de creación de la base de datos
+	 */
+	public void mostrarScriptBD() {
+		mostrarArchivo("data/EsquemaParranderos.txt");
+	}
+
+	/**
+	 * Muestra la arquitectura de referencia para Parranderos
+	 */
+	public void mostrarArqRef() {
+		mostrarArchivo("data/ArquitecturaReferencia.pdf");
+	}
+
+	/**
+	 * Muestra la documentación Javadoc del proyectp
+	 */
+	public void mostrarJavadoc() {
+		mostrarArchivo("doc/index.html");
+	}
+
+	/**
+	 * Muestra la información acerca del desarrollo de esta apicación
+	 */
+	public void acercaDe() {
+		String resultado = "\n\n ************************************\n\n";
+		resultado += " * Universidad	de	los	Andes	(Bogotá	- Colombia)\n";
+		resultado += " * Departamento	de	Ingeniería	de	Sistemas	y	Computación\n";
+		resultado += " * Licenciado	bajo	el	esquema	Academic Free License versión 2.1\n";
+		resultado += " * \n";
+		resultado += " * Curso: isis2304 - Sistemas Transaccionales\n";
+		resultado += " * Proyecto: Parranderos Uniandes\n";
+		resultado += " * @version 1.0\n";
+		resultado += " * @author Germán Bravo\n";
+		resultado += " * Julio de 2018\n";
+		resultado += " * \n";
+		resultado += " * Revisado por: Claudia Jiménez, Christian Ariza\n";
+		resultado += "\n ************************************\n\n";
+
+		panelDatos.actualizarInterfaz(resultado);
+	}
+
+	/*
+	 * **************************************************************** Métodos
+	 * privados para la presentación de resultados y otras operaciones
 	 *****************************************************************/
 	
+	/**
+	 * Genera una cadena de caracteres con la lista de los tipos de bebida recibida:
+	 * una línea por cada tipo de bebida
+	 * 
+	 * @param lista - La lista con los tipos de bebida
+	 * @return La cadena con una líea para cada tipo de bebida recibido
+	 */
+	private String listarRoles(List<VORol> lista) {
+		String resp = "Los roles existentes son:\n";
+		int i = 1;
+		for (VORol tb : lista) {
+			resp += i++ + ". " + tb.toString() + "\n";
+		}
+		return resp;
+	}
 
 	/**
 	 * Genera una cadena de caracteres con la descripción de la excepcion e,

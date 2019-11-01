@@ -510,3 +510,6 @@ ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
 
 22:12:06,521 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Roles
 22:12:06,607 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Tipos de bebida: 5 existentes
+21:42:16,205 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+21:42:16,207 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+21:42:16,339 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
