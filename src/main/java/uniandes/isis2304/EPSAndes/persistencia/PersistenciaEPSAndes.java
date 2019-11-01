@@ -19,15 +19,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import uniandes.isis2304.EPSAndes.negocio.Bar;
-import uniandes.isis2304.EPSAndes.negocio.Bebedor;
-import uniandes.isis2304.EPSAndes.negocio.Bebida;
-import uniandes.isis2304.EPSAndes.negocio.Gustan;
 import uniandes.isis2304.EPSAndes.negocio.Rol;
-import uniandes.isis2304.EPSAndes.negocio.Sirven;
-import uniandes.isis2304.EPSAndes.negocio.TipoBebida;
 import uniandes.isis2304.EPSAndes.negocio.Usuario;
-import uniandes.isis2304.EPSAndes.negocio.VOTipoBebida;
 import uniandes.isis2304.EPSAndes.negocio.Visitan;
 
 /**
@@ -525,7 +518,7 @@ public class PersistenciaEPSAndes {
 
 			log.trace("Inserción de usuario: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
 
-			return new Usuario( idUsuario , "awa@uwu.com", nombre, 123456, "Gerente","CEDULA DE CIUDADANIA ");
+			return new Usuario( idUsuario , "awa@uwu.com", nombre, 123456, 123,"CEDULA DE CIUDADANIA ");
 		} catch (Exception e) {
 			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
@@ -559,7 +552,7 @@ public class PersistenciaEPSAndes {
 
 			log.trace("Inserción de usuario: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
 
-			return new Usuario( idUsuario , "awa@uwu.com", nombre, 123456, "Gerente","CEDULA DE CIUDADANIA ");
+			return new Usuario( idUsuario , "awa@uwu.com", nombre, 123456, 456 ,"CEDULA DE CIUDADANIA ");
 		} catch (Exception e) {
 			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
@@ -585,8 +578,8 @@ public class PersistenciaEPSAndes {
 		} catch (Exception e) {
 			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-			return new long[] { -1, -1, -1, -1, -1, -1, -1 };
-			//TODO return  new long[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
+			
+			return  new long[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 		} finally {
 			if (tx.isActive()) {
 				tx.rollback();
