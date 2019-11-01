@@ -10,5 +10,17 @@ public class Remision extends Servicio implements VORemision{
 	public Remision(long id, int capacidad, String horariosAtencion) {
 		super(id, capacidad, horariosAtencion);
 	}
-
+	public long getId()
+	{
+		return this.getId();
+	}
+	public int getCapacidad()
+	{
+		return this.getCapacidad();
+		
+	}
+	public String hotariosAtencion()
+	{
+		return this.getHorariosAtencion();
+	}
 }

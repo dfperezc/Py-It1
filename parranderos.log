@@ -465,3 +465,48 @@ ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
 ORA-00904: "TIPODOCUMENTO": identificador no válido
 
 13:46:52,714 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando Usuario: null
+20:37:43,063 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+20:37:43,065 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+20:37:43,110 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+20:49:10,659 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+20:49:10,841 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+20:49:10,955 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+20:49:11,014 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+20:49:11,080 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+20:49:11,099 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Roles
+20:49:11,193 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Tipos de bebida: 5 existentes
+20:49:19,855 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando Usuario: pepe
+20:49:19,909 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO RECEPCIONISTA(id, email, nombre, numeroDocumento, rol, tipoDocumento) values (?, ?, ?, ?, ?, ?)".
+ORA-00904: "TIPODOCUMENTO": identificador no válido
+
+20:49:19,928 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Adicionando Usuario: null
+22:11:39,264 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+22:11:39,266 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+22:11:39,302 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+22:12:06,224 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+22:12:06,311 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+22:12:06,373 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+22:12:06,435 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+22:12:06,500 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO ROL(id, nombre) values (?, ?)".
+ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
+
+22:12:06,521 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Roles
+22:12:06,607 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.Parranderos] - Generando los VO de Tipos de bebida: 5 existentes

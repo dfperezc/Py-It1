@@ -13,7 +13,7 @@ public class Medico extends Usuario implements VOMedico{
 	 * @param especialidad
 	 * @param numeroRegistro
 	 */
-	public Medico(Long id, String email, String nombre, int numeroDocumento, Rol rol, String tipoDocumento, String especialidad, String numeroRegistro) {
+	public Medico(Long id, String email, String nombre, int numeroDocumento, int rol, String tipoDocumento, String especialidad, String numeroRegistro) {
 		super(id, email, nombre, numeroDocumento, rol, tipoDocumento);
 		this.id = id;
 		this.especialidad = especialidad;
@@ -44,7 +44,30 @@ public class Medico extends Usuario implements VOMedico{
 		this.numeroRegistro = numeroRegistro;
 	}
 	
-	
+	public long getId()
+	{
+		return this.getId();
+	}
+	public String getEmail() 
+	{
+		return this.getEmail();
+	}
+	public String getNombre() 
+	{
+		return this.getNombre();
+	}
+	public int getNumeroDocumento() 
+	{
+		return this.getNumeroDocumento();
+	}
+	public int getRol()
+	{
+		return this.getRol();
+	}
+	public String getTipoDocumento()
+	{
+		return this.getTipoDocumento();
+	}
 	
 
 }

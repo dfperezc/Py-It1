@@ -45,5 +45,18 @@ public class Terapia extends Servicio implements VOTerapia{
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	public long getId()
+	{
+		return this.getId();
+	}
+	public int getCapacidad()
+	{
+		return this.getCapacidad();
+		
+	}
+	public String hotariosAtencion()
+	{
+		return this.getHorariosAtencion();
+	}
 
 }

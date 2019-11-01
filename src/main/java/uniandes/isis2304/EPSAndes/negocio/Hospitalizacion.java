@@ -11,4 +11,20 @@ public class Hospitalizacion extends Servicio implements VOHospitalizacion{
 		super(id, capacidad, horariosAtencion);
 	}
 
+	
+	public long getId()
+	{
+		return this.getId();
+	}
+	public int getCapacidad()
+	{
+		return this.getCapacidad();
+		
+	}
+	public String hotariosAtencion()
+	{
+		return this.getHorariosAtencion();
+	}
+	
+	
 }

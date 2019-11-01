@@ -6,7 +6,7 @@ public interface VOUsuario {
 	public String getEmail() ;
 	public String getNombre() ;
 	public int getNumeroDocumento();
-	public Rol getRol() ;
+	public int getRol() ;
 	public String getTipoDocumento();
 	
 }

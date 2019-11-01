@@ -10,5 +10,17 @@ public class Urgencia extends Servicio implements VOUrgencia{
 	public Urgencia(long id, int capacidad, String horariosAtencion) {
 		super(id, capacidad, horariosAtencion);
 	}
-	
+	public long getId()
+	{
+		return this.getId();
+	}
+	public int getCapacidad()
+	{
+		return this.getCapacidad();
+		
+	}
+	public String hotariosAtencion()
+	{
+		return this.getHorariosAtencion();
+	}
 }

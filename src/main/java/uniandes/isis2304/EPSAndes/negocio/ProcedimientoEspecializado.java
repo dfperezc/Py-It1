@@ -28,5 +28,17 @@ public class ProcedimientoEspecializado extends Servicio implements VOProcedimie
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-
+	public long getId()
+	{
+		return this.getId();
+	}
+	public int getCapacidad()
+	{
+		return this.getCapacidad();
+		
+	}
+	public String hotariosAtencion()
+	{
+		return this.getHorariosAtencion();
+	}
 }
