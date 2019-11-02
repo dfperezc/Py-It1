@@ -1,7 +1,10 @@
 package uniandes.isis2304.EPSAndes.negocio;
 
-public class Gerente extends Usuario implements VOGerente{
+public class Gerente  implements VOGerente{
 
+	
+	private long id;
+	private long idUsuario;
 	/**
 	 * @param id
 	 * @param email
@@ -10,33 +13,17 @@ public class Gerente extends Usuario implements VOGerente{
 	 * @param rol
 	 * @param tipoDocumento
 	 */
-	public Gerente(long id, String email, String nombre, int numeroDocumento, String rol, String tipoDocumento) {
-		super( id, email, nombre,  numeroDocumento, rol,  tipoDocumento);
+	public Gerente(long id ,long idUsuario) {
+		this.id = id;
+		this.idUsuario = idUsuario;
 	}
 	
 	public long getId()
 	{
 		return this.getId();
 	}
-	public String getEmail() 
-	{
-		return this.getEmail();
-	}
-	public String getNombre() 
-	{
-		return this.getNombre();
-	}
-	public long getNumeroDocumento() 
-	{
-		return this.getNumeroDocumento();
-	}
-	public String getRol()
-	{
-		return this.getRol();
-	}
-	public String getTipoDocumento()
-	{
-		return this.getTipoDocumento();
-	}
+
+	
+	
 	
 }

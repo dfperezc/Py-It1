@@ -3,6 +3,7 @@
 package uniandes.isis2304.EPSAndes.persistencia;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,11 +20,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import uniandes.isis2304.EPSAndes.negocio.Afiliado;
 import uniandes.isis2304.EPSAndes.negocio.IPS;
 import uniandes.isis2304.EPSAndes.negocio.Medico;
 import uniandes.isis2304.EPSAndes.negocio.Rol;
 import uniandes.isis2304.EPSAndes.negocio.Usuario;
-import uniandes.isis2304.EPSAndes.negocio.Visitan;
+
 
 /**
  * Clase para el manejador de persistencia del proyecto EPSAndes Traduce la
@@ -574,10 +576,38 @@ public class PersistenciaEPSAndes {
 			
 			long tuplasInsertadas = sqlMedico.adicionarMedico(pm,idMedico, numeroRegistro, especialidad, idUsuario) ;
 			tx.commit();
-
+			if(sqlUsuario.darUsuarioPorId(pm, idUsuario)== null)
+			{
+				throw new Exception();
+			}
 			log.trace("Inserción de IPS: " + numeroRegistro + ": " + tuplasInsertadas + " tuplas insertadas");
-
-			return new Medico(numeroRegistro,especialidad,idUsuario);
+			return new Medico(idMedico,numeroRegistro,especialidad,idUsuario);
+		} catch (Exception e) {
+			//        	e.printStackTrace();
+			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	public Afiliado adicionarAfiliado(String estadoSalud,Date fechaNacimiento, String recetaActual ,long idO ,long idU ,long idE , long idC) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			long idAfiliado = nextval();
+			
+			long tuplasInsertadas = sqlAfiliado.adicionarAfiliado(pm,idAfiliado, estadoSalud, fechaNacimiento, recetaActual,idO,idU,idE,idC);
+			tx.commit();
+			if(sqlUsuario.darUsuarioPorId(pm, idU)== null)
+			{
+				throw new Exception();
+			}
+			log.trace("Inserción de IPS: " + idAfiliado + ": " + tuplasInsertadas + " tuplas insertadas");
+			return new Afiliado(idAfiliado,estadoSalud,fechaNacimiento,recetaActual,idO,idU,idE,idC);
 		} catch (Exception e) {
 			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));

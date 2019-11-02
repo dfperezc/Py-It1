@@ -1,5 +1,6 @@
 package uniandes.isis2304.EPSAndes.negocio;
 
+import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -124,15 +125,16 @@ public class EPSAndes
 	{
 		log.info("Adicionando Medico: " + numeroRegistro);
 		Medico user = pp.adicionarMedico(numeroRegistro ,especialidad,idUsuario);
-		log.info("Adicionando Medico: " + user.getNombre());
+		log.info("Adicionando Medico: " + user);
 		return user;
 	}
 	
 	public Afiliado adicionarAfiliado(String estadoSalud,String fechaNacimiento, String recetaActual ,long idO ,long idU ,long idE , long idC)
 	{
 		log.info("Adicionando Afiliado: " + idU);
-		Afiliado user = pp.adicionarAfiliado(estadoSalud ,fechaNacimiento,recetaActual,idO,idU,idE,idC);
-		log.info("Adicionando Medico: " + user.getNombre());
+		Date fecha = Date.valueOf(fechaNacimiento);
+		Afiliado user = pp.adicionarAfiliado(estadoSalud ,fecha,recetaActual,idO,idU,idE,idC);
+		log.info("Adicionando Medico: " + user);
 		return user;
 	}
 	/*
@@ -144,7 +146,7 @@ public class EPSAndes
 	 * Elimina todas las tuplas de todas las tablas de la base de datos de
 	 * Parranderos
 	 * 
-	 * @return Un arreglo con 237 números que indican el número de tuplas borradas en
+	 * @return Un arreglo con 23 números que indican el número de tuplas borradas en
 	 *         las tablas 
 	 */
 	public long[] limpiarEPSAndes() {

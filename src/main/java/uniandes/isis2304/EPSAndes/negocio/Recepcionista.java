@@ -1,7 +1,11 @@
 package uniandes.isis2304.EPSAndes.negocio;
 
-public class Recepcionista extends Usuario implements VORecepcionista{
+public class Recepcionista  implements VORecepcionista{
 
+	
+	private long id;
+	private long idUsuario;
+	private long idIps;
 	/**
 	 * @param id
 	 * @param email
@@ -10,31 +14,21 @@ public class Recepcionista extends Usuario implements VORecepcionista{
 	 * @param rol
 	 * @param tipoDocumento
 	 */
-	public Recepcionista(long id, String email, String nombre, int numeroDocumento, String rol, String tipoDocumento) {
-		super(id, email, nombre, numeroDocumento, rol, tipoDocumento);
+	public Recepcionista(long id, long idUsuario,long idIps) {
+		this.id = id;
+		this.idUsuario = idUsuario;
+		this.idIps = idIps;
 	}
 	public long getId()
 	{
 		return this.getId();
 	}
-	public String getEmail() 
+	public long getIdUsuario()
 	{
-		return this.getEmail();
+		return this.getIdUsuario();
 	}
-	public String getNombre() 
+	public long getIdIps()
 	{
-		return this.getNombre();
-	}
-	public long getNumeroDocumento() 
-	{
-		return this.getNumeroDocumento();
-	}
-	public String getRol()
-	{
-		return this.getRol();
-	}
-	public String getTipoDocumento()
-	{
-		return this.getTipoDocumento();
+		return this.getIdIps();
 	}
 }

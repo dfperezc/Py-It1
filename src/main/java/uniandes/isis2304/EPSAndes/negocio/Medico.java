@@ -1,11 +1,11 @@
 package uniandes.isis2304.EPSAndes.negocio;
 
-public class Medico extends Usuario implements VOMedico{
+public class Medico  implements VOMedico{
 	
 	private Long id;
 	private String especialidad;
 	private String numeroRegistro;
-	
+	private Long idUsuario;
 	
 	
 	/**
@@ -13,11 +13,12 @@ public class Medico extends Usuario implements VOMedico{
 	 * @param especialidad
 	 * @param numeroRegistro
 	 */
-	public Medico(Long id, String email, String nombre, int numeroDocumento, String rol, String tipoDocumento, String especialidad, String numeroRegistro) {
-		super(id, email, nombre, numeroDocumento, rol, tipoDocumento);
+	public Medico(Long id, String especialidad, String numeroRegistro,long idUsuario) 
+	{
 		this.id = id;
 		this.especialidad = especialidad;
 		this.numeroRegistro = numeroRegistro;
+		this.idUsuario = idUsuario;
 	}
 	/**
 	 * @return the especialidad
@@ -48,26 +49,7 @@ public class Medico extends Usuario implements VOMedico{
 	{
 		return this.getId();
 	}
-	public String getEmail() 
-	{
-		return this.getEmail();
-	}
-	public String getNombre() 
-	{
-		return this.getNombre();
-	}
-	public long getNumeroDocumento() 
-	{
-		return this.getNumeroDocumento();
-	}
-	public String getRol()
-	{
-		return this.getRol();
-	}
-	public String getTipoDocumento()
-	{
-		return this.getTipoDocumento();
-	}
+	
 	
 
 }

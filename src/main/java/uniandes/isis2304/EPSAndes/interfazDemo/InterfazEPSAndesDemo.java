@@ -56,7 +56,6 @@ import uniandes.isis2304.EPSAndes.negocio.VOIPS;
 import uniandes.isis2304.EPSAndes.negocio.VOMedico;
 import uniandes.isis2304.EPSAndes.negocio.VORol;
 import uniandes.isis2304.EPSAndes.negocio.VOUsuario;
-import uniandes.isis2304.EPSAndes.negocio.VOVisitan;
 import uniandes.isis2304.EPSAndes.negocio.EPSAndes;
 import uniandes.isis2304.EPSAndes.negocio.Rol;
 import uniandes.isis2304.EPSAndes.negocio.VOAfiliado;
@@ -337,9 +336,9 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 	{
 		try
 		{
-			String nombreIPS = JOptionPane.showInputDialog(this, "Nombre de la IPS",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
-			String idEps = JOptionPane.showInputDialog(this, "Id de la eps a la que pertenece",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
-			String localizacion = JOptionPane.showInputDialog(this, "localizacion de la Ips",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+			String nombreIPS = JOptionPane.showInputDialog(this, "Nombre de la IPS",	"Adicionar IPS", JOptionPane.QUESTION_MESSAGE);
+			String idEps = JOptionPane.showInputDialog(this, "Id de la eps a la que pertenece",	"Adicionar IPS", JOptionPane.QUESTION_MESSAGE);
+			String localizacion = JOptionPane.showInputDialog(this, "localizacion de la Ips",	"Adicionar IPS", JOptionPane.QUESTION_MESSAGE);
             long idE = Long.parseLong(idEps);
            			
 		
@@ -350,8 +349,8 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 				{
 					throw new Exception("no sepuedo insertar la IPS con nombre: " + nombreIPS);
 				}
-				String resultado = "en adicionarUsuario\n\n";
-				resultado += "usuario adicionado exitosamente";
+				String resultado = "en adicionarIPS\n\n";
+				resultado += "IPS adicionado exitosamente";
 				resultado += "\n operacion terminada";
 				panelDatos.actualizarInterfaz(resultado);
 			}	
@@ -378,9 +377,9 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 	{
 		try
 		{
-			String especialidad = JOptionPane.showInputDialog(this, "Especialidad del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
-			String numeroRegistro = JOptionPane.showInputDialog(this, "numero de registro del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
-			String idUsuario = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+			String especialidad = JOptionPane.showInputDialog(this, "Especialidad del Medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
+			String numeroRegistro = JOptionPane.showInputDialog(this, "numero de registro del medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
+			String idUsuario = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
             long idU = Long.parseLong(idUsuario);
            			
 		
@@ -391,8 +390,8 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 				{
 					throw new Exception("no sepuedo insertar el Medico con numero de registro: " + numeroRegistro);
 				}
-				String resultado = "en adicionarUsuario\n\n";
-				resultado += "usuario adicionado exitosamente";
+				String resultado = "en adicionarMedico\n\n";
+				resultado += "Medico adicionado exitosamente";
 				resultado += "\n operacion terminada";
 				panelDatos.actualizarInterfaz(resultado);
 			}	
@@ -413,13 +412,13 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 	{
 		try
 		{
-			String estadoSalud = JOptionPane.showInputDialog(this, "Especialidad del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
-			String fechaNacimiento = JOptionPane.showInputDialog(this, "numero de registro del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
-			String recetaActual = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
-			String idOrden = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
-			String idUsuario = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
-			String idEps = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
-			String idCita = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+			String estadoSalud = JOptionPane.showInputDialog(this, "Estado de salud del afiliado",	"Adicionar Afiliado", JOptionPane.QUESTION_MESSAGE);
+			String fechaNacimiento = JOptionPane.showInputDialog(this, "fecha de nacimiento",	"Adicionar Afiliado", JOptionPane.QUESTION_MESSAGE);
+			String recetaActual = JOptionPane.showInputDialog(this, "receta actual del Afiliado",	"Adicionar Afiliado", JOptionPane.QUESTION_MESSAGE);
+			String idOrden = JOptionPane.showInputDialog(this, "numero de orden",	"Adicionar Afiliado", JOptionPane.QUESTION_MESSAGE);
+			String idUsuario = JOptionPane.showInputDialog(this, "id de usuario",	"Adicionar Afiliado", JOptionPane.QUESTION_MESSAGE);
+			String idEps = JOptionPane.showInputDialog(this, "id EPS",	"Adicionar Afiliado", JOptionPane.QUESTION_MESSAGE);
+			String idCita = JOptionPane.showInputDialog(this, "id Cita",	"Adicionar Afiliado", JOptionPane.QUESTION_MESSAGE);
 
 			long idO = Long.parseLong(idOrden);
 			long idU = Long.parseLong(idUsuario);
@@ -432,10 +431,10 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 			{
 				if(u == null)
 				{
-					throw new Exception("no sepuedo insertar el Medico con numero de registro: " + numeroRegistro);
+					throw new Exception("no sepuedo insertar el Medico con numero de registro: " + idU);
 				}
-				String resultado = "en adicionarUsuario\n\n";
-				resultado += "usuario adicionado exitosamente";
+				String resultado = "en adicionarAfiliado\n\n";
+				resultado += "afiliado adicionado exitosamente";
 				resultado += "\n operacion terminada";
 				panelDatos.actualizarInterfaz(resultado);
 			}	
