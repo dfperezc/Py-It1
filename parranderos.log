@@ -513,3 +513,32 @@ ORA-00001: restricción única (ISIS2304D201920.UN_ROL_NOMBRE) violada
 21:42:16,205 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
 21:42:16,207 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
 21:42:16,339 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+16:30:41,939 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+16:30:41,948 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+16:30:42,102 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+16:31:03,154 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Usuario: pepe
+16:31:03,262 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : null
+
+16:31:03,269 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Usuario: null
+21:07:43,785 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+21:07:43,787 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+21:07:43,846 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+21:08:04,921 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : null
+
+21:08:04,931 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : null
+
+21:08:04,933 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : null
+
+21:08:04,935 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : null
+
+21:08:04,937 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : null
+
+21:08:04,938 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Roles
+21:08:05,266 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Generando los VO de Tipos de bebida: 0 existentes
+21:09:03,668 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Interfaz
+21:09:03,669 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se aplica configuración indicada en el archivo de configuración
+21:09:03,709 (main) INFO  [uniandes.isis2304.EPSAndes.interfazDemo.InterfazEPSAndesDemo] - Se encontró un archivo de configuración válido: Tablas BD
+21:09:41,721 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Usuario: pepe
+21:09:41,786 (AWT-EventQueue-0) ERROR [uniandes.isis2304.EPSAndes.persistencia.PersistenciaEPSAndes] - Exception : null
+
+21:09:41,791 (AWT-EventQueue-0) INFO  [uniandes.isis2304.EPSAndes.negocio.EPSAndes] - Adicionando Usuario: null

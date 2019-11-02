@@ -52,11 +52,14 @@ import com.google.gson.stream.JsonReader;
 import uniandes.isis2304.EPSAndes.interfazApp.PanelDatos;
 
 import uniandes.isis2304.EPSAndes.negocio.VOGustan;
+import uniandes.isis2304.EPSAndes.negocio.VOIPS;
+import uniandes.isis2304.EPSAndes.negocio.VOMedico;
 import uniandes.isis2304.EPSAndes.negocio.VORol;
 import uniandes.isis2304.EPSAndes.negocio.VOUsuario;
 import uniandes.isis2304.EPSAndes.negocio.VOVisitan;
 import uniandes.isis2304.EPSAndes.negocio.EPSAndes;
 import uniandes.isis2304.EPSAndes.negocio.Rol;
+import uniandes.isis2304.EPSAndes.negocio.VOAfiliado;
 
 /**
  * Clase principal de la interfaz
@@ -287,7 +290,14 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 		try
 		{
 			String nombreTipo = JOptionPane.showInputDialog(this, "Nombre del Usuario",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
-			VOUsuario u =EPSAndes.adicionarUsuario(nombreTipo);
+			String email = JOptionPane.showInputDialog(this, "Email del Usuario",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+			String numeroDocumento = JOptionPane.showInputDialog(this, "numero de documento del Usuario",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+			String rol = JOptionPane.showInputDialog(this, "Rol Usuario",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+			String TipoDocumento = JOptionPane.showInputDialog(this, "tipo de documento",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+            long numDoc = Long.parseLong(numeroDocumento);
+           			
+			
+			VOUsuario u =EPSAndes.adicionarUsuario(email,nombreTipo,numDoc,rol,TipoDocumento);
 			if(nombreTipo != null )
 			{
 				if(u == null)
@@ -323,46 +333,125 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 	 * 
 	 * Pre: La base de datos está vacía Post: La base de datos está vacía
 	 */
-	public void registrarIPS() {
-		try {
-			// Ejecución de la demo y recolección de los resultados
-			// ATENCIÓN: En una aplicación real, los datos JAMÁS están en el código
-			String nombreIPS = "nombregenericoIPS";
-			boolean errorRol = false;
-			VORol rol= EPSAndes.adicionarRol(nombreIPS);
-			if (rol == null) {
-				rol = EPSAndes.darRolPorNombre(nombreIPS);
-				errorRol = true;
+	public void registrarIPS()
+	{
+		try
+		{
+			String nombreIPS = JOptionPane.showInputDialog(this, "Nombre de la IPS",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+			String idEps = JOptionPane.showInputDialog(this, "Id de la eps a la que pertenece",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+			String localizacion = JOptionPane.showInputDialog(this, "localizacion de la Ips",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+            long idE = Long.parseLong(idEps);
+           			
+		
+			VOIPS u =EPSAndes.adicionarIPS(idE,localizacion,nombreIPS);
+			if(nombreIPS != null )
+			{
+				if(u == null)
+				{
+					throw new Exception("no sepuedo insertar la IPS con nombre: " + nombreIPS);
+				}
+				String resultado = "en adicionarUsuario\n\n";
+				resultado += "usuario adicionado exitosamente";
+				resultado += "\n operacion terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			}	
+		
+			else 
+			{
+				panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
 			}
-			List<VORol> lista = EPSAndes.darVORoles();
-			long tbEliminados = EPSAndes.eliminarRolPorId(rol.getId());
 
-			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
-			String resultado = "Demo de creación y listado de Rol\n\n";
-			resultado += "\n\n************ Generando datos de prueba ************ \n";
-			if (errorRol) {
-				resultado += "*** Exception creando rol !!\n";
-				resultado += "*** Es probable que ese rol ya existiera y hay restricción de UNICIDAD sobre el nombre del rol\n";
-				resultado += "*** Revise el log de parranderos para más detalles\n";
-			}
-			resultado += "Adicionado el rol con nombre: " + nombreIPS + "\n";
-			resultado += "\n\n************ Ejecutando la demo ************ \n";
-			resultado += "\n" + listarRoles(lista);
-			resultado += "\n\n************ Limpiando la base de datos ************ \n";
-			resultado += tbEliminados + " Roles eliminados\n";
-			resultado += "\n Demo terminada";
+		
+	}catch (Exception e)
+	{
+		String resultado = generarMensajeError(e);
+		panelDatos.actualizarInterfaz(resultado);
+	}	
+			
+			
 
-			panelDatos.actualizarInterfaz(resultado);
-		} catch (Exception e) {
-//			e.printStackTrace();
-			String resultado = generarMensajeError(e);
-			panelDatos.actualizarInterfaz(resultado);
-		}
+	
 	}
 		
 	
-	
-	
+	public void registrarMedico()
+	{
+		try
+		{
+			String especialidad = JOptionPane.showInputDialog(this, "Especialidad del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+			String numeroRegistro = JOptionPane.showInputDialog(this, "numero de registro del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+			String idUsuario = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+            long idU = Long.parseLong(idUsuario);
+           			
+		
+			VOMedico u =EPSAndes.adicionarMedico(especialidad,numeroRegistro,idU);
+			if(numeroRegistro != null )
+			{
+				if(u == null)
+				{
+					throw new Exception("no sepuedo insertar el Medico con numero de registro: " + numeroRegistro);
+				}
+				String resultado = "en adicionarUsuario\n\n";
+				resultado += "usuario adicionado exitosamente";
+				resultado += "\n operacion terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			}	
+		
+			else 
+			{
+				panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+			}
+
+		
+	}catch (Exception e)
+	{
+		String resultado = generarMensajeError(e);
+		panelDatos.actualizarInterfaz(resultado);
+	}
+	}
+	public void adicionarAfiliado()
+	{
+		try
+		{
+			String estadoSalud = JOptionPane.showInputDialog(this, "Especialidad del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+			String fechaNacimiento = JOptionPane.showInputDialog(this, "numero de registro del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+			String recetaActual = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+			String idOrden = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+			String idUsuario = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+			String idEps = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+			String idCita = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
+
+			long idO = Long.parseLong(idOrden);
+			long idU = Long.parseLong(idUsuario);
+			long idE = Long.parseLong(idEps);
+			long idC = Long.parseLong(idCita);
+           			
+		
+			VOAfiliado u =EPSAndes.adicionarAfiliado(estadoSalud,fechaNacimiento,recetaActual,idO,idU,idE,idC);
+			if(idUsuario != null )
+			{
+				if(u == null)
+				{
+					throw new Exception("no sepuedo insertar el Medico con numero de registro: " + numeroRegistro);
+				}
+				String resultado = "en adicionarUsuario\n\n";
+				resultado += "usuario adicionado exitosamente";
+				resultado += "\n operacion terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			}	
+		
+			else 
+			{
+				panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+			}
+
+		
+	}catch (Exception e)
+	{
+		String resultado = generarMensajeError(e);
+		panelDatos.actualizarInterfaz(resultado);
+	}
+	}
 	
 	
 	
@@ -433,13 +522,28 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 
 			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
 			String resultado = "\n\n************ Limpiando la base de datos ************ \n";
-			resultado += eliminados[0] + " Gustan eliminados\n";
-			resultado += eliminados[1] + " Sirven eliminados\n";
-			resultado += eliminados[2] + " Visitan eliminados\n";
-			resultado += eliminados[3] + " Bebidas eliminadas\n";
-			resultado += eliminados[4] + " Tipos de bebida eliminados\n";
-			resultado += eliminados[5] + " Bebedores eliminados\n";
-			resultado += eliminados[6] + " Bares eliminados\n";
+			resultado += eliminados[0] + " administrador eliminados\n";
+			resultado += eliminados[1] + " afiliado eliminados\n";
+			resultado += eliminados[2] + " cita eliminados\n";
+			resultado += eliminados[3] + " consulta eliminadas\n";
+			resultado += eliminados[4] + " control eliminados\n";
+			resultado += eliminados[5] + " EPS eliminados\n";
+			resultado += eliminados[6] + " Examen diagnostico eliminados\n";
+			resultado += eliminados[7] + " Gerente eliminados\n";
+			resultado += eliminados[8] + " Hozpitalizacion eliminados\n";
+			resultado += eliminados[9] + " IPS eliminados\n";
+			resultado += eliminados[10] + " Medico eliminados\n";
+			resultado += eliminados[11] + " Orden eliminados\n";
+			resultado += eliminados[12] + " Procedimiento Especializado eliminados\n";
+			resultado += eliminados[13] + " Recepcionista eliminados\n";
+			resultado += eliminados[14] + " Recepcion eliminados\n";
+			resultado += eliminados[15] + " Rol eliminados\n";
+			resultado += eliminados[16] + " Servicio eliminados\n";
+			resultado += eliminados[17] + " Terapia eliminados\n";
+			resultado += eliminados[18] + " Trabajan eliminados\n";
+			resultado += eliminados[19] + " Urgencia eliminados\n";
+			resultado += eliminados[20] + " Usuario eliminados\n";
+			
 			resultado += "\nLimpieza terminada";
 
 			panelDatos.actualizarInterfaz(resultado);
@@ -522,7 +626,7 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 	 * Genera una cadena de caracteres con la lista de los tipos de bebida recibida:
 	 * una línea por cada tipo de bebida
 	 * 
-	 * @param lista - La lista con los tipos de bebida
+	 * @param lista - La lista con los Roles de bebida
 	 * @return La cadena con una líea para cada tipo de bebida recibido
 	 */
 	private String listarRoles(List<VORol> lista) {

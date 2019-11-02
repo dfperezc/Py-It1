@@ -8,13 +8,13 @@ public class Usuario implements VOUsuario{
 	private long id;
 	private String email;
 	private String nombre;
-	private int numeroDocumento;
+	private long numeroDocumento;
 	private Rol rol;
-	private int rol2;
+	private String rol2;
 	private String tipoDocumento;
 	
 	
-	public Usuario( long id, String email, String nombre, int numeroDocumento, int rol, String tipoDocumento) {
+	public Usuario( long id, String email, String nombre, long numeroDocumento, String rol, String tipoDocumento) {
 		this.id = id;
 		this.email = email;
 		this.nombre = nombre;
@@ -45,11 +45,11 @@ public class Usuario implements VOUsuario{
 	{
 		return nombre;
 	}
-	public int getNumeroDocumento() 
+	public long getNumeroDocumento() 
 	{
 		return numeroDocumento;
 	}
-	public int getRol()
+	public String getRol()
 	{
 		return rol2;
 	}

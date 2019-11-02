@@ -46,6 +46,12 @@ public class EPSAndes
 	
 	public EPSAndes(JsonObject tableConfig) {
 		pp = PersistenciaEPSAndes.getInstance (tableConfig);
+		rolesDeUsuario = new LinkedList<String>();
+		rolesDeUsuario.add("administrador");
+		rolesDeUsuario.add("afiliado");
+		rolesDeUsuario.add("gerente");
+		rolesDeUsuario.add("medico");
+		rolesDeUsuario.add("recepcionista");
 	}
 	public void cerrarUnidadPersistencia() {
 		pp.cerrarUnidadPersistencia();
@@ -98,10 +104,35 @@ public class EPSAndes
 		List<Rol> tb = pp.darRolPorNombre(nombre);
 		return !tb.isEmpty() ? tb.get(0) : null;
 	}
-	public Usuario adicionarUsuario(String nombre) {
-		log.info("Adicionando Usuario: " + nombre);
-		Usuario user = pp.adicionarUsuario(nombre);
+	public Usuario adicionarUsuario(String email,String nombre , long numDoc , String rol , String tipoDoc) 
+	{
+		log.info("Adicionanda Usuario: " + nombre);
+		Usuario user = pp.adicionarUsuario(email,nombre,numDoc,rol,tipoDoc);
 		log.info("Adicionando Usuario: " + user);
+		return user;
+	}
+	
+	public IPS adicionarIPS(long idEps, String localizacion ,String nombre)
+	{
+		log.info("Adicionando IPS: " + nombre);
+		IPS user = pp.adicionarIPS(idEps ,localizacion,nombre);
+		log.info("Adicionando Usuario: " + user);
+		return user;
+	}
+	
+	public Medico adicionarMedico(String numeroRegistro, String especialidad ,long idUsuario)
+	{
+		log.info("Adicionando Medico: " + numeroRegistro);
+		Medico user = pp.adicionarMedico(numeroRegistro ,especialidad,idUsuario);
+		log.info("Adicionando Medico: " + user.getNombre());
+		return user;
+	}
+	
+	public Afiliado adicionarAfiliado(String estadoSalud,String fechaNacimiento, String recetaActual ,long idO ,long idU ,long idE , long idC)
+	{
+		log.info("Adicionando Afiliado: " + idU);
+		Afiliado user = pp.adicionarAfiliado(estadoSalud ,fechaNacimiento,recetaActual,idO,idU,idE,idC);
+		log.info("Adicionando Medico: " + user.getNombre());
 		return user;
 	}
 	/*

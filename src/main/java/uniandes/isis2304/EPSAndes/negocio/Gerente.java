@@ -10,7 +10,7 @@ public class Gerente extends Usuario implements VOGerente{
 	 * @param rol
 	 * @param tipoDocumento
 	 */
-	public Gerente(long id, String email, String nombre, int numeroDocumento, int rol, String tipoDocumento) {
+	public Gerente(long id, String email, String nombre, int numeroDocumento, String rol, String tipoDocumento) {
 		super( id, email, nombre,  numeroDocumento, rol,  tipoDocumento);
 	}
 	
@@ -26,11 +26,11 @@ public class Gerente extends Usuario implements VOGerente{
 	{
 		return this.getNombre();
 	}
-	public int getNumeroDocumento() 
+	public long getNumeroDocumento() 
 	{
 		return this.getNumeroDocumento();
 	}
-	public int getRol()
+	public String getRol()
 	{
 		return this.getRol();
 	}

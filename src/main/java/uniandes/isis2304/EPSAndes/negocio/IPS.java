@@ -2,6 +2,8 @@ package uniandes.isis2304.EPSAndes.negocio;
 
 public class IPS implements VOIPS{
 
+	private long id;
+	private long idEPS;
 	private String localizacion;
 	private String nombre;
 	
@@ -10,11 +12,18 @@ public class IPS implements VOIPS{
 	 * @param localizacion
 	 * @param nombre
 	 */
-	public IPS(String localizacion, String nombre) {
+	public IPS(long id , long idEps ,String localizacion, String nombre) {
+		this.id = id;
+		this.idEPS= idEps;
 		this.localizacion = localizacion;
 		this.nombre = nombre;
 	}
-	
+	public long getID() {
+		return id;
+	}
+	public long getIdEPS() {
+		return idEPS;
+	}
 	/**
 	 * @return the localizacion
 	 */

@@ -19,6 +19,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import uniandes.isis2304.EPSAndes.negocio.IPS;
+import uniandes.isis2304.EPSAndes.negocio.Medico;
 import uniandes.isis2304.EPSAndes.negocio.Rol;
 import uniandes.isis2304.EPSAndes.negocio.Usuario;
 import uniandes.isis2304.EPSAndes.negocio.Visitan;
@@ -142,7 +144,6 @@ public class PersistenciaEPSAndes {
 		tablas.add("EPS");
 		tablas.add("EXAMEN_DIAGNOSTICO");
 		tablas.add("GERENTE");
-		tablas.add("GUSTAN");
 		tablas.add("HOSPITALIZACION");
 		tablas.add("IPS");
 		tablas.add("MEDICO");
@@ -301,9 +302,9 @@ public class PersistenciaEPSAndes {
 	}
 	public String darTablaRemision() {
 		return tablas.get(15);
-	}
+	}	
 	public String darTablaRol() {
-		return tablas.get(23);
+		return tablas.get(16);
 	}
 	public String darTablaServicio() {
 		return tablas.get(17);
@@ -320,6 +321,7 @@ public class PersistenciaEPSAndes {
 	public String darTablaUsuario() {
 		return tablas.get(21);
 	}
+
 	
 	/**
 	 * Transacción para el generador de secuencia de Parranderos Adiciona entradas
@@ -506,19 +508,18 @@ public class PersistenciaEPSAndes {
 	 * @param nombre - El nombre del tipo de bebida
 	 * @return El objeto TipoBebida adicionado. null si ocurre alguna Excepción
 	 */
-	public Usuario adicionarUsuario(String nombre) {
+	public Usuario adicionarUsuario(String email,String nombre,long numDoc ,String rol ,String tipoDocumento) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 		try {
 			tx.begin();
 			long idUsuario = nextval();
-			
-			long tuplasInsertadas = sqlUsuario.adicionarUsuario(pm, idUsuario, "awa@uwu.com" , nombre , 123456, "Gerente", "CEDULA DE CIUDADANIA " ); 
+			long tuplasInsertadas = sqlUsuario.adicionarUsuario(pm, idUsuario, email , nombre , numDoc, rol, tipoDocumento ); 
 			tx.commit();
 
 			log.trace("Inserción de usuario: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
 
-			return new Usuario( idUsuario , "awa@uwu.com", nombre, 123456, 123,"CEDULA DE CIUDADANIA ");
+			return new Usuario(idUsuario, email, nombre, numDoc, rol,tipoDocumento);
 		} catch (Exception e) {
 			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
@@ -540,19 +541,19 @@ public class PersistenciaEPSAndes {
 	 * @param nombre - El nombre del tipo de bebida
 	 * @return El objeto TipoBebida adicionado. null si ocurre alguna Excepción
 	 */
-	public Usuario adicionarIPS(String nombre) {
+	public IPS adicionarIPS(long idEps , String localizacion , String nombre) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 		try {
 			tx.begin();
-			long idUsuario = nextval();
+			long idIPS = nextval();
 			
-			long tuplasInsertadas = sqlUsuario.adicionarUsuario(pm, idUsuario, "awa@uwu.com" , nombre , 123456, "Gerente", "CEDULA DE CIUDADANIA " ); 
+			long tuplasInsertadas = sqlIPS.adicionarIPS(pm, idIPS, idEps, localizacion, nombre) ;
 			tx.commit();
 
-			log.trace("Inserción de usuario: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+			log.trace("Inserción de IPS: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
 
-			return new Usuario( idUsuario , "awa@uwu.com", nombre, 123456, 456 ,"CEDULA DE CIUDADANIA ");
+			return new IPS(idIPS, idEps, localizacion, nombre);
 		} catch (Exception e) {
 			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
@@ -564,7 +565,30 @@ public class PersistenciaEPSAndes {
 			pm.close();
 		}
 	}
+	public Medico adicionarMedico(String numeroRegistro , String especialidad , long idUsuario) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			long idMedico = nextval();
+			
+			long tuplasInsertadas = sqlMedico.adicionarMedico(pm,idMedico, numeroRegistro, especialidad, idUsuario) ;
+			tx.commit();
 
+			log.trace("Inserción de IPS: " + numeroRegistro + ": " + tuplasInsertadas + " tuplas insertadas");
+
+			return new Medico(numeroRegistro,especialidad,idUsuario);
+		} catch (Exception e) {
+			//        	e.printStackTrace();
+			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
 	
 	public long[] limpiarEPSAndes() {
 		PersistenceManager pm = pmf.getPersistenceManager();
