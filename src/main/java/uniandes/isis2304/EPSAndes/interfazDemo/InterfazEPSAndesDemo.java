@@ -1,5 +1,5 @@
 /**~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                          * Universidad	de	los	Andes	(Bogotá	- Colombia)
+ * Universidad	de	los	Andes	(Bogotá	- Colombia)
  * Departamento	de	Ingeniería	de	Sistemas	y	Computación
  * Licenciado	bajo	el	esquema	Academic Free License versión 2.1
  * 		
@@ -55,6 +55,7 @@ import uniandes.isis2304.EPSAndes.negocio.VOGustan;
 import uniandes.isis2304.EPSAndes.negocio.VOIPS;
 import uniandes.isis2304.EPSAndes.negocio.VOMedico;
 import uniandes.isis2304.EPSAndes.negocio.VORol;
+import uniandes.isis2304.EPSAndes.negocio.VOServicio;
 import uniandes.isis2304.EPSAndes.negocio.VOUsuario;
 import uniandes.isis2304.EPSAndes.negocio.EPSAndes;
 import uniandes.isis2304.EPSAndes.negocio.Rol;
@@ -169,7 +170,7 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 			config = gson.fromJson(reader, JsonObject.class);
 			log.info("Se encontró un archivo de configuración válido: " + tipo);
 		} catch (Exception e) {
-//			e.printStackTrace ();
+			//			e.printStackTrace ();
 			log.info("NO se encontró un archivo de configuración válido");
 			JOptionPane.showMessageDialog(null,
 					"No se encontró un archivo de configuración de interfaz válido: " + tipo, "Parranderos App",
@@ -241,9 +242,9 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 		}
 		setJMenuBar(menuBar);
 	}
-	
+
 	//--------------------------Comienzo de los métodos necesarios para RF1--
-	
+
 	public void registrarRolesUsuario()
 	{
 		try {
@@ -256,7 +257,7 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 				errorRoles = true;
 			}
 			List<VORol> lista = EPSAndes.darVORoles();
-			
+
 			// Generación de la cadena de caracteres con la traza de la ejecución de la demo
 			String resultado = "Registro de roles";
 			resultado += "\n\n************ registrando roles ************ \n";
@@ -268,16 +269,16 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 			resultado += "Adicionado los roles \n";
 			resultado += "\n\n************ Inserciones Ejecutadas ************ \n";
 			resultado += "\n" + listarRoles(lista);
-			
+
 			panelDatos.actualizarInterfaz(resultado);
 		} catch (Exception e) {
-//			e.printStackTrace();
+			//			e.printStackTrace();
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	}
-	
-// inicio --------------------------------------------------------------------------------------	
+
+	// inicio --------------------------------------------------------------------------------------	
 	/**
 	 * Demostración de creación, consulta y borrado de Tipos de Bebida Muestra la
 	 * traza de la ejecución en el panelDatos
@@ -293,9 +294,9 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 			String numeroDocumento = JOptionPane.showInputDialog(this, "numero de documento del Usuario",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
 			String rol = JOptionPane.showInputDialog(this, "Rol Usuario",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
 			String TipoDocumento = JOptionPane.showInputDialog(this, "tipo de documento",	"Adicionar Usuario", JOptionPane.QUESTION_MESSAGE);
-            long numDoc = Long.parseLong(numeroDocumento);
-           			
-			
+			long numDoc = Long.parseLong(numeroDocumento);
+
+
 			VOUsuario u =EPSAndes.adicionarUsuario(email,nombreTipo,numDoc,rol,TipoDocumento);
 			if(nombreTipo != null )
 			{
@@ -308,24 +309,24 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 				resultado += "\n operacion terminada";
 				panelDatos.actualizarInterfaz(resultado);
 			}	
-		
+
 			else 
 			{
 				panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
 			}
 
-		
-	}catch (Exception e)
-	{
-		String resultado = generarMensajeError(e);
-		panelDatos.actualizarInterfaz(resultado);
-	}
+
+		}catch (Exception e)
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 
 	}
-	
-	
+
+
 	//final ----------------------------------------------------------------------------------
-		//--------------------------final de los métodos necesarios para los RF1--
+	//--------------------------final de los métodos necesarios para los RF1--
 	/**
 	 * Demostración de creación, consulta y borrado de Tipos de Bebida Muestra la
 	 * traza de la ejecución en el panelDatos
@@ -339,9 +340,9 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 			String nombreIPS = JOptionPane.showInputDialog(this, "Nombre de la IPS",	"Adicionar IPS", JOptionPane.QUESTION_MESSAGE);
 			String idEps = JOptionPane.showInputDialog(this, "Id de la eps a la que pertenece",	"Adicionar IPS", JOptionPane.QUESTION_MESSAGE);
 			String localizacion = JOptionPane.showInputDialog(this, "localizacion de la Ips",	"Adicionar IPS", JOptionPane.QUESTION_MESSAGE);
-            long idE = Long.parseLong(idEps);
-           			
-		
+			long idE = Long.parseLong(idEps);
+
+
 			VOIPS u =EPSAndes.adicionarIPS(idE,localizacion,nombreIPS);
 			if(nombreIPS != null )
 			{
@@ -354,25 +355,25 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 				resultado += "\n operacion terminada";
 				panelDatos.actualizarInterfaz(resultado);
 			}	
-		
+
 			else 
 			{
 				panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
 			}
 
-		
-	}catch (Exception e)
-	{
-		String resultado = generarMensajeError(e);
-		panelDatos.actualizarInterfaz(resultado);
-	}	
-			
-			
 
-	
+		}catch (Exception e)
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}	
+
+
+
+
 	}
-		
-	
+
+
 	public void registrarMedico()
 	{
 		try
@@ -380,9 +381,9 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 			String especialidad = JOptionPane.showInputDialog(this, "Especialidad del Medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
 			String numeroRegistro = JOptionPane.showInputDialog(this, "numero de registro del medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
 			String idUsuario = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
-            long idU = Long.parseLong(idUsuario);
-           			
-		
+			long idU = Long.parseLong(idUsuario);
+
+
 			VOMedico u =EPSAndes.adicionarMedico(especialidad,numeroRegistro,idU);
 			if(numeroRegistro != null )
 			{
@@ -395,18 +396,18 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 				resultado += "\n operacion terminada";
 				panelDatos.actualizarInterfaz(resultado);
 			}	
-		
+
 			else 
 			{
 				panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
 			}
 
-		
-	}catch (Exception e)
-	{
-		String resultado = generarMensajeError(e);
-		panelDatos.actualizarInterfaz(resultado);
-	}
+
+		}catch (Exception e)
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
 	}
 	public void adicionarAfiliado()
 	{
@@ -424,8 +425,8 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 			long idU = Long.parseLong(idUsuario);
 			long idE = Long.parseLong(idEps);
 			long idC = Long.parseLong(idCita);
-           			
-		
+
+
 			VOAfiliado u =EPSAndes.adicionarAfiliado(estadoSalud,fechaNacimiento,recetaActual,idO,idU,idE,idC);
 			if(idUsuario != null )
 			{
@@ -438,26 +439,87 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 				resultado += "\n operacion terminada";
 				panelDatos.actualizarInterfaz(resultado);
 			}	
-		
+
 			else 
 			{
 				panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
 			}
 
-		
-	}catch (Exception e)
+
+		}catch (Exception e)
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+	
+	public void registrarServicioIPS ()
 	{
-		String resultado = generarMensajeError(e);
-		panelDatos.actualizarInterfaz(resultado);
-	}
-	}
-	
-	
-	
+		try {
+			String capacidad = JOptionPane.showInputDialog(this, "Especialidad del Medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
+			String nombre = JOptionPane.showInputDialog(this, "numero de registro del medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
+			String estado = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
+			String fecha = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
+			String Horarios = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
+			String idOrden = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
+			String idIps = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
+			String Medicos = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
+// opciones de cambio tabla horarios con medicos por que esos son como arreglos que tengan el id del servicio  estado.
+			long capa = Long.parseLong(capacidad);
+			long idO = Long.parseLong(capacidad);
+			long idI = Long.parseLong(capacidad);
 
-			
+			VOServicio u =EPSAndes.adicionarServicio(capacidad);
+			if(nombre != null )
+			{
+				if(u == null)
+				{
+					throw new Exception("no sepuedo insertar el Medico con numero de registro: " + numeroRegistro);
+				}
+				String resultado = "en adicionarMedico\n\n";
+				resultado += "Medico adicionado exitosamente";
+				resultado += "\n operacion terminada";
+				panelDatos.actualizarInterfaz(resultado);
+			}	
 
+			else 
+			{
+				panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+			}
+
+
+		}catch (Exception e)
+		{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	}
+
+public void regstrarOrden()
+{
+}
+public void realizarReserva()
+{
+}
+public void registrarAsistencia()
+{
+
+}
+public void registrarCampaña()
+{
+}
+public void cancelarServiciosCampaña()
+{
+}
+public void deshabilitarServiciosSalud()
+{
+}
+public void habilitarServiciosSalud()
+{
 	
+}
+
+
 
 	/*
 	 * **************************************************************** Métodos
@@ -542,12 +604,12 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 			resultado += eliminados[18] + " Trabajan eliminados\n";
 			resultado += eliminados[19] + " Urgencia eliminados\n";
 			resultado += eliminados[20] + " Usuario eliminados\n";
-			
+
 			resultado += "\nLimpieza terminada";
 
 			panelDatos.actualizarInterfaz(resultado);
 		} catch (Exception e) {
-//			e.printStackTrace();
+			//			e.printStackTrace();
 			String resultado = generarMensajeError(e);
 			panelDatos.actualizarInterfaz(resultado);
 		}
@@ -620,7 +682,7 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 	 * **************************************************************** Métodos
 	 * privados para la presentación de resultados y otras operaciones
 	 *****************************************************************/
-	
+
 	/**
 	 * Genera una cadena de caracteres con la lista de los tipos de bebida recibida:
 	 * una línea por cada tipo de bebida
@@ -681,7 +743,7 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 			bw.close();
 			return true;
 		} catch (IOException e) {
-//			e.printStackTrace();
+			//			e.printStackTrace();
 			return false;
 		}
 	}
