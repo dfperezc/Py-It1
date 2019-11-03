@@ -5,6 +5,9 @@ import java.util.Date;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import uniandes.isis2304.EPSAndes.negocio.Afiliado;
+import uniandes.isis2304.EPSAndes.negocio.Orden;
+
 public class SQLAfiliado {
 
 	/**
@@ -39,5 +42,16 @@ public class SQLAfiliado {
 		q.setParameters(id);
 		 return (long) q.executeUnique();
 	}
-	
+	public Afiliado casignarCita(PersistenceManager pm, long idAfiliado ,long idCita ) {
+		Query q = pm.newQuery(SQL, "Update" + pp.darTablaAfiliado() + "set idCita = ? where id =" + idAfiliado);
+		q.setResultClass(Orden.class);
+		q.setParameters(idCita);
+		return (Afiliado) q.executeUnique();
+	}
+	public Afiliado darAfiliadoPorId(PersistenceManager pm, long idAfiliado) {
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaAfiliado() + " WHERE id = ?");
+		q.setResultClass(Afiliado.class);
+		q.setParameters(idAfiliado);
+		return (Afiliado) q.executeUnique();
+	}
 }

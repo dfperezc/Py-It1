@@ -144,23 +144,26 @@ public class EPSAndes
 		log.info("Adicionando Servicio: " + user);
 		return user;	
 	}
-	public Cita registrarCita(long idServicio)
+	public Afiliado registrarCitaAfiliado(long idCita,long idAfiliado )
 	{
-		log.info("Adicionando Orden: " + idServicio);
-		Cita user = pp.registrarCita(idServicio);
-		log.info("Adicionando Orden: " + user);
+		log.info("Adicionando Cita: " + idCita);
+		Afiliado user = pp.registrarCitaAfiliado(idCita ,idAfiliado);
+		log.info("Adicionando Cita: " + user);
 		return user;
 	}
-	public Cita realizarReserva(long idServicio)
+	public Afiliado realizarReserva(long asisitio,long idServicio)
 	{
-		log.info("Reservando Orden: " + idServicio);
-		Cita user = pp.reservaCita(idServicio);
-		log.info("Adicionando Orden: " + user);
+		log.info("Reservando Cita: " + idServicio);
+		Afiliado user = pp.reservaCita(asisitio , idServicio);
+		log.info("Adicionando Cita: " + user);
 		return user;
 	}
-	public horarioServicio registrarAsistencia()
+	public Cita registrarAsistencia(long idCita)
 	{
-		return null;
+		log.info("Reservando Cita: " + idCita);
+		Cita user = pp.registrarAsistencia(idCita);
+		log.info("Adicionando Cita: " + user);
+		return user;
 	}
 	//RF 2 iteracion 
 	public void registrarCampaña()

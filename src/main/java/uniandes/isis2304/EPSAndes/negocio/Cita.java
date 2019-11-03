@@ -1,10 +1,12 @@
 package uniandes.isis2304.EPSAndes.negocio;
 
+import java.sql.Date;
+
 public class Cita implements VOCita{
 	
 	private long id;
-	private int cumplida;
-	private int fecha;
+	private long cumplida;
+	private Date fecha;
 	
 	
 	
@@ -14,8 +16,7 @@ public class Cita implements VOCita{
 	 * @param cumplida
 	 * @param fecha
 	 */
-	public Cita(long id, int cumplida, int fecha) {
-		super();
+	public Cita(long id, long cumplida, Date fecha) {
 		this.id = id;
 		this.cumplida = cumplida;
 		this.fecha = fecha;
@@ -29,13 +30,14 @@ public class Cita implements VOCita{
 	/**
 	 * @return the cumplida
 	 */
-	public int getCumplida() {
+	public long getCumplida() {
+		
 		return cumplida;
 	}
 	/**
 	 * @return the fecha
 	 */
-	public int getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 	/**
@@ -47,13 +49,13 @@ public class Cita implements VOCita{
 	/**
 	 * @param cumplida the cumplida to set
 	 */
-	public void setCumplida(int cumplida) {
+	public void setCumplida(long cumplida) {
 		this.cumplida = cumplida;
 	}
 	/**
 	 * @param fecha the fecha to set
 	 */
-	public void setFecha(int fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 

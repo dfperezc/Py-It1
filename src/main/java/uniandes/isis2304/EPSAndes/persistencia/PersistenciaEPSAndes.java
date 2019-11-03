@@ -649,24 +649,21 @@ public class PersistenciaEPSAndes {
 			pm.close();
 		}
 	}
-	public Cita registrarCita(long idServicio)
+	public Afiliado registrarCitaAfiliado(long idCita,long idAfiliado)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 		try {
 			tx.begin();
-			long idOrden = nextval();
-			
-			long tuplasInsertadas = sqlOrden.adicionarOrden(pm,idOrden,idServicio);
 			tx.commit();
-			if(sqlOrden.darOrdenPorId(pm, idServicio)== null)
+			if(sqlAfiliado.darAfiliadoPorId(pm, idAfiliado)== null)
 			{
-				throw new Exception("la Orden no se encuentra en nuestro catalogo intente de nuevo");
+				throw new Exception("el afiliado no se encuentra en nuestro catalogo intente de nuevo");
 			}
-			log.trace("Inserción de Servicio: " + idOrden + ": " + tuplasInsertadas + " tuplas insertadas");
-			return new Cita(idOrden,idServicio);
+			log.trace("Inserción de Servicio: " + idCita + ": ");
+			return sqlAfiliado.casignarCita(pm, idAfiliado, idCita);
 		} catch (Exception e) {
-			//        	e.printStackTrace();
+		 //        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return null;
 		} finally {
@@ -676,23 +673,21 @@ public class PersistenciaEPSAndes {
 			pm.close();
 		}
 	}
-	public Cita reservaCita(long idOrden)
+	public Afiliado reservaCita(long idCita , long idAfiliado)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 		try {
 			tx.begin();
-			if(sqlCita.darCitaPorId(pm, idOrden)== null)
-			{
-				throw new Exception("la IPS no se encuentra en nuestro catalogo intente de nuevo");
-			}
-						
-			sqlCita.cambiarEstadoCitaA(pm, idOrden);
 			tx.commit();
-			log.trace("Inserción de Servicio: " + idOrden + ". ");
-			return sqlCita.darCitaPorId(pm, idOrden);
+			if (sqlAfiliado.darAfiliadoPorId(pm, idAfiliado)== null)
+			{
+				throw new Exception("el afiliado no se encuentra en nuestro catalogo intente de nuevo");
+			}
+			log.trace("Inserción de Servicio: " + idCita + ": ");
+			return sqlAfiliado.casignarCita(pm, idAfiliado, idCita);
 		} catch (Exception e) {
-			//        	e.printStackTrace();
+		 //        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
 			return null;
 		} finally {
@@ -703,21 +698,21 @@ public class PersistenciaEPSAndes {
 		}
 		
 	}
-	public Cita registrarAsistencia(long idOrden)
+	public Cita registrarAsistencia(long idCita)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 		try {
 			tx.begin();
-			if(sqlOrden.darOrdenPorId(pm, idOrden)== null)
+			if(sqlCita.darCitaPorId(pm, idCita)== null)
 			{
-				throw new Exception("la IPS no se encuentra en nuestro catalogo intente de nuevo");
+				throw new Exception("la Cita no se encuentra en nuestro catalogo intente de nuevo");
 			}
 						
-			sqlOrden.cambiarestadoOrden(pm, idOrden);
+			sqlCita.cambiarEstadoCitaA(pm, idCita);
 			tx.commit();
-			log.trace("Inserción de Servicio: " + idOrden + ". ");
-			return sqlOrden.darOrdenPorId(pm, idOrden);
+			log.trace("Inserción de Servicio: " + idCita + ". ");
+			return sqlCita.darCitaPorId(pm, idCita);
 		} catch (Exception e) {
 			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
@@ -729,6 +724,8 @@ public class PersistenciaEPSAndes {
 			pm.close();
 		}
 	}
+	
+	//rf1 it
 	public void registrarCampaña()
 	{
 	}

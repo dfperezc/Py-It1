@@ -26,6 +26,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -490,18 +491,22 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 		}
 	}
 
-public void registrarOrden()
+public void registrarCitaafiliado()
 {
+	//TODO falta parte del medico
 	try {
-		String idServicio = JOptionPane.showInputDialog(this, "capacidad del servicio",	"adicionar Servicio IPS", JOptionPane.QUESTION_MESSAGE);
-		long idS = Long.parseLong(idServicio);
+		String idCita = JOptionPane.showInputDialog(this, "id de la Cita",	"adicionar Servicio IPS", JOptionPane.QUESTION_MESSAGE);
+		String idAfiliado = JOptionPane.showInputDialog(this, "id del Afiliado",	"adicionar Servicio IPS", JOptionPane.QUESTION_MESSAGE);
 
-		VOCita u =EPSAndes.registrarCita(idS);
-		if(idServicio != null )
+		long idC = Long.parseLong(idCita);
+		long idA = Long.parseLong(idAfiliado);
+
+		VOAfiliado u =EPSAndes.registrarCitaAfiliado(idC, idA);
+		if(idCita != null )
 		{
 			if(u == null)
 			{
-				throw new Exception("no sepuedo insertar la Orden con numero de registro: " + idServicio);
+				throw new Exception("no sepuedo insertar la cita para el afiliado con numero de registro: " + idAfiliado);
 			}
 			String resultado = "en adicionarOrden\n\n";
 			resultado += "orden adicionada exitosamente";
@@ -523,41 +528,75 @@ public void registrarOrden()
 }
 public void realizarReserva()
 {
+
+	//TODO disponibilidad
 	try {
-		
-	String idOrden= JOptionPane.showInputDialog(this, "id del medico con el que va a tomar la reserva",	"Reservar servicio", JOptionPane.QUESTION_MESSAGE);
+		String idCita = JOptionPane.showInputDialog(this, "id de la Cita",	"adicionar Servicio IPS", JOptionPane.QUESTION_MESSAGE);
+		String idAfiliado = JOptionPane.showInputDialog(this, "id del Afiliado",	"adicionar Servicio IPS", JOptionPane.QUESTION_MESSAGE);
 
-	long idO = Long.parseLong(idOrden);
+		long idC = Long.parseLong(idCita);
+		long idA = Long.parseLong(idAfiliado);
 
-	VOCita u =EPSAndes.realizarReserva(idO);
-	if(idOrden != null )
-	{
-		if(u == null)
+		VOAfiliado u =EPSAndes.realizarReserva(idA, idC);
+		if(idCita != null )
 		{
-			throw new Exception("no sepuedo reservar la Orden con numero de registro: " + idOrden);
+			if(u == null)
+			{
+				throw new Exception("no sepuedo insertar la cita para el afiliado con numero de registro: " + idAfiliado);
+			}
+			String resultado = "en adicionarOrden\n\n";
+			resultado += "orden adicionada exitosamente";
+			resultado += "\n operacion terminada";
+			panelDatos.actualizarInterfaz(resultado);
+		}	
+
+		else 
+		{
+			panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
 		}
-		String resultado = "en adicionarOrden\n\n";
-		resultado += "orden adicionada exitosamente";
-		resultado += "\n operacion terminada";
-		panelDatos.actualizarInterfaz(resultado);
-	}	
 
-	else 
+
+	}catch (Exception e)
 	{
-		panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+		String resultado = generarMensajeError(e);
+		panelDatos.actualizarInterfaz(resultado);
 	}
-
-
-}catch (Exception e)
-{
-	String resultado = generarMensajeError(e);
-	panelDatos.actualizarInterfaz(resultado);
-}
 }
 public void registrarAsistencia()
 {
+	try {
+		String idCita = JOptionPane.showInputDialog(this, "id de la Cita",	"adicionar Servicio IPS", JOptionPane.QUESTION_MESSAGE);
 
+		long idC = Long.parseLong(idCita);
+		
+
+		VOCita u =EPSAndes.registrarAsistencia(idC);
+		if(idCita != null )
+		{
+			if(u == null)
+			{
+				throw new Exception("no sepuedo comprobar la asistencia de la cita : " + idC);
+			}
+			String resultado = "en adicionarOrden\n\n";
+			resultado += "orden adicionada exitosamente";
+			resultado += "\n operacion terminada";
+			panelDatos.actualizarInterfaz(resultado);
+		}	
+
+		else 
+		{
+			panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+		}
+
+
+	}catch (Exception e)
+	{
+		String resultado = generarMensajeError(e);
+		panelDatos.actualizarInterfaz(resultado);
+	}
+ // rf9
 }
+//rf 1 it 
 public void registrarCampaña()
 {
 }
