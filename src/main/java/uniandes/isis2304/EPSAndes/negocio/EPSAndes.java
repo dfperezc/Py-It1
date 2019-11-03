@@ -144,17 +144,17 @@ public class EPSAndes
 		log.info("Adicionando Servicio: " + user);
 		return user;	
 	}
-	public Orden registrarOrden(long idServicio)
+	public Cita registrarCita(long idServicio)
 	{
 		log.info("Adicionando Orden: " + idServicio);
-		Orden user = pp.registrarOrden(idServicio);
+		Cita user = pp.registrarCita(idServicio);
 		log.info("Adicionando Orden: " + user);
 		return user;
 	}
-	public horarioServicio realizarReserva(long idServicio)
+	public Cita realizarReserva(long idServicio)
 	{
 		log.info("Reservando Orden: " + idServicio);
-		horarioServicio user = pp.reservaOrden(idServicio);
+		Cita user = pp.reservaCita(idServicio);
 		log.info("Adicionando Orden: " + user);
 		return user;
 	}
@@ -162,6 +162,7 @@ public class EPSAndes
 	{
 		return null;
 	}
+	//RF 2 iteracion 
 	public void registrarCampaña()
 	{
 	}

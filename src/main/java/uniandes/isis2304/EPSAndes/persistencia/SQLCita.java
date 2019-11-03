@@ -5,6 +5,9 @@ import java.util.Date;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import uniandes.isis2304.EPSAndes.negocio.Cita;
+import uniandes.isis2304.EPSAndes.negocio.Orden;
+
 public class SQLCita {
 
 	/**
@@ -27,10 +30,10 @@ public class SQLCita {
 	public SQLCita (PersistenciaEPSAndes pp) {
 		this.pp = pp;
 	}
-	public long adicionarCita(PersistenceManager pm,long id ,long asistio, Date fecha , long idServicio ,String nombreServicio )
+	public long adicionarCita(PersistenceManager pm,long id ,long asistio, Date fecha , long idServicio ,String nombreServicio ,long idMedico )
 	{
-		Query q = pm.newQuery(SQL , "INSERT INTO" + pp.darTablaCita() + "(id,asistio, fecha,idservicio,nombreservicio)" );
-		q.setParameters(id,asistio,fecha,idServicio,nombreServicio);
+		Query q = pm.newQuery(SQL , "INSERT INTO" + pp.darTablaCita() + "(id,asistio, fecha,idservicio,nombreservicio,idMedico)" );
+		q.setParameters(id,asistio,fecha,idServicio,nombreServicio,idMedico);
 		 return (long) q.executeUnique();
 	}
 	public long eliminarAfiliado(PersistenceManager pm,long id )
@@ -39,4 +42,16 @@ public class SQLCita {
 		q.setParameters(id);
 		 return (long) q.executeUnique();
 	}
+	public Cita cambiarEstadoCitaA(PersistenceManager pm, long idUsuario) {
+		Query q = pm.newQuery(SQL, "Update" + pp.darTablaCita() + "set estado = Asistio  where id =" + idUsuario);
+		q.setResultClass(Cita.class);
+		q.setParameters(idUsuario);
+		return (Cita) q.executeUnique();
+	}
+	public Cita darCitaPorId(PersistenceManager pm, long idOrden) {
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaCita() + " WHERE id = ?");
+		q.setResultClass(Cita.class);
+		q.setParameters(idOrden);
+		return (Cita) q.executeUnique();
+		}
 }

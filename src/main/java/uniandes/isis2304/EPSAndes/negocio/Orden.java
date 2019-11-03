@@ -2,30 +2,25 @@ package uniandes.isis2304.EPSAndes.negocio;
 
 public class Orden implements VOOrden{
 
-	/**
-	 * El identificador ÚNICO del administrador
-	 */
+	
 	private long id;
+	private long idServicio;
 	
 	
-	
-	/**
-	 * @param id
-	 */
-	public Orden(long id) {
+
+	public Orden(long id, long idServicio) {
 		this.id = id;
+		this.idServicio = idServicio;
 	}
 
-	/**
-	 * @return El id del administrador
-	 */
+
 	public long getId() {
 		return id;
 	}
+	public long getIdServicio() {
+		return idServicio;
+	}
 
-	/**
-	 * @param id - El nuevo id del administrador
-	 */
 	public void setId(long id) {
 		this.id = id;
 	}

@@ -21,6 +21,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import uniandes.isis2304.EPSAndes.negocio.Afiliado;
+import uniandes.isis2304.EPSAndes.negocio.Cita;
 import uniandes.isis2304.EPSAndes.negocio.IPS;
 import uniandes.isis2304.EPSAndes.negocio.Medico;
 import uniandes.isis2304.EPSAndes.negocio.Orden;
@@ -111,6 +112,7 @@ public class PersistenciaEPSAndes {
 	private SQLTrabajan sqlTrabajan;
 	private SQLUrgencia sqlUrgencia;
 	private SQLUsuario sqlUsuario;
+	private SQLHorarioServicio sqlHorarioServicio;
 	
 	//----------------------tablasEPSAndes---------------------fin
 
@@ -123,15 +125,8 @@ public class PersistenciaEPSAndes {
 	 * Constructor privado con valores por defecto - Patrón SINGLETON
 	 */
 	private PersistenciaEPSAndes() {
-//		pmf = JDOHelper.getPersistenceManagerFactory("EPSAndes");
-//	TODO
-//		
-//		
-//		
-//		
-//		
-		pmf = JDOHelper.getPersistenceManagerFactory("Parranderos");
-		
+		pmf = JDOHelper.getPersistenceManagerFactory("EPSAndes");
+	
 		crearClasesSQL();
 
 		// Define los nombres por defecto de las tablas de la base de datos
@@ -161,6 +156,7 @@ public class PersistenciaEPSAndes {
 		tablas.add("TRABAJAN");
 		tablas.add("URGENCIA");
 		tablas.add("USUARIO");
+		tablas.add("HORARIOSERVICIO");
 				
 	}
 
@@ -256,6 +252,7 @@ public class PersistenciaEPSAndes {
 		sqlTrabajan = new SQLTrabajan(this);
 		sqlUrgencia = new SQLUrgencia(this);
 		sqlUsuario = new SQLUsuario(this);
+		sqlHorarioServicio = new SQLHorarioServicio(this);
 		}
 
 	
@@ -325,7 +322,10 @@ public class PersistenciaEPSAndes {
 	public String darTablaUsuario() {
 		return tablas.get(21);
 	}
-
+	public String darTablaHorarioServicio()
+	{
+		return tablas.get(22);
+	}
 	
 	/**
 	 * Transacción para el generador de secuencia de Parranderos Adiciona entradas
@@ -649,7 +649,7 @@ public class PersistenciaEPSAndes {
 			pm.close();
 		}
 	}
-	public Orden registrarOrden(long idServicio)
+	public Cita registrarCita(long idServicio)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -659,12 +659,12 @@ public class PersistenciaEPSAndes {
 			
 			long tuplasInsertadas = sqlOrden.adicionarOrden(pm,idOrden,idServicio);
 			tx.commit();
-			if(sqlOrden.darOrdenPorID(pm, idServicio)== null)
+			if(sqlOrden.darOrdenPorId(pm, idServicio)== null)
 			{
-				throw new Exception("la IPS no se encuentra en nuestro catalogo intente de nuevo");
+				throw new Exception("la Orden no se encuentra en nuestro catalogo intente de nuevo");
 			}
-			log.trace("Inserción de Servicio: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
-			return new Servicio(idServicio,capacidad,nombre,idIPS);
+			log.trace("Inserción de Servicio: " + idOrden + ": " + tuplasInsertadas + " tuplas insertadas");
+			return new Cita(idOrden,idServicio);
 		} catch (Exception e) {
 			//        	e.printStackTrace();
 			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
@@ -676,12 +676,58 @@ public class PersistenciaEPSAndes {
 			pm.close();
 		}
 	}
-	public void reservaOrden()
+	public Cita reservaCita(long idOrden)
 	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			if(sqlCita.darCitaPorId(pm, idOrden)== null)
+			{
+				throw new Exception("la IPS no se encuentra en nuestro catalogo intente de nuevo");
+			}
+						
+			sqlCita.cambiarEstadoCitaA(pm, idOrden);
+			tx.commit();
+			log.trace("Inserción de Servicio: " + idOrden + ". ");
+			return sqlCita.darCitaPorId(pm, idOrden);
+		} catch (Exception e) {
+			//        	e.printStackTrace();
+			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
+		
 	}
-	public void registrarAsistencia()
+	public Cita registrarAsistencia(long idOrden)
 	{
-
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			if(sqlOrden.darOrdenPorId(pm, idOrden)== null)
+			{
+				throw new Exception("la IPS no se encuentra en nuestro catalogo intente de nuevo");
+			}
+						
+			sqlOrden.cambiarestadoOrden(pm, idOrden);
+			tx.commit();
+			log.trace("Inserción de Servicio: " + idOrden + ". ");
+			return sqlOrden.darOrdenPorId(pm, idOrden);
+		} catch (Exception e) {
+			//        	e.printStackTrace();
+			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
 	public void registrarCampaña()
 	{

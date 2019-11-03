@@ -61,6 +61,7 @@ import uniandes.isis2304.EPSAndes.negocio.VOUsuario;
 import uniandes.isis2304.EPSAndes.negocio.EPSAndes;
 import uniandes.isis2304.EPSAndes.negocio.Rol;
 import uniandes.isis2304.EPSAndes.negocio.VOAfiliado;
+import uniandes.isis2304.EPSAndes.negocio.VOCita;
 
 /**
  * Clase principal de la interfaz
@@ -495,7 +496,7 @@ public void registrarOrden()
 		String idServicio = JOptionPane.showInputDialog(this, "capacidad del servicio",	"adicionar Servicio IPS", JOptionPane.QUESTION_MESSAGE);
 		long idS = Long.parseLong(idServicio);
 
-		VOOrden u =EPSAndes.registrarOrden(idS);
+		VOCita u =EPSAndes.registrarCita(idS);
 		if(idServicio != null )
 		{
 			if(u == null)
@@ -528,7 +529,7 @@ public void realizarReserva()
 
 	long idO = Long.parseLong(idOrden);
 
-	VOOrden u =EPSAndes.reservarOrden(idO);
+	VOCita u =EPSAndes.realizarReserva(idO);
 	if(idOrden != null )
 	{
 		if(u == null)

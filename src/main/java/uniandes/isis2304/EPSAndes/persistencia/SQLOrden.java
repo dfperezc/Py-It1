@@ -3,6 +3,9 @@ package uniandes.isis2304.EPSAndes.persistencia;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import uniandes.isis2304.EPSAndes.negocio.Orden;
+import uniandes.isis2304.EPSAndes.negocio.Usuario;
+
 public class SQLOrden {
 
 	/**
@@ -37,5 +40,22 @@ public class SQLOrden {
 		q.setParameters(id);
 		 return (long) q.executeUnique();
 	}
-	
+	public Orden darOrdenPorId(PersistenceManager pm, long idOrden) {
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaOrden() + " WHERE id = ?");
+		q.setResultClass(Orden.class);
+		q.setParameters(idOrden);
+		return (Orden) q.executeUnique();
+	}
+	public Orden cambiarestadoOrdenD(PersistenceManager pm, long idOrden) {
+		Query q = pm.newQuery(SQL, "Update" + pp.darTablaOrden() + "set estado = deshabilitado  where id =" + idOrden);
+		q.setResultClass(Orden.class);
+		q.setParameters(idOrden);
+		return (Orden) q.executeUnique();
+	}
+	public Orden cambiarestadoOrdenH(PersistenceManager pm, long idOrden) {
+		Query q = pm.newQuery(SQL, "Update" + pp.darTablaOrden() + "set estado = habilitado  where id =" + idOrden);
+		q.setResultClass(Orden.class);
+		q.setParameters(idOrden);
+		return (Orden) q.executeUnique();
+	}
 }
