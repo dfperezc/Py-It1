@@ -1,7 +1,8 @@
 package uniandes.isis2304.EPSAndes.negocio;
 
-public class ExamenDiagnostico extends Servicio implements VOExamenDiagnostico{
+public class ExamenDiagnostico implements VOExamenDiagnostico{
 	
+	private long id;
 	private String muestras;
 	private String resultados;
 	
@@ -12,11 +13,16 @@ public class ExamenDiagnostico extends Servicio implements VOExamenDiagnostico{
 	 * @param muestras
 	 * @param resultados
 	 */
-	public ExamenDiagnostico(long id, int capacidad, String horariosAtencion, String muestras, String resultados) {
-		super(id, capacidad, horariosAtencion);
+	public ExamenDiagnostico(long id,  String muestras, String resultados) {
+		
+		this.id = id;
 		this.muestras= muestras;
 		this.resultados = resultados;
 		
+	}
+	public long getID()
+	{
+	  return id;
 	}
 
 	/**

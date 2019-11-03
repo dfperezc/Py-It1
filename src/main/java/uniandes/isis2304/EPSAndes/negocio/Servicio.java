@@ -3,8 +3,9 @@ package uniandes.isis2304.EPSAndes.negocio;
 public class Servicio implements VOServicio{
 	
 	private long id;
-	private int capacidad;
-	private String horariosAtencion;
+	private long capacidad;
+	private String nombre;
+	private long idIPS;
 	
 	
 	
@@ -13,10 +14,12 @@ public class Servicio implements VOServicio{
 	 * @param capacidad
 	 * @param horariosAtencion
 	 */
-	public Servicio(long id, int capacidad, String horariosAtencion) {
+	public Servicio(long id, long capacidad, String nombre , long idIPS) {
 		this.id = id;
 		this.capacidad = capacidad;
-		this.horariosAtencion = horariosAtencion;
+		this.nombre = nombre;
+		this.idIPS= idIPS;
+		
 	}
 	/**
 	 * @return the id
@@ -24,17 +27,21 @@ public class Servicio implements VOServicio{
 	public long getId() {
 		return id;
 	}
+	
+	public long getIdIPS() {
+		return idIPS;
+	}
 	/**
 	 * @return the capacidad
 	 */
-	public int getCapacidad() {
+	public long getCapacidad() {
 		return capacidad;
 	}
 	/**
 	 * @return the horariosAtencion
 	 */
-	public String getHorariosAtencion() {
-		return horariosAtencion;
+	public String getNombre() {
+		return nombre;
 	}
 	/**
 	 * @param id the id to set
@@ -51,9 +58,10 @@ public class Servicio implements VOServicio{
 	/**
 	 * @param horariosAtencion the horariosAtencion to set
 	 */
-	public void setHorariosAtencion(String horariosAtencion) {
-		this.horariosAtencion = horariosAtencion;
+	public void setHorariosAtencion(String nombre) {
+		this.nombre = nombre;
 	}
+
 	
 
 }

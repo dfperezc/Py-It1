@@ -23,7 +23,9 @@ import com.google.gson.JsonObject;
 import uniandes.isis2304.EPSAndes.negocio.Afiliado;
 import uniandes.isis2304.EPSAndes.negocio.IPS;
 import uniandes.isis2304.EPSAndes.negocio.Medico;
+import uniandes.isis2304.EPSAndes.negocio.Orden;
 import uniandes.isis2304.EPSAndes.negocio.Rol;
+import uniandes.isis2304.EPSAndes.negocio.Servicio;
 import uniandes.isis2304.EPSAndes.negocio.Usuario;
 
 
@@ -580,7 +582,7 @@ public class PersistenciaEPSAndes {
 			{
 				throw new Exception();
 			}
-			log.trace("Inserción de IPS: " + numeroRegistro + ": " + tuplasInsertadas + " tuplas insertadas");
+			log.trace("Inserción de Medico: " + numeroRegistro + ": " + tuplasInsertadas + " tuplas insertadas");
 			return new Medico(idMedico,numeroRegistro,especialidad,idUsuario);
 		} catch (Exception e) {
 			//        	e.printStackTrace();
@@ -606,7 +608,7 @@ public class PersistenciaEPSAndes {
 			{
 				throw new Exception();
 			}
-			log.trace("Inserción de IPS: " + idAfiliado + ": " + tuplasInsertadas + " tuplas insertadas");
+			log.trace("Inserción de Afiliado: " + idAfiliado + ": " + tuplasInsertadas + " tuplas insertadas");
 			return new Afiliado(idAfiliado,estadoSalud,fechaNacimiento,recetaActual,idO,idU,idE,idC);
 		} catch (Exception e) {
 			//        	e.printStackTrace();
@@ -618,6 +620,81 @@ public class PersistenciaEPSAndes {
 			}
 			pm.close();
 		}
+	}
+	
+	public Servicio adicionarServicio(long capacidad ,String nombre , long idIPS)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			long idServicio = nextval();
+			
+			long tuplasInsertadas = sqlServicio.adicionarServicio(pm,idServicio,capacidad,nombre,idIPS);
+			tx.commit();
+			if(sqlIPS.darIPSPorId(pm, idIPS)== null)
+			{
+				throw new Exception("la IPS no se encuentra en nuestro catalogo intente de nuevo");
+			}
+			log.trace("Inserción de Servicio: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+			return new Servicio(idServicio,capacidad,nombre,idIPS);
+		} catch (Exception e) {
+			//        	e.printStackTrace();
+			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	public Orden registrarOrden(long idServicio)
+	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			long idOrden = nextval();
+			
+			long tuplasInsertadas = sqlOrden.adicionarOrden(pm,idOrden,idServicio);
+			tx.commit();
+			if(sqlOrden.darOrdenPorID(pm, idServicio)== null)
+			{
+				throw new Exception("la IPS no se encuentra en nuestro catalogo intente de nuevo");
+			}
+			log.trace("Inserción de Servicio: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+			return new Servicio(idServicio,capacidad,nombre,idIPS);
+		} catch (Exception e) {
+			//        	e.printStackTrace();
+			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
+	public void reservaOrden()
+	{
+	}
+	public void registrarAsistencia()
+	{
+
+	}
+	public void registrarCampaña()
+	{
+	}
+	public void cancelarServiciosCampaña()
+	{
+	}
+	public void deshabilitarServiciosSalud()
+	{
+	}
+	public void habilitarServiciosSalud()
+	{
+		
 	}
 	
 	public long[] limpiarEPSAndes() {

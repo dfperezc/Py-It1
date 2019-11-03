@@ -3,6 +3,9 @@ package uniandes.isis2304.EPSAndes.persistencia;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
+import uniandes.isis2304.EPSAndes.negocio.IPS;
+import uniandes.isis2304.EPSAndes.negocio.Usuario;
+
 public class SQLIPS {
 
 	/**
@@ -37,4 +40,11 @@ public class SQLIPS {
 		q.setParameters(id);
 		 return (long) q.executeUnique();
 	}
+	public IPS darIPSPorId(PersistenceManager pm, long idIPS) {
+		Query q = pm.newQuery(SQL, "SELECT * FROM " + pp.darTablaIPS() + " WHERE id = ?");
+		q.setResultClass(IPS.class);
+		q.setParameters(idIPS);
+		return (IPS) q.executeUnique();
+	}
+
 }

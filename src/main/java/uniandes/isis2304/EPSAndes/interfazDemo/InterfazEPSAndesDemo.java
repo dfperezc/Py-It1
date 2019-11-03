@@ -54,6 +54,7 @@ import uniandes.isis2304.EPSAndes.interfazApp.PanelDatos;
 import uniandes.isis2304.EPSAndes.negocio.VOGustan;
 import uniandes.isis2304.EPSAndes.negocio.VOIPS;
 import uniandes.isis2304.EPSAndes.negocio.VOMedico;
+import uniandes.isis2304.EPSAndes.negocio.VOOrden;
 import uniandes.isis2304.EPSAndes.negocio.VORol;
 import uniandes.isis2304.EPSAndes.negocio.VOServicio;
 import uniandes.isis2304.EPSAndes.negocio.VOUsuario;
@@ -456,28 +457,21 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 	public void registrarServicioIPS ()
 	{
 		try {
-			String capacidad = JOptionPane.showInputDialog(this, "Especialidad del Medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
-			String nombre = JOptionPane.showInputDialog(this, "numero de registro del medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
-			String estado = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
-			String fecha = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
-			String Horarios = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
-			String idOrden = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
-			String idIps = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
-			String Medicos = JOptionPane.showInputDialog(this, "numero de usuario del medico",	"Adicionar Medico", JOptionPane.QUESTION_MESSAGE);
-// opciones de cambio tabla horarios con medicos por que esos son como arreglos que tengan el id del servicio  estado.
+			String capacidad = JOptionPane.showInputDialog(this, "capacidad del servicio",	"adicionar Servicio IPS", JOptionPane.QUESTION_MESSAGE);
+			String nombre = JOptionPane.showInputDialog(this, "nombre del servicio",	"adicionar Servicio IPS", JOptionPane.QUESTION_MESSAGE);
+			String idIps = JOptionPane.showInputDialog(this, "id de la IPs que presta el servicio",	"adicionar Servicio IPS", JOptionPane.QUESTION_MESSAGE);
 			long capa = Long.parseLong(capacidad);
-			long idO = Long.parseLong(capacidad);
-			long idI = Long.parseLong(capacidad);
+			long idI = Long.parseLong(idIps);
 
-			VOServicio u =EPSAndes.adicionarServicio(capacidad);
+			VOServicio u =EPSAndes.adicionarServicio(capa,nombre,idI);
 			if(nombre != null )
 			{
 				if(u == null)
 				{
-					throw new Exception("no sepuedo insertar el Medico con numero de registro: " + numeroRegistro);
+					throw new Exception("no sepuedo insertar el Medico con numero de registro: " + nombre);
 				}
-				String resultado = "en adicionarMedico\n\n";
-				resultado += "Medico adicionado exitosamente";
+				String resultado = "en adicionarServicioIPS\n\n";
+				resultado += "Servicio adicionado exitosamente";
 				resultado += "\n operacion terminada";
 				panelDatos.actualizarInterfaz(resultado);
 			}	
@@ -495,11 +489,69 @@ public class InterfazEPSAndesDemo extends JFrame implements ActionListener {
 		}
 	}
 
-public void regstrarOrden()
+public void registrarOrden()
 {
+	try {
+		String idServicio = JOptionPane.showInputDialog(this, "capacidad del servicio",	"adicionar Servicio IPS", JOptionPane.QUESTION_MESSAGE);
+		long idS = Long.parseLong(idServicio);
+
+		VOOrden u =EPSAndes.registrarOrden(idS);
+		if(idServicio != null )
+		{
+			if(u == null)
+			{
+				throw new Exception("no sepuedo insertar la Orden con numero de registro: " + idServicio);
+			}
+			String resultado = "en adicionarOrden\n\n";
+			resultado += "orden adicionada exitosamente";
+			resultado += "\n operacion terminada";
+			panelDatos.actualizarInterfaz(resultado);
+		}	
+
+		else 
+		{
+			panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+		}
+
+
+	}catch (Exception e)
+	{
+		String resultado = generarMensajeError(e);
+		panelDatos.actualizarInterfaz(resultado);
+	}
 }
 public void realizarReserva()
 {
+	try {
+		
+	String idOrden= JOptionPane.showInputDialog(this, "id del medico con el que va a tomar la reserva",	"Reservar servicio", JOptionPane.QUESTION_MESSAGE);
+
+	long idO = Long.parseLong(idOrden);
+
+	VOOrden u =EPSAndes.reservarOrden(idO);
+	if(idOrden != null )
+	{
+		if(u == null)
+		{
+			throw new Exception("no sepuedo reservar la Orden con numero de registro: " + idOrden);
+		}
+		String resultado = "en adicionarOrden\n\n";
+		resultado += "orden adicionada exitosamente";
+		resultado += "\n operacion terminada";
+		panelDatos.actualizarInterfaz(resultado);
+	}	
+
+	else 
+	{
+		panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+	}
+
+
+}catch (Exception e)
+{
+	String resultado = generarMensajeError(e);
+	panelDatos.actualizarInterfaz(resultado);
+}
 }
 public void registrarAsistencia()
 {

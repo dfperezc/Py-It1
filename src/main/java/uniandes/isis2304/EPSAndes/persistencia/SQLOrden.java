@@ -25,16 +25,17 @@ public class SQLOrden {
 	public SQLOrden(PersistenciaEPSAndes pp) {
 		this.pp = pp;
 	}
-	public long adicionarConsulta(PersistenceManager pm,long id ,long idServicio)
+	public long adicionarOrden(PersistenceManager pm,long id ,long idServicio)
 	{
 		Query q = pm.newQuery(SQL , "INSERT INTO" + pp.darTablaOrden() + "(id, idservicio)" );
 		q.setParameters(id, idServicio);
 		 return (long) q.executeUnique();
 	}
-	public long eliminarConsulta(PersistenceManager pm,long id )
+	public long eliminarOrden(PersistenceManager pm,long id )
 	{
 		Query q = pm.newQuery(SQL , "DELETE FROM" + pp.darTablaOrden() + "where id = ?" );
 		q.setParameters(id);
 		 return (long) q.executeUnique();
 	}
+	
 }

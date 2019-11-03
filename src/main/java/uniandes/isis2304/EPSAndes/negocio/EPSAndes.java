@@ -137,6 +137,44 @@ public class EPSAndes
 		log.info("Adicionando Medico: " + user);
 		return user;
 	}
+	public Servicio adicionarServicio(long capacidad ,String nombre , long idIPS)
+	{
+		log.info("Adicionando Servicio: " + nombre);
+		Servicio user = pp.adicionarServicio(capacidad ,nombre,idIPS);
+		log.info("Adicionando Servicio: " + user);
+		return user;	
+	}
+	public Orden registrarOrden(long idServicio)
+	{
+		log.info("Adicionando Orden: " + idServicio);
+		Orden user = pp.registrarOrden(idServicio);
+		log.info("Adicionando Orden: " + user);
+		return user;
+	}
+	public horarioServicio realizarReserva(long idServicio)
+	{
+		log.info("Reservando Orden: " + idServicio);
+		horarioServicio user = pp.reservaOrden(idServicio);
+		log.info("Adicionando Orden: " + user);
+		return user;
+	}
+	public horarioServicio registrarAsistencia()
+	{
+		return null;
+	}
+	public void registrarCampaña()
+	{
+	}
+	public void cancelarServiciosCampaña()
+	{
+	}
+	public void deshabilitarServiciosSalud()
+	{
+	}
+	public void habilitarServiciosSalud()
+	{
+		
+	}
 	/*
 	 * **************************************************************** 
 	 * Métodos para administración

@@ -1,8 +1,8 @@
 package uniandes.isis2304.EPSAndes.negocio;
 
-public class ProcedimientoEspecializado extends Servicio implements VOProcedimientoEspecializado{
+public class ProcedimientoEspecializado  implements VOProcedimientoEspecializado{
 	
-	private String tipo;
+	private Long id;
 	
 	/**
 	 * @param id
@@ -10,35 +10,20 @@ public class ProcedimientoEspecializado extends Servicio implements VOProcedimie
 	 * @param horariosAtencion
 	 * @param tipo
 	 */
-	public ProcedimientoEspecializado(long id, int capacidad, String horariosAtencion, String tipo) {
-		super(id, capacidad, horariosAtencion);
-		this.tipo = tipo;
+	public ProcedimientoEspecializado(long id) {
+		
+		this.id = id;
 	}
 
-	/**
-	 * @return the tipo
-	 */
-	public String getTipo() {
-		return tipo;
-	}
+
 
 	/**
 	 * @param tipo the tipo to set
 	 */
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
+	
 	public long getId()
 	{
 		return this.getId();
 	}
-	public int getCapacidad()
-	{
-		return this.getCapacidad();
-		
-	}
-	public String hotariosAtencion()
-	{
-		return this.getHorariosAtencion();
-	}
+
 }

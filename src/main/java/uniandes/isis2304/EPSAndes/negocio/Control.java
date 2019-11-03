@@ -1,18 +1,18 @@
 package uniandes.isis2304.EPSAndes.negocio;
 
-public class Control extends Servicio implements VOControl{
+public class Control implements VOControl{
 	
 	
-
+	private long id;
 	/**
 	 * @param id
 	 * @param capacidad
 	 * @param horariosAtencion
 	 */
-	public Control(long id, int capacidad, String horariosAtencion) {
-		super(id, capacidad, horariosAtencion);
+	public Control(long id) {
+		this.id = id;
 	}
-	@Override
+
 	public long getId() 
 	{
 		return this.getId();

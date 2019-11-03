@@ -1,7 +1,8 @@
 package uniandes.isis2304.EPSAndes.negocio;
 
-public class Terapia extends Servicio implements VOTerapia{
+public class Terapia  implements VOTerapia{
 	
+	private long id;
 	private int numeroSesiones;
 	private String tipo;
 	
@@ -12,8 +13,8 @@ public class Terapia extends Servicio implements VOTerapia{
 	 * @param numeroSesiones
 	 * @param tipo
 	 */
-	public Terapia(long id, int capacidad, String horariosAtencion, int numeroSesiones, String tipo) {
-		super(id, capacidad, horariosAtencion);
+	public Terapia(long id,  int numeroSesiones, String tipo) {
+		this.id = id;
 		this.numeroSesiones = numeroSesiones;
 		this.tipo = tipo;
 	}
@@ -47,16 +48,9 @@ public class Terapia extends Servicio implements VOTerapia{
 	}
 	public long getId()
 	{
-		return this.getId();
+		return this.id;
 	}
-	public int getCapacidad()
-	{
-		return this.getCapacidad();
-		
-	}
-	public String hotariosAtencion()
-	{
-		return this.getHorariosAtencion();
-	}
+	
+	
 
 }
