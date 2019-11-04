@@ -42,7 +42,6 @@ DROP TABLE "USUARIO" CASCADE CONSTRAINTS;
 -- Eliminar el contenido de todas las tablas de la base de datos
 -- El orden es importante. Por qué?
 
-DROP TABLE "USUARIO" CASCADE CONSTRAINTS;
 delete from GERENTE;
 delete from EPS;
 delete from IPS;
