@@ -5,15 +5,7 @@
 	"bannerPath": "./src/main/resources/config/EPSAndesLogo.png",
 	"menuBar":
 	[
-		{ "menuTitle": "TipoBebida",
-		  "options":
-			[
-				{
-					"label": "CRD de TipoBebida",
-					"event": "demoTipoBebida"
-				}
-			]
-		},
+		
 		{ "menuTitle": "RF1-5",
 		  "options":
 			[
@@ -40,24 +32,32 @@
 
 			]
 		},
-		{ "menuTitle": "RF6-9",
+		{ "menuTitle": "RF6-11",
 		  "options":
 			[
 				{
-					"label": "Registrar servicios IPS",
+					"label": "Registrar servicios prestado por IPS",
 					"event": "registrarServicioIPS"
 				},
 				{
-					"label": "Registrar Orden de Servicio ",
-					"event": "registrarOrdenServicioIPS"
+					"label": "Registrar Cita del afiliado  ",
+					"event": "registrarCitaAfiliado"
 				},
 				{
-					"label": "Reservar Servicio Afiliado",
-					"event": "reservaServicioAfiliado"
+					"label": "Reservar Servicio por parte del Afiliado",
+					"event": "realizarReserva"
 				},
 				{
 					"label": "Regstrar Servicio prestado IPS",
 					"event": "registrarServicioprestado"
+				},
+				{
+					"label": "Registrar Campaña",
+					"event": "registrarCampaña"
+				},
+				{
+					"label": "Cancelar sercios de campaña",
+					"event": "cancelarServiciosCampaña"
 				}
 			]
 		},
