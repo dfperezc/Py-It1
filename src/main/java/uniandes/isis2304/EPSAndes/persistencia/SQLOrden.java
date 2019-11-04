@@ -28,7 +28,7 @@ public class SQLOrden {
 	public SQLOrden(PersistenciaEPSAndes pp) {
 		this.pp = pp;
 	}
-	public long adicionarOrden(PersistenceManager pm,long id ,long idServicio)
+	public long adicionarOrden(PersistenceManager pm,long id ,long idServicio, String nombreCampaña)
 	{
 		Query q = pm.newQuery(SQL , "INSERT INTO" + pp.darTablaOrden() + "(id, idservicio)" );
 		q.setParameters(id, idServicio);
@@ -46,16 +46,16 @@ public class SQLOrden {
 		q.setParameters(idOrden);
 		return (Orden) q.executeUnique();
 	}
-	public Orden cambiarestadoOrdenD(PersistenceManager pm, long idOrden) {
-		Query q = pm.newQuery(SQL, "Update" + pp.darTablaOrden() + "set estado = deshabilitado  where id =" + idOrden);
+	public Orden cambiarestadoOrdenD(PersistenceManager pm, long idOrden ,String nombreCampaña) {
+		Query q = pm.newQuery(SQL, "Update" + pp.darTablaOrden() + "set estado ,nombrecampaña = deshabilitado , ?  where id =" + idOrden);
 		q.setResultClass(Orden.class);
-		q.setParameters(idOrden);
+		q.setParameters(nombreCampaña);
 		return (Orden) q.executeUnique();
 	}
-	public Orden cambiarestadoOrdenH(PersistenceManager pm, long idOrden) {
-		Query q = pm.newQuery(SQL, "Update" + pp.darTablaOrden() + "set estado = habilitado  where id =" + idOrden);
+	public Orden cambiarestadoOrdenH(PersistenceManager pm, long idOrden  ) {
+		Query q = pm.newQuery(SQL, "Update" + pp.darTablaOrden() + "set estado ,nombrecampaña = habilitado , ?  where id =" + idOrden);
 		q.setResultClass(Orden.class);
-		q.setParameters(idOrden);
+		q.setParameters(" ");
 		return (Orden) q.executeUnique();
 	}
 }

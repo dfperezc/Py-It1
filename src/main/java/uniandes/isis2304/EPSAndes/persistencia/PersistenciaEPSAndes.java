@@ -5,6 +5,7 @@ package uniandes.isis2304.EPSAndes.persistencia;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import uniandes.isis2304.EPSAndes.negocio.Afiliado;
+import uniandes.isis2304.EPSAndes.negocio.Campaña;
 import uniandes.isis2304.EPSAndes.negocio.Cita;
 import uniandes.isis2304.EPSAndes.negocio.IPS;
 import uniandes.isis2304.EPSAndes.negocio.Medico;
@@ -112,7 +114,8 @@ public class PersistenciaEPSAndes {
 	private SQLTrabajan sqlTrabajan;
 	private SQLUrgencia sqlUrgencia;
 	private SQLUsuario sqlUsuario;
-	private SQLHorarioServicio sqlHorarioServicio;
+	private SQLCampaña sqlCampaña;
+	private SQLOrganizadorCampaña sqlOrganizadorCampaña;
 	
 	//----------------------tablasEPSAndes---------------------fin
 
@@ -156,7 +159,8 @@ public class PersistenciaEPSAndes {
 		tablas.add("TRABAJAN");
 		tablas.add("URGENCIA");
 		tablas.add("USUARIO");
-		tablas.add("HORARIOSERVICIO");
+		tablas.add("CAMPAÑA");
+		tablas.add("ORGANIZADORcAMPAÑA");
 				
 	}
 
@@ -252,7 +256,8 @@ public class PersistenciaEPSAndes {
 		sqlTrabajan = new SQLTrabajan(this);
 		sqlUrgencia = new SQLUrgencia(this);
 		sqlUsuario = new SQLUsuario(this);
-		sqlHorarioServicio = new SQLHorarioServicio(this);
+		sqlCampaña = new SQLCampaña(this);
+		sqlOrganizadorCampaña = new SQLOrganizadorCampaña(this);
 		}
 
 	
@@ -322,9 +327,13 @@ public class PersistenciaEPSAndes {
 	public String darTablaUsuario() {
 		return tablas.get(21);
 	}
-	public String darTablaHorarioServicio()
+		public String darTablaCampaña()
 	{
 		return tablas.get(22);
+	}
+	public String darTablaOrganizadorCampaña()
+	{
+		 return tablas.get(23);
 	}
 	
 	/**
@@ -726,11 +735,75 @@ public class PersistenciaEPSAndes {
 	}
 	
 	//rf1 it
-	public void registrarCampaña()
+	public Campaña registrarCampaña(long idOrganizador , String nombre , LinkedList<Long> servicios )
 	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+			long idCampaña = nextval();
+			
+			long tuplasInsertadas = sqlCampaña.adicionarCampaña(pm,idCampaña, idOrganizador, nombre) ;
+			tx.commit();
+			
+			if(sqlOrganizadorCampaña.darOrganizadorCampañaPorId(pm, idOrganizador)== null)
+			{
+				throw new Exception("no existe un Organizador de campaña con ese ID");
+			}
+			for (Long long1 : servicios)
+			{
+				sqlOrden.cambiarestadoOrdenD(pm, long1, nombre);
+			}
+			
+			log.trace("cracion de campaña: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+			return new Campaña(idCampaña,idOrganizador,nombre);
+		} catch (Exception e) {
+			//        	e.printStackTrace();
+			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
-	public void cancelarServiciosCampaña()
+	public Campaña cancelarServiciosCampaña(long idCampaña,long idOrganizador , String nombre ,LinkedList<Long> servicios)
 	{
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		try {
+			tx.begin();
+		
+			
+			long tuplasInsertadas = sqlCampaña.adicionarCampaña(pm,idCampaña, idOrganizador, nombre) ;
+			tx.commit();
+			
+			if(sqlOrganizadorCampaña.darOrganizadorCampañaPorId(pm, idOrganizador)== null)
+			{
+				throw new Exception("no existe un Organizador de campaña con ese ID");
+			}
+			if(sqlCampaña.darCampañaPorId(pm, idCampaña)== null)
+			{
+				throw new Exception("no existe una campaña con ese ID");
+			}
+			for (Long long1 : servicios)
+			{
+				sqlOrden.cambiarestadoOrdenH(pm, long1);
+			}
+			
+			log.trace("cracion de campaña: " + nombre + ": " + tuplasInsertadas + " tuplas insertadas");
+			return sqlCampaña.darCampañaPorId(pm, idCampaña);
+		} catch (Exception e) {
+			//        	e.printStackTrace();
+			log.error("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+			return null;
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
 	public void deshabilitarServiciosSalud()
 	{

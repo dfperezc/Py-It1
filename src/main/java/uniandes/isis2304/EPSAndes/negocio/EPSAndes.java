@@ -166,11 +166,19 @@ public class EPSAndes
 		return user;
 	}
 	//RF 2 iteracion 
-	public void registrarCampaña()
+	public Campaña registrarCampaña(Long idOrganizador , String nombreCampaña , LinkedList<Long> idOrden)
 	{
+		log.info("adicionandoCampaña: " + nombreCampaña);
+		Campaña user = pp.registrarCampaña(idOrganizador, nombreCampaña, idOrden);
+		log.info("Adicionando Cita: " + user);
+		return user;
 	}
-	public void cancelarServiciosCampaña()
+	public Campaña cancelarServiciosCampaña(Long idCampaña, Long idOrganizador , String nombreCampaña , LinkedList<Long> idOrden)
 	{
+		log.info("eliminando Servicios Campaña: " + nombreCampaña);
+		Campaña user = pp.cancelarServiciosCampaña(idCampaña,idOrganizador, nombreCampaña, idOrden);
+		log.info("Adicionando Cita: " + user);
+		return user;
 	}
 	public void deshabilitarServiciosSalud()
 	{

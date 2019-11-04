@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.jdo.JDODataStoreException;
@@ -62,6 +63,7 @@ import uniandes.isis2304.EPSAndes.negocio.VOUsuario;
 import uniandes.isis2304.EPSAndes.negocio.EPSAndes;
 import uniandes.isis2304.EPSAndes.negocio.Rol;
 import uniandes.isis2304.EPSAndes.negocio.VOAfiliado;
+import uniandes.isis2304.EPSAndes.negocio.VOCampaña;
 import uniandes.isis2304.EPSAndes.negocio.VOCita;
 
 /**
@@ -599,9 +601,103 @@ public void registrarAsistencia()
 //rf 1 it 
 public void registrarCampaña()
 {
+	try {
+		String idOrganizador = JOptionPane.showInputDialog(this, "id del Organizador de la campaña",	"adicionar Campaña", JOptionPane.QUESTION_MESSAGE);
+		String nombreCampaña = JOptionPane.showInputDialog(this, "nombre de la campaña",	"adicionar Campaña", JOptionPane.QUESTION_MESSAGE);
+
+		LinkedList<Long> idOrden = new LinkedList<>();
+        JOptionPane.showConfirmDialog(this, "ahora va a insertar los id de lso servicios que desea agregar a la campaña si quiere terminar esta captura de datos escriba X");
+        boolean x = false;
+        while (!x)
+        {
+    		String id = JOptionPane.showInputDialog(this, "id del servicio",	"adicionar Campaña", JOptionPane.QUESTION_MESSAGE);
+    		if(id.equalsIgnoreCase("X") )
+    		{
+    		long idO = Long.parseLong(id);
+    		idOrden.add(idO);
+    		}
+    		else 
+    		{
+    		   x= true;
+    		}
+        }
+        long idOC = Long.parseLong(idOrganizador);
+		VOCampaña u =EPSAndes.registrarCampaña(idOC, nombreCampaña, idOrden);
+		if(nombreCampaña != null )
+		{
+			if(u == null)
+			{
+				throw new Exception("no sepuedo agregar la campaña : " + nombreCampaña);
+			}
+			String resultado = "en adicionarOrden\n\n";
+			resultado += "orden adicionada exitosamente";
+			resultado += "\n operacion terminada";
+			panelDatos.actualizarInterfaz(resultado);
+		}	
+
+		else 
+		{
+			panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+		}
+
+
+	}catch (Exception e)
+	{
+		String resultado = generarMensajeError(e);
+		panelDatos.actualizarInterfaz(resultado);
+	}
 }
 public void cancelarServiciosCampaña()
 {
+	try {
+		String idCampaña = JOptionPane.showInputDialog(this, "id  de la campaña",	"cancelar Servicios Campaña", JOptionPane.QUESTION_MESSAGE);
+
+		String idOrganizador = JOptionPane.showInputDialog(this, "id del Organizador de la campaña",	"cancelar Servicios Campaña", JOptionPane.QUESTION_MESSAGE);
+		
+		String nombreCampaña = JOptionPane.showInputDialog(this, "nombre de la campaña",	"cancelar Servicios Campaña", JOptionPane.QUESTION_MESSAGE);
+
+		LinkedList<Long> idOrden = new LinkedList<>();
+        JOptionPane.showConfirmDialog(this, "ahora va a insertar los id de los servicios que desea cancelar a la campaña si quiere terminar esta captura de datos escriba X");
+        boolean x = false;
+        while (!x)
+        {
+    		String id = JOptionPane.showInputDialog(this, "id del servicio",	"cancelar Servicios Campaña", JOptionPane.QUESTION_MESSAGE);
+    		if(id.equalsIgnoreCase("X") )
+    		{
+    		long idO = Long.parseLong(id);
+    		idOrden.add(idO);
+    		}
+    		else 
+    		{
+    		   x= true;
+    		}
+        }
+        long idOC = Long.parseLong(idOrganizador);
+        long idC =Long.parseLong(idCampaña);
+		VOCampaña u =EPSAndes.cancelarServiciosCampaña(idC,idOC, nombreCampaña, idOrden);
+		if(nombreCampaña != null )
+		{
+			if(u == null)
+			{
+				throw new Exception("no se puedieron eliminar los servicios de la campaña : " + nombreCampaña);
+			}
+			String resultado = "en adicionarOrden\n\n";
+			resultado += "orden adicionada exitosamente";
+			resultado += "\n operacion terminada";
+			panelDatos.actualizarInterfaz(resultado);
+		}	
+
+		else 
+		{
+			panelDatos.actualizarInterfaz("Operacion cancelada por el usuario");
+		}
+
+
+	}catch (Exception e)
+	{
+		String resultado = generarMensajeError(e);
+		panelDatos.actualizarInterfaz(resultado);
+	}
 }
 public void deshabilitarServiciosSalud()
 {
